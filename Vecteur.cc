@@ -10,18 +10,13 @@ void Vecteur::set_coord (size_t i, double valeur) {
 	vecteur[i]=valeur;
 }
 
-void Vecteur::affiche () const {
+void Vecteur::affiche (std::ostream &flux) const {
+	std::cout << "(";
 	for (size_t i(0); i < vecteur.size() ; i++) {
-		std::cout << vecteur[i] << " "; 
+		std::cout << vecteur[i];
+		if (i < vecteur.size()-1) std::cout << ", "; 
 	}
-}
-
-bool Vecteur::compare (Vecteur const& v) {
-	if (v.vecteur.size() != vecteur.size()) return false;
-	for (size_t i(0) ; i < vecteur.size() ; i++) {
-		if (v.vecteur[i] != vecteur[i]) return false;
-	}
-	return true;
+	std::cout << ")";
 }
 
 Vecteur Vecteur::addition (Vecteur const& autre) const {
@@ -91,4 +86,39 @@ double Vecteur::norme2 () const {
 
 double Vecteur::norme () const {
 	return sqrt(this->norme2());
+}
+
+Vecteur::Vecteur (size_t dim) {
+	for (size_t i(0) ; i < dim ; i++) {
+		this->augmente(0.0);
+	}
+}
+
+Vecteur::Vecteur (double a, double b, double c) {
+	this->augmente(a);
+	this->augmente(b);
+	this->augmente(c);
+}
+
+Vecteur::Vecteur (std::vector<double> liste) {
+	for (size_t i(0) ; i < liste.size() ; i++) {
+	this->augmente(liste[i]);
+	}
+}
+
+bool Vecteur::operator== (Vecteur const& v) const {
+	if (v.vecteur.size() != vecteur.size()) return false;
+	for (size_t i(0) ; i < vecteur.size() ; i++) {
+		if (v.vecteur[i] != vecteur[i]) return false;
+	}
+	return true;
+}
+
+bool Vecteur::operator!= (Vecteur const& v) const {
+	return !(*this == v);
+}
+
+std::ostream& operator<<(std::ostream& flux, Vecteur const& v) {
+	v.affiche(flux);
+	return flux;
 }
