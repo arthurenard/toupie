@@ -1,5 +1,7 @@
 #include "Vecteur.h"
 
+int main() {}
+
 void Vecteur::augmente (double valeur) {
 	vecteur.push_back(valeur);
 }
@@ -154,6 +156,9 @@ const Vecteur Vecteur::operator- () const {
 	return retour;
 }
 	
+const Vecteur Vecteur::operator~ () const {
+	return this->unitaire();
+}
 
 bool Vecteur::operator== (Vecteur const& v) const {
 	if (v.vecteur.size() != vecteur.size()) return false;
