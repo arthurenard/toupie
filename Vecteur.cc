@@ -30,14 +30,6 @@ Vecteur Vecteur::addition (Vecteur const& autre) const {
 	}
 }
 
-Vecteur Vecteur::oppose() const {
-	Vecteur retour;
-	for (size_t i(0) ; i < vecteur.size() ; i++) {
-		retour.augmente(-vecteur[i]);
-	}
-	return retour;
-}
-
 Vecteur Vecteur::soustraction (Vecteur const& autre) const {
 	if (autre.vecteur.size() != vecteur.size()) throw "soustraction";
 	else {
@@ -88,6 +80,8 @@ double Vecteur::norme () const {
 	return sqrt(this->norme2());
 }
 
+//constructeur
+
 Vecteur::Vecteur (size_t dim) {
 	for (size_t i(0) ; i < dim ; i++) {
 		this->augmente(0.0);
@@ -105,6 +99,49 @@ Vecteur::Vecteur (std::vector<double> liste) {
 	this->augmente(liste[i]);
 	}
 }
+
+//operateur
+
+const Vecteur operator+ (Vecteur a, Vecteur const& b){
+	return a.addition(b);
+}
+
+const Vecteur operator- (Vecteur a, Vecteur const& b) {
+	return a.soustraction(b);
+}
+
+const Vecteur operator*(double b, Vecteur const& a) {
+	return a.mult(b);
+}
+
+const Vecteur operator^ (Vecteur a, Vecteur const& b){
+	return a.prod_vect(b);
+}
+
+Vecteur& Vecteur::operator*= (double scalaire) {
+	return *this = (scalaire * *this);
+}
+
+Vecteur& Vecteur::operator-= (Vecteur const& v) {
+	return *this = (*this - v);
+}
+
+Vecteur& Vecteur::operator^= (Vecteur const& v) {
+	return *this = (*this ^ v);
+}
+
+Vecteur& Vecteur::operator+= (Vecteur const& v) {
+	return *this = (*this + v);
+}
+
+const Vecteur Vecteur::operator- () const {
+	Vecteur retour;
+	for (size_t i(0) ; i < vecteur.size() ; i++) {
+		retour.augmente(-vecteur[i]);
+	}
+	return retour;
+}
+	
 
 bool Vecteur::operator== (Vecteur const& v) const {
 	if (v.vecteur.size() != vecteur.size()) return false;
