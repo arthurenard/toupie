@@ -6,4 +6,19 @@ Comment sont-ils organisés : quels attributs ? quelles méthodes ? quels droits
 
 [Question P1.2]
 Quel choix avez vous fait pour les opérations entre vecteurs de dimensions différentes ?
-  ->Une exception est lancée 
+  -> Une exception est lancée 
+ 
+[Question P4.1]
+Avez-vous ajouté un constructeur de copie ? Pourquoi (justifiez votre choix) ?
+  -> Non pour le moment car pas d'intéret
+
+[Question P4.2]
+Si l'on souhaitait ajouter un constructeur par coordonnées sphériques (deux angles et une longueur) pour les vecteurs de dimension 3
+a] que cela impliquerait-il au niveau des attributs de la classe ?
+  ->
+b] quelle serait la difficulté majeure (voire l'impossibilité) de sa réalisation en C++ ? (C'est d'ailleurs pour cela qu'on ne vous demande pas de faire un tel constructeur !)
+  ->
+  
+[Question P4.3]
+Quels opérateurs avez vous introduits ?
+  -> les operateus "operator<<", "operator!=" et "operator==" pour afficher les Vecteur et les comparer
