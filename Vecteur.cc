@@ -117,7 +117,7 @@ const Vecteur operator^ (Vecteur a, Vecteur const& b){
 }
 
 Vecteur& Vecteur::operator*= (double scalaire) {
-	return *this = (scalaire * *this);
+	return (*this = (scalaire * *this));
 }
 
 Vecteur& Vecteur::operator-= (Vecteur const& v) {
