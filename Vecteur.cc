@@ -78,7 +78,17 @@ double Vecteur::norme () const {
 	return sqrt(this->norme2());
 }
 
-//constructeur
+
+Vecteur Vecteur::unitaire () const {
+	Vecteur retour;
+	double norme = this->norme();
+	for (size_t i(0) ; i < vecteur.size() ; i++) {
+		retour.augmente(norme);
+	}
+	return retour;
+} 
+
+//constructeurs
 
 Vecteur::Vecteur (size_t dim) {
 	for (size_t i(0) ; i < dim ; i++) {
@@ -98,7 +108,7 @@ Vecteur::Vecteur (std::vector<double> liste) {
 	}
 }
 
-//operateur
+//operateurs
 
 const Vecteur operator+ (Vecteur a, Vecteur const& b){
 	return a.addition(b);
@@ -109,6 +119,10 @@ const Vecteur operator- (Vecteur a, Vecteur const& b) {
 }
 
 const Vecteur operator*(double b, Vecteur const& a) {
+	return a.mult(b);
+}
+
+const Vecteur operator*(Vecteur const& a, double b) {
 	return a.mult(b);
 }
 
@@ -140,6 +154,9 @@ const Vecteur Vecteur::operator- () const {
 	return retour;
 }
 	
+const Vecteur Vecteur::operator~ () const {
+	return this->unitaire();
+}
 
 bool Vecteur::operator== (Vecteur const& v) const {
 	if (v.vecteur.size() != vecteur.size()) return false;

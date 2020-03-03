@@ -4,7 +4,7 @@
  
  class Vecteur {
 	public:
-	 	//methodes
+		//methodes
 		void augmente (double); //rajoute une dimension avec la veleur passé en argument
 		void set_coord (size_t, double); //modifie la n_ieme valeur
 		double prod_scal (Vecteur const&) const; //retourne le produit scalaire
@@ -20,6 +20,7 @@
 		bool operator== (Vecteur const&) const;
 		bool operator!= (Vecteur const&) const;		
 		const Vecteur operator- () const; //retourne le vecteur opposé
+		const Vecteur operator~ () const; //renvoie le vecteur unitaire
 		Vecteur& operator+= (Vecteur const&);
 		Vecteur& operator-= (Vecteur const&);		
 		Vecteur& operator*= (double scalaire); //multiplie le Vecteur par un scalaire
@@ -31,6 +32,7 @@
 		Vecteur mult (double) const; //multiplie le vecteur par un double
 		void affiche (std::ostream&) const; //utiliser "cout" à la place
 		Vecteur prod_vect (Vecteur const&) const; //retourne le produit vectoriel
+		Vecteur unitaire () const; //retourn le vecteur unitaire de mm sens et direction
 		
 	private:
 		std::vector<double> vecteur;
@@ -40,5 +42,6 @@
 const Vecteur operator+ (Vecteur, Vecteur const&);
 const Vecteur operator- (Vecteur, Vecteur const&);
 const Vecteur operator* (double, Vecteur const&);
+const Vecteur operator* (Vecteur const&, double);
 const Vecteur operator^ (Vecteur, Vecteur const&); //retourne le produit vectoriel, dimension 3 uniquement
 std::ostream& operator<< (std::ostream&, Vecteur const&);
