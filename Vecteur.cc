@@ -1,7 +1,5 @@
 #include "Vecteur.h"
 
-int main() {}
-
 void Vecteur::augmente (double valeur) {
 	vecteur.push_back(valeur);
 }
