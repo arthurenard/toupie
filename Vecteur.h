@@ -20,6 +20,7 @@
 		bool operator== (Vecteur const&) const;
 		bool operator!= (Vecteur const&) const;		
 		const Vecteur operator- () const; //retourne le vecteur opposé
+		const Vecteur operator~ () const; //renvoie le vecteur unitaire
 		Vecteur& operator+= (Vecteur const&);
 		Vecteur& operator-= (Vecteur const&);		
 		Vecteur& operator*= (double scalaire); //multiplie le Vecteur par un scalaire
