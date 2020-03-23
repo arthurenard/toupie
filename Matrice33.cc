@@ -1,7 +1,5 @@
 #include "Matrice33.h"
 
-//manque le produit avec un vecteur
-
 //constructeurs
 
 Matrice33::Matrice33 (double a, double b, double c) {
@@ -93,6 +91,18 @@ const Matrice33 Matrice33::operator- (Matrice33 const& autre) const {
 	return m;
 }
 
+const Matrice33 Matrice33::operator* (Matrice33 const& autre) const {
+	Matrice33 retour;
+	for (size_t a(0) ; a<3 ; a++) {
+		for (size_t b(0) ; b<3 ; b++) {
+			for (size_t c(0) ; c < 3 ; c++) {
+				retour.matrice[a][b] += matrice[a][c] * autre.matrice[c][b];
+			}
+		}
+	}
+	return retour;
+ }
+
 const Matrice33 Matrice33::operator* (double d) const {
 	Matrice33 m;
 	for(size_t a(0); a<3; a++) {
@@ -111,9 +121,23 @@ Matrice33& Matrice33::operator-= (Matrice33 const& m) {
 	return *this = *this - m;
 }
 
+Matrice33& Matrice33::operator*= (Matrice33 const& m) {
+	return *this = *this * m;
+}
 
 Matrice33& Matrice33::operator*= (double d) {
 	return *this = *this * d;
+} 
+
+Vecteur Matrice33::operator* (Vecteur const& v) const {
+	if (v.size() != 3) throw "matrice * vecteur";
+	Vecteur retour(0, 0, 0);
+	for (size_t a(0) ; a<3 ; a++) {
+		for (size_t b(0) ; b<3 ; b++) {
+			retour[a] += matrice[a][b] * v[b];
+		}
+	}
+	return retour;
 }
 
 //methodes inutiles aux beneficiaires de la classe
