@@ -15,21 +15,23 @@
 		//destructeur
 	
 		//methodes
-		void augmente (double); //rajoute une dimension avec la veleur passé en argument
-		void set_coord (size_t, double); //modifie la n_ieme valeur
+		void push_back (double); //rajoute une dimension avec la veleur passé en argument
+		size_t size() const; //renvoie la dimension du vecteur
 		double prod_scal (Vecteur const&) const; //retourne le produit scalaire
 		double norme () const; //retourne la norme euclidienne d'un Vecteur 
 		double norme2 () const; //retourne le carré de la norme euclidienne d'un Vecteur
 		
 		//operateurs internes
 		bool operator== (Vecteur const&) const;
-		bool operator!= (Vecteur const&) const;		
+		bool operator!= (Vecteur const&) const;	
 		const Vecteur operator- () const; //retourne le vecteur opposé
 		const Vecteur operator~ () const; //renvoie le vecteur unitaire
 		const Vecteur operator+ (Vecteur const&) const;
 		const Vecteur operator- (Vecteur const&) const;
 		const Vecteur operator* (double scalaire) const;
 		const Vecteur operator^ (Vecteur const&) const; //retourne le produit vectoriel, dimension 3 uniquement
+		double operator[] (size_t) const;
+		double& operator[] (size_t);
 		Vecteur& operator+= (Vecteur const&);
 		Vecteur& operator-= (Vecteur const&);		
 		Vecteur& operator*= (double scalaire); //multiplie le Vecteur par un scalaire
