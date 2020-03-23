@@ -24,11 +24,14 @@ class Matrice33 {
 		const Matrice33 operator- () const; //retourne la matrice opposée
 		const Matrice33 operator+ (Matrice33 const&) const;
 		const Matrice33 operator- (Matrice33 const&) const;
+		const Matrice33 operator* (Matrice33 const&) const;
 		const Matrice33 operator* (double) const;
 		Matrice33& operator+= (Matrice33 const&);
-		Matrice33& operator-= (Matrice33 const&);		
+		Matrice33& operator-= (Matrice33 const&);	
+		Matrice33& operator*= (Matrice33 const&);
 		Matrice33& operator*= (double scalaire);
-		//Vecteur operator* (Vecteur const&) const;
+		
+		Vecteur operator* (Vecteur const&) const;
 		
 		//inutile aux beneficiares de la classe
 		void affiche (std::ostream&) const;
