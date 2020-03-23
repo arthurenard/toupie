@@ -14,9 +14,9 @@ class Matrice33 {
 		//destructeur
 		
 		//methodes
-		Matrice33 transp() const;
-		Matrice33 inv () const;
-		double det() const;
+		const Matrice33 transp() const;
+		const Matrice33 inv () const;
+		const double det() const;
 		
 		//operateurs internes
 		bool operator== (Matrice33 const&) const;
