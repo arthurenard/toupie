@@ -11,24 +11,26 @@ class Matrice33 {
 		Matrice33 (double, double, double); //constructeur de matrice diagonale
 		Matrice33 (double = 0, double = 0, double = 0, double = 0, double = 0, double = 0, double = 0, double = 0, double = 0); //construit la matrice ligne par ligne
 		
+		//destructeur
+		
 		//methodes
 		Matrice33 transp() const;
 		Matrice33 inv () const;
 		double det() const;
 		
-		//operateurs
+		//operateurs internes
 		bool operator== (Matrice33 const&) const;
 		bool operator!= (Matrice33 const&) const;		
 		const Matrice33 operator- () const; //retourne la matrice opposée
-		Matrice33 operator+ (Matrice33 const&) const;
-		Matrice33 operator- (Matrice33 const&) const;
-		Matrice33 operator* (double) const;
+		const Matrice33 operator+ (Matrice33 const&) const;
+		const Matrice33 operator- (Matrice33 const&) const;
+		const Matrice33 operator* (double) const;
 		Matrice33& operator+= (Matrice33 const&);
 		Matrice33& operator-= (Matrice33 const&);		
 		Matrice33& operator*= (double scalaire);
 		//Vecteur operator* (Vecteur const&) const;
 		
-		//methode pour le devellopeur
+		//inutile aux beneficiares de la classe
 		void affiche (std::ostream&) const;
 		
 	private:
