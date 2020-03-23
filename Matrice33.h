@@ -1,3 +1,6 @@
+#ifndef H_MATRICE33
+#define H_MATRICE33
+
 #include <iostream> 
 #include <array>
 #include "Vecteur.h"
@@ -25,7 +28,7 @@ class Matrice33 {
 		Matrice33& operator*= (double scalaire);
 		//Vecteur operator* (Vecteur const&) const;
 		
-		//methode pour le devellopur
+		//methode pour le devellopeur
 		void affiche (std::ostream&) const;
 		
 	private:
@@ -37,3 +40,5 @@ class Matrice33 {
 //operateurs externes
 const Matrice33 operator* (double, Matrice33 const&);
 std::ostream& operator<< (std::ostream&, Matrice33 const&);
+
+#endif
