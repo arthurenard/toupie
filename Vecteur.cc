@@ -4,19 +4,19 @@
 
 Vecteur::Vecteur (size_t dim) {
 	for (size_t i(0) ; i < dim ; i++) {
-		this->augmente(0.0);
+		this->push_back(0.0);
 	}
 }
 
 Vecteur::Vecteur (double a, double b, double c) {
-	this->augmente(a);
-	this->augmente(b);
-	this->augmente(c);
+	this->push_back(a);
+	this->push_back(b);
+	this->push_back(c);
 }
 
 Vecteur::Vecteur (std::vector<double> liste) {
 	for (size_t i(0) ; i < liste.size() ; i++) {
-	this->augmente(liste[i]);
+	this->push_back(liste[i]);
 	}
 }
 
@@ -26,12 +26,12 @@ Vecteur::Vecteur (std::vector<double> liste) {
 
 //methodes
 
-void Vecteur::augmente (double valeur) {
+void Vecteur::push_back (double valeur) {
 	vecteur.push_back(valeur);
 }
 
-void Vecteur::set_coord (size_t i, double valeur) {
-	vecteur[i]=valeur;
+size_t Vecteur::size() const {
+	return vecteur.size();
 }
 
 double Vecteur::prod_scal (Vecteur const& autre) const {
@@ -74,7 +74,7 @@ bool Vecteur::operator!= (Vecteur const& v) const {
 const Vecteur Vecteur::operator- () const {
 	Vecteur retour;
 	for (size_t i(0) ; i < vecteur.size() ; i++) {
-		retour.augmente(-vecteur[i]);
+		retour.push_back(-vecteur[i]);
 	}
 	return retour;
 }
@@ -83,7 +83,7 @@ const Vecteur Vecteur::operator~ () const {
 	Vecteur retour;
 	double norme = this->norme();
 	for (size_t i(0) ; i < vecteur.size() ; i++) {
-		retour.augmente(norme);
+		retour.push_back(norme);
 	}
 	return retour;
 }
@@ -93,7 +93,7 @@ const Vecteur Vecteur::operator+ (Vecteur const& autre) const {
 	else {
 		Vecteur retour; 
 		for (size_t i(0) ; i < vecteur.size() ; i++) {
-			retour.augmente(autre.vecteur[i]+vecteur[i]);
+			retour.push_back(autre.vecteur[i]+vecteur[i]);
 		}
 		return retour;
 	}
@@ -104,7 +104,7 @@ const Vecteur Vecteur::operator- (Vecteur const& autre) const {
 	else {
 		Vecteur retour; 
 		for (size_t i(0) ; i < vecteur.size() ; i++) {
-			retour.augmente(-autre.vecteur[i]+vecteur[i]);
+			retour.push_back(-autre.vecteur[i]+vecteur[i]);
 		}
 		return retour;
 	}
@@ -113,17 +113,25 @@ const Vecteur Vecteur::operator- (Vecteur const& autre) const {
 const Vecteur Vecteur::operator* (double scalaire) const {
 	Vecteur retour;
 	for (size_t i(0) ; i < vecteur.size() ; i++) {
-		retour.augmente(scalaire * vecteur[i]);
+		retour.push_back(scalaire * vecteur[i]);
 	}
 	return retour;
 }
 
 const Vecteur Vecteur::operator^ (Vecteur const& autre) const { //produit vectoriel, uniquement en dimension 3
 	Vecteur retour; 
-	retour.augmente(vecteur[1]*autre.vecteur[2]-vecteur[2]*autre.vecteur[1]);
-	retour.augmente(vecteur[2]*autre.vecteur[0]-vecteur[0]*autre.vecteur[2]);
-	retour.augmente(vecteur[0]*autre.vecteur[1]-vecteur[1]*autre.vecteur[0]);
+	retour.push_back(vecteur[1]*autre.vecteur[2]-vecteur[2]*autre.vecteur[1]);
+	retour.push_back(vecteur[2]*autre.vecteur[0]-vecteur[0]*autre.vecteur[2]);
+	retour.push_back(vecteur[0]*autre.vecteur[1]-vecteur[1]*autre.vecteur[0]);
 	return retour;
+}
+
+double Vecteur::operator[] (size_t i) const {
+	return vecteur[i];
+}
+
+double& Vecteur::operator[] (size_t i) {
+	return vecteur[i];
 }
 
 Vecteur& Vecteur::operator+= (Vecteur const& v) {
