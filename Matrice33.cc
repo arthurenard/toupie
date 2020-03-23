@@ -4,6 +4,10 @@
 
 //constructeurs
 
+Matrice33::Matrice33 (double a, double b, double c) {
+	Matrice33 (a, 0, 0, 0, b, 0, 0, 0, c);
+}
+
 Matrice33::Matrice33 (double a, double b, double c, double d, double e, double f, double g, double h, double i) {
 	matrice[0][0] = a;
 	matrice[0][1] = b;
@@ -15,17 +19,16 @@ Matrice33::Matrice33 (double a, double b, double c, double d, double e, double f
 	matrice[2][1] = h;
 	matrice[2][2] = i;
 }
-
-Matrice33::Matrice33 (double a, double b, double c) {Matrice33 (a, 0, 0, 0, b, 0, 0, 0, c);}
+//destructeur
 
 
 //methodes
 
-Matrice33 Matrice33::transp () const {
+const Matrice33 Matrice33::transp () const {
 	return Matrice33 (matrice[0][0], matrice[1][0], matrice[2][0], matrice[0][1], matrice[1][1], matrice[2][1], matrice[0][2], matrice[1][2], matrice[2][2]);
 }
 
-Matrice33 Matrice33::inv () const {
+const Matrice33 Matrice33::inv () const {
 	Matrice33 r =  *this;
 	r.matrice[0][0] = (r.matrice[1][1]*r.matrice[2][2] - r.matrice[1][2]*r.matrice[2][1]);
 	r.matrice[0][1] = -(r.matrice[1][0]*r.matrice[2][2] - r.matrice[2][0]*r.matrice[1][2]);
@@ -39,11 +42,11 @@ Matrice33 Matrice33::inv () const {
 	return r*(1/r.det());
 }
 
-double Matrice33::det () const {
+const double Matrice33::det () const {
 	return ((matrice[0][0]*matrice[1][1]*matrice[2][2] + matrice[1][0]*matrice[2][1]*matrice[0][2] + matrice[2][0]*matrice[0][1]*matrice[1][2]) - (matrice[0][0]*matrice[1][2]*matrice[2][1] + matrice[1][0]*matrice[0][1]*matrice[2][2] + matrice[2][0]*matrice[1][1]*matrice[0][2]));
 }
 
-//operatreurs
+//operateurs internes
 
 bool Matrice33::operator== (Matrice33 const& m) const {
 		for(size_t a(0); a<3; a++) {
@@ -69,7 +72,7 @@ const Matrice33 Matrice33::operator- () const {
 }
 
 
-Matrice33 Matrice33::operator+ (Matrice33 const& autre) const {
+const Matrice33 Matrice33::operator+ (Matrice33 const& autre) const {
 	Matrice33 m;
 	for(size_t a(0); a<3; a++) {
 		for (size_t b(0) ; b<3 ; b++) {
@@ -80,7 +83,7 @@ Matrice33 Matrice33::operator+ (Matrice33 const& autre) const {
 }
 
 
-Matrice33 Matrice33::operator- (Matrice33 const& autre) const {
+const Matrice33 Matrice33::operator- (Matrice33 const& autre) const {
 	Matrice33 m;
 	for(size_t a(0); a<3; a++) {
 		for (size_t b(0) ; b<3 ; b++) {
@@ -90,7 +93,7 @@ Matrice33 Matrice33::operator- (Matrice33 const& autre) const {
 	return m;
 }
 
-Matrice33 Matrice33::operator* (double d) const {
+const Matrice33 Matrice33::operator* (double d) const {
 	Matrice33 m;
 	for(size_t a(0); a<3; a++) {
 		for (size_t b(0) ; b<3 ; b++) {
@@ -113,8 +116,7 @@ Matrice33& Matrice33::operator*= (double d) {
 	return *this = *this * d;
 }
 
-
-//methodes pour le devellopeur
+//methodes inutiles aux beneficiaires de la classe
 
 void Matrice33::affiche (std::ostream&) const {
 	std::cout << "{";
