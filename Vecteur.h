@@ -1,3 +1,6 @@
+#ifndef H_VECTEUR
+#define H_VECTEUR
+
 #include <iostream> 
 #include <vector>
 #include <math.h> 
@@ -45,3 +48,5 @@ const Vecteur operator* (double, Vecteur const&);
 const Vecteur operator* (Vecteur const&, double);
 const Vecteur operator^ (Vecteur, Vecteur const&); //retourne le produit vectoriel, dimension 3 uniquement
 std::ostream& operator<< (std::ostream&, Vecteur const&);
+
+#endif
