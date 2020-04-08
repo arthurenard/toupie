@@ -3,7 +3,9 @@
 
 #include "Vecteur.h"
 
-extern const Vecteur g; 
-extern const double epsilon; 
+extern const double g;
+extern const Vecteur vecteur_g; 
+extern const double epsilon;
+extern const double pi;
 
 #endif
