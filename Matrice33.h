@@ -3,11 +3,13 @@
 
 #include <iostream> 
 #include <array>
+#include <cmath>
 #include "Vecteur.h"
 
 class Matrice33 {
 	public:
 		//constructeurs
+		Matrice33 (); //construit une matrice Id
 		Matrice33 (double, double, double); //constructeur de matrice diagonale
 		Matrice33 (double, double, double, double, double, double, double, double, double); //construit la matrice ligne par ligne
 		
@@ -37,6 +39,7 @@ class Matrice33 {
 		void affiche (std::ostream&) const;
 		
 	private:
+		//double matrice[3][3];
 		std::array<std::array<double, 3>, 3> matrice;
 		
 		//methodes privees
