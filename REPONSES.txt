@@ -22,3 +22,11 @@ b] quelle serait la difficulté majeure (voire l'impossibilité) de sa réalisat
 [Question P4.3]
 Quels opérateurs avez vous introduits ?
   -> les operateus "operator<<", "operator!=" et "operator==" pour afficher les Vecteur et les comparer
+  
+ [Question P6.1]
+ Comment se situe cette classe par rapport à la classe Toupie précédemment définie ?
+  -> c'est une sous classe de Toupie, en effet ConeSimple est avant tout une toupie
+  
+ [Question P6.2]
+ Quelle est la relation entre les classes Integrateur et IntegrateurEulerCromer ?
+  -> IntergrateurEulerCramer est une sous classe de la classe Integrateur (->elle hérite d'Integrateur)

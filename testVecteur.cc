@@ -1,6 +1,12 @@
 #include <iostream>
 #include "Vecteur.h"
 
+/*<<<<<<< HEAD
+=======
+#include <iostream>
+#include "Vecteur.h"
+
+>>>>>>> 7893cef81a2d335b5c6910a3ffe2f4f910e23b08*/
 using namespace std;
 
 int main(){

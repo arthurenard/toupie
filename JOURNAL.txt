@@ -1,1 +1,9 @@
+# toupie
+projet toupie epfl
 
+23 mars : Arthur
+  - Upload des fichiers Toupie et constantes
+  - Rajout des #ifnedf, #define et #endif
+  - Restructuration de Matrice et Vecteur:
+  - Rajout de la double surcharge interne de operator[] dans Vecteur
+  - Rajout du produit matrice*matrice et matrice*vecteur dans Matrice
