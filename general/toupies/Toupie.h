@@ -5,8 +5,8 @@
 #include <vector>
 #include <cmath> 
 
-#include "Vecteur.h"
-#include "constantes.h"
+#include "bases/Vecteur.h"
+#include "bases/constantes.h"
 
 #define abs(nb) ((nb) < 0 ? -(nb) : (nb))
 

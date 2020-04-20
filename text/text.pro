@@ -1,6 +1,6 @@
 CONFIG += c++11
 
-TARGET = ex_05_text
+TARGET = beyblade_text
 
 LIBS += -L../general -lgeneral
 PRE_TARGETDEPS += ../general/libgeneral.a
@@ -12,7 +12,7 @@ SOURCES += \
     text_viewer.cc
 
 HEADERS += \
-    ../general/contenu.h \
+    ../general/Systeme.h \
     text_viewer.h \
     ../general/dessinable.h \
     ../general/support_a_dessin.h

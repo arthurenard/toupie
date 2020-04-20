@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "support_a_dessin.h"
+#include "Systeme.h"
 
 class TextViewer : public SupportADessin {
  public:
@@ -11,7 +12,7 @@ class TextViewer : public SupportADessin {
   {}
   virtual ~TextViewer() {}
 
-  virtual void dessine(Contenu const& a_dessiner) override;
+  virtual void dessine(Systeme const& a_dessiner) override;
 
  private:
   std::ostream& flot;

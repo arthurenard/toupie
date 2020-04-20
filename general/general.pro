@@ -2,7 +2,7 @@ TEMPLATE = lib
 
 CONFIG = staticlib c++11
 
-SOURCES = Systeme.cc \
+SOURCES += Systeme.cc \
     bases/Vecteur.cc \
     bases/Matrice33.cc \
     bases/constantes.cc \

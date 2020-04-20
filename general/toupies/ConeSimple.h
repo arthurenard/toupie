@@ -3,11 +3,12 @@
 
 #include <iostream> 
 #include "Toupie.h"
-#include "constantes.h"
+#include "bases/constantes.h"
 
 class ConeSimple : public Toupie {
 	public:
 		// constructeurs
+        ConeSimple();
 		ConeSimple (Vecteur vect_P, Vecteur vect_dP, double masseVolumique, double hauteur, double rayon);
 		ConeSimple (std::vector<double> vect_P, std::vector<double> vect_dP, double masseVolumique, double hauteur, double rayon);
 		

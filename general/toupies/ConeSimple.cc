@@ -1,6 +1,13 @@
 #include "ConeSimple.h"
 
 //constructeurs
+ConeSimple::ConeSimple() :
+    Toupie(),
+    masseVolumique(1.0),
+    hauteur(1.0),
+    rayon(1.0)
+{}
+
 
 ConeSimple::ConeSimple (Vecteur vect_P, Vecteur vect_dP, double mV, double h, double r) :
 	Toupie (vect_P, vect_dP),

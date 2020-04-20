@@ -3,7 +3,7 @@
 
 #include <iostream> 
 #include "Toupie.h"
-#include "constantes.h"
+#include "bases/constantes.h"
 
 //on considere que la toupie chinoise est une sphere tronquee
 
