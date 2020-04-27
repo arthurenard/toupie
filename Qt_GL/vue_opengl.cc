@@ -1,15 +1,28 @@
 #include "vue_opengl.h"
 #include "vertex_shader.h" // Identifiants Qt de nos différents attributs
-#include "contenu.h"
+#include "Systeme.h"
 
 // ======================================================================
-void VueOpenGL::dessine(Contenu const& a_dessiner)
+void VueOpenGL::dessine(Systeme const& a_dessiner)
 {
    // Dessine le 1er cube (à l'origine)
   //dessineCube();
   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-  dessinePlan();
+  //dessinePlan();
   dessineRepere();
+  QMatrix4x4 matricecone;
+  /*matricecone.rotate(0.5 *180/3.14, 0.0,0.0,1.0);
+  matricecone.rotate(0.5 *180/3.14, 1.0,0.0,0.0);*/
+  matricecone.rotate(a_dessiner.getCone()->getP()[0] *180/3.14, 0.0,0.0,1.0);
+  matricecone.rotate(a_dessiner.getCone()->getP()[1] *180/3.14, 1.0,0.0,0.0);
+  matricecone.rotate(a_dessiner.getCone()->getP()[2] *180/3.14, 0.0,0.0,1.0);
+  //dessineRepere(matricecone);
+  matricecone.scale(a_dessiner.getCone()->getRayon(), a_dessiner.getCone()->getRayon(), 1.0);
+      dessineCone(matricecone);
+ // dessineCone( QMatrix4x4(),a_dessiner.getCone()->getP() );
+
+  //dessineVecteur( QMatrix4x4(), a_dessiner.getCone()->vect_rot());
+
   glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 
@@ -17,10 +30,10 @@ void VueOpenGL::dessine(Contenu const& a_dessiner)
   //dessineSphere(matrice, 1.0, 0.0, 0.0);
 
 
-  for(size_t i(0) ; i < a_dessiner.getNb() ; i++){
+ /* for(size_t i(0) ; i < a_dessiner.getNb() ; i++) {
       Planete* planete(a_dessiner.getPlanete(i));
       dessinePlanete(planete->getX(), planete->getY(), planete->getMasse(), planete->getRayon());
-  }
+  }*/
 }
 
 // ======================================================================
@@ -75,7 +88,7 @@ void VueOpenGL::init()
    * de déclaration dans le sens trigonométrique.
    */
   glEnable(GL_DEPTH_TEST);
-  glEnable(GL_CULL_FACE);
+  //glEnable(GL_CULL_FACE);
 
   sphere.initialize();                                      // initialise la sphère
 
@@ -108,8 +121,8 @@ void VueOpenGL::translate(double x, double y, double z)
   translation_supplementaire.translate(x, y, z);
   matrice_position = translation_supplementaire * matrice_position;
   matrice_vue = matrice_camera * matrice_position;
-
 }
+
 void VueOpenGL::move(double pas){
     rho += pas;
     updatePosition();
@@ -232,6 +245,8 @@ void VueOpenGL::dessineRepere (QMatrix4x4 const& point_de_vue)
 
 }
 
+
+
 void VueOpenGL::dessineSphere (QMatrix4x4 const& point_de_vue,
                                double rouge, double vert, double bleu)
 {
@@ -239,14 +254,10 @@ void VueOpenGL::dessineSphere (QMatrix4x4 const& point_de_vue,
   prog.setAttributeValue(CouleurId, rouge, vert, bleu);  // met la couleur
   sphere.draw(prog, SommetId);                           // dessine la sphère
 }
-
-void VueOpenGL::dessinePlanete(double X, double Y, double masse, double rayon){
-    QMatrix4x4 matrice;
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    matrice.setToIdentity();
-    matrice.scale(1.0);//5/(7.8 * std::pow(10, 11)));
-    matrice.translate( X, Y, 0.3);
-    matrice.scale( rayon );
-    dessineSphere(matrice, 1.0, 0.0, 0.0);
-
+void VueOpenGL::dessineCone (QMatrix4x4 const& point_de_vue)
+{
+  prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
+  cone.draw(prog);                           // dessine la sphère
 }
+
+

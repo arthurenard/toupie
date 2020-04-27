@@ -9,7 +9,11 @@ int main()
   Systeme c(&ecran);
 
   cout << "Au départ :" << endl;
-  c.dessine();
+  for(int i(0); i< 20; i++){
+      c.dessine();
+      c.evolue(0.01);
+  }
+
 
   return 0;
 }

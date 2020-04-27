@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include "support_a_dessin.h"
-#include "Systeme.h"
 
 class TextViewer : public SupportADessin {
  public:

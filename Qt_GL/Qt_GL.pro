@@ -5,7 +5,7 @@ CONFIG += c++11
 win32:LIBS += -lopengl32
 
 
-TARGET = ex_05_gl
+TARGET = beyblade_gl
 
 LIBS += -L../general -lgeneral
 PRE_TARGETDEPS += ../general/libgeneral.a
@@ -13,21 +13,21 @@ PRE_TARGETDEPS += ../general/libgeneral.a
 INCLUDEPATH = ../general
 
 SOURCES += \
-    configuration.cc \
     main_qt_gl.cc \
     glwidget.cc \
     glsphere.cc \
+    glcone.cc \
     vue_opengl.cc
 
 HEADERS += \
-    configuration.h \
     glwidget.h \
     vertex_shader.h \
     vue_opengl.h \
     glsphere.h \
+    glcone.h \
     ../general/dessinable.h \
     ../general/support_a_dessin.h \
-    ../general/contenu.h
+    ../general/Systeme.h
 
 RESOURCES += \
     resource.qrc

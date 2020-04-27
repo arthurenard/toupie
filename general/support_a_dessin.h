@@ -1,8 +1,11 @@
 #ifndef SUPPORT_A_DESSIN_H
 #define SUPPORT_A_DESSIN_H
 
-#include "toupies/Toupie.h"
-#include "Systeme.h"
+//#include "toupies/Toupie.h"
+//#include "Systeme.h"
+
+class Systeme;
+
 
 class SupportADessin
 {

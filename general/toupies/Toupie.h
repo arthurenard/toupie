@@ -18,13 +18,15 @@ class Toupie {
 		//destructeur
 		
 		//methodes 
-		Vecteur eq_evolution (Vecteur P, Vecteur dP, double temps = 0);
+        virtual Vecteur eq_evolution (Vecteur P, Vecteur dP, double temps = 0);
 		
 		void EulerCromer (double pas_de_temps, double temps = 0);
 		void Newmark (double pas_de_temps, double temps = 0);
 		void RungeKutta (double pas_de_temps, double temps = 0);
 		
-		
+        const Vecteur getP()  {
+            return vect_P;
+        }
 		//operateurs internes
 		
 		//inutiles aux beneficiaires 

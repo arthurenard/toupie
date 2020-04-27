@@ -5,4 +5,5 @@ void Systeme::evolue(double dt){
 
        toupie->EulerCromer(dt);
     }
+    cone->EulerCromer(dt);
 }

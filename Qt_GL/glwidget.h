@@ -4,7 +4,7 @@
 #include <QOpenGLWidget>        // Classe pour faire une fenêtre OpenGL
 #include <QTime>            // Classe pour gérer le temps
 #include "vue_opengl.h"
-#include "contenu.h"
+#include "Systeme.h"
 
 class GLWidget : public QOpenGLWidget
 /* La fenêtre hérite de QOpenGLWidget ;
@@ -16,6 +16,8 @@ public:
     : QOpenGLWidget(parent)
     , c(&vue), speed(1)
   {this->resize(1920, 1080);}
+
+
   virtual ~GLWidget() {}
   void toggleFullWindow();
 
@@ -44,7 +46,7 @@ private:
 
 
   // objets à dessiner, faire évoluer
-  Contenu c;
+  Systeme c;
   bool b_Fullscreen;
   int speed;
 

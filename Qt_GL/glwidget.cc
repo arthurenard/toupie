@@ -97,23 +97,18 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
       toggleFullWindow();
       break;
 
-
-  case Qt::Key_R:
-      //c.putAlt(1.0);
-    break;
-
   case Qt::Key_Space:
 	pause();
 	break;
 
   case Qt::Key_O:
-    speed/=10;
+    speed-=1;
     if(speed < 1)
         speed=1;
     break;
 
     case Qt::Key_P:
-      speed*= 10;
+      speed+= 1;
      break;
    };
 
@@ -156,7 +151,7 @@ void GLWidget::timerEvent(QTimerEvent* event)
 
   double dt = chronometre.restart() / 1000.0;
   for (int i(1);i<=speed;i++) {
-      c.evolue(dt);//*360);
+      c.evolue(dt/speed);//*360);
   }
 
   update();

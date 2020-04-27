@@ -29,9 +29,10 @@ ConeSimple::ConeSimple (std::vector<double> vect_P, std::vector<double> vect_dP,
 
 Vecteur ConeSimple::eq_evolution (Vecteur P, Vecteur dP, double temps) {
 	Vecteur retour (3);
- 	retour[0] = vect_dP[1] * (((I3() - (2 * IA1())) * vect_dP[0] * cos(vect_P[1])) - (I3() * vect_dP[2]));
-	retour[1] = (1/IA1()) * (MA() + (vect_dP[0] * sin(vect_P[1]) * ( ( (IA1() - I3()) * vect_dP[0] * cos(vect_P[1])) - (I3() * vect_dP[2]))));
-	retour[2] = (vect_dP[1] / (IA1() * sin(vect_P[1]))) * ( ( ( vect_dP[0] * ( IA1() - ( ( I3() - IA1() ) * cos(vect_P[1]) * cos(vect_P[1]))) - ( I3() *vect_dP[2] * cos(vect_P[1])))));
+    retour[0] = (vect_dP[1] / (IA1() * sin(vect_P[1]))) * (((I3() - (2 * IA1())) * vect_dP[0] * cos(vect_P[1])) + (I3() * vect_dP[2]));
+    retour[1] = (1/IA1() ) * (MA() + (vect_dP[0] * sin(vect_P[1]) * ( ( (IA1() - I3()) * vect_dP[0] * cos(vect_P[1])) - (I3() * vect_dP[2]))));
+    retour[2] = (vect_dP[1] / (IA1() * sin(vect_P[1]))) * ( ( ( vect_dP[0] * ( IA1() - ( ( I3() - IA1() ) * cos(vect_P[1]) * cos(vect_P[1]))) - ( I3() *vect_dP[2] * cos(vect_P[1])))));
+
 	return retour;
 }
 
@@ -49,15 +50,15 @@ const double ConeSimple::masse () const {
 }
 
 const double ConeSimple::I1 () const {
-	return (3/20) * masse() * ((rayon * rayon) + (0.25 * hauteur * hauteur));
+    return (3./20.) * masse() * ((rayon * rayon) + (0.25 * hauteur * hauteur));
 }
 
 const double ConeSimple::I3 () const {
-	return (3/10) * masse() * rayon * rayon;
+    return (3./10.) * masse() * rayon * rayon;
 }
 
 const double ConeSimple::IA1 () const {
-	return (I1() + ((9/16) * hauteur * hauteur));
+    return (I1() + ((9./16.) * hauteur * hauteur));
 }
 
 const double ConeSimple::MA () const {

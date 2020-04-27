@@ -40,7 +40,7 @@ void Toupie::RungeKutta (double dt, double temps) {
 	Vecteur k1 (vect_dP);
 	Vecteur k1b (eq_evolution(vect_P, vect_dP, temps));
 	Vecteur k2 (vect_dP + ((dt/2) * k1b));
-	Vecteur k2b	(eq_evolution (vect_P + ((dt/2) * k1), vect_dP + ((dt/2) * k1b), temps + dt/2));
+    Vecteur k2b	(eq_evolution (vect_P + ((dt/2) * k1), vect_dP + ((dt/2) * k1b), temps + dt/2));
 	Vecteur k3 (vect_dP + ((dt/2) * k2b));
 	Vecteur k3b (eq_evolution (vect_P + ((dt/2) * k2), vect_dP + ((dt/2) * k2b), temps + dt/2));
 	Vecteur k4 (vect_dP + (dt * k3b));

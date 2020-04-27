@@ -5,13 +5,17 @@
 #include <QMatrix4x4>
 #include "support_a_dessin.h"
 #include "glsphere.h"
+#include "glcone.h"
+#include "bases/Vecteur.h"
 #include <cmath>
+#include "support_a_dessin.h"
+
 
 
 class VueOpenGL : public SupportADessin {
  public:
   // méthode(s) de dessin (héritée(s) de SupportADessin)
-  virtual void dessine(Contenu const& a_dessiner) override;
+  virtual void dessine(Systeme const& a_dessiner) override;
 
   // méthodes de (ré-)initialisation
   void init();
@@ -28,15 +32,15 @@ class VueOpenGL : public SupportADessin {
   
   // méthode utilitaire offerte pour simplifier
   void dessineCube(QMatrix4x4 const& point_de_vue = QMatrix4x4() );
-
   void dessinePlan(QMatrix4x4 const& point_de_vue = QMatrix4x4() );
   void dessineRepere(QMatrix4x4 const& point_de_vue = QMatrix4x4() );
   void updatePosition();
+
   void move(double pas);
   void dessineSphere(QMatrix4x4 const& point_de_vue,
                    double rouge = 1.0, double vert = 1.0, double bleu = 1.0);
+  void dessineCone(QMatrix4x4 const& point_de_vue = QMatrix4x4());
 
-  void dessinePlanete(double X, double Y, double masse, double rayon);
 
 
 
@@ -51,6 +55,7 @@ class VueOpenGL : public SupportADessin {
   QMatrix4x4 matrice_camera;
   double psi, omega, rho;
   GLSphere sphere;
+  Glcone cone;
 
 };
 

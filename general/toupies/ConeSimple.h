@@ -15,13 +15,15 @@ class ConeSimple : public Toupie {
 		// destructeurs
 		
 		//methodes publiques
-		Vecteur eq_evolution (Vecteur P, Vecteur dP, double temps = 0);
+        virtual Vecteur eq_evolution (Vecteur P, Vecteur dP, double temps = 0) override;
 		
 		//operateurs internes
-		
+        double getHauteur(){return hauteur;} // metre
+        double getRayon(){return rayon;}
 		//methodes inutiles aux beneficiares
 	
-	
+            Vecteur vect_rot () const;
+
 	private: 
 		//attributs
 		double masseVolumique; // kg*m⁻3
@@ -36,7 +38,7 @@ class ConeSimple : public Toupie {
 		const double IA1 () const; // kg * m2
 		const double MA () const;
 				
-		Vecteur vect_rot () const;
+        //Vecteur vect_rot () const;
 };
 
 #endif
