@@ -1,6 +1,9 @@
 #ifndef H_TOUPIE
 #define H_TOUPIE
 
+#define CONESIMPLE(1)
+
+
 #include <iostream>
 #include <vector>
 #include <cmath> 
@@ -18,15 +21,16 @@ class Toupie {
 		//destructeur
 		
 		//methodes 
-        virtual Vecteur eq_evolution (Vecteur P, Vecteur dP, double temps = 0);
+        virtual Vecteur eq_evolution (Vecteur P, Vecteur dP, double temps = 0)=0;
 		
 		void EulerCromer (double pas_de_temps, double temps = 0);
 		void Newmark (double pas_de_temps, double temps = 0);
 		void RungeKutta (double pas_de_temps, double temps = 0);
-		
+        //accesseurs
         const Vecteur getP()  {
             return vect_P;
         }
+
 		//operateurs internes
 		
 		//inutiles aux beneficiaires 

@@ -9,13 +9,14 @@
 #include "bases/Vecteur.h"
 #include <cmath>
 #include "support_a_dessin.h"
+#include "Systeme.h"
 
 
 
 class VueOpenGL : public SupportADessin {
  public:
   // méthode(s) de dessin (héritée(s) de SupportADessin)
-  virtual void dessine(Systeme const& a_dessiner) override;
+  virtual void dessine(Systeme const& systeme) override;
 
   // méthodes de (ré-)initialisation
   void init();
@@ -30,6 +31,15 @@ class VueOpenGL : public SupportADessin {
   void turnAround(double angle, double dir_x, double dir_y, double dir_z);
   void rotateCamera(double angle, double dir_x, double dir_y, double dir_z);
   
+
+
+  // methodes de dessins de toupies
+  void dessineToupie(Toupie* toupie);
+
+  void dessineToupie(ConeSimple* toupie);
+  void dessineToupie(ToupieChinoise* toupie);
+
+
   // méthode utilitaire offerte pour simplifier
   void dessineCube(QMatrix4x4 const& point_de_vue = QMatrix4x4() );
   void dessinePlan(QMatrix4x4 const& point_de_vue = QMatrix4x4() );

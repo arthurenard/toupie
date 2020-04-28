@@ -32,7 +32,7 @@ void Toupie::Newmark (double dt, double temps) {
 		q = vect_P;
 		r = eq_evolution(vect_P, vect_dP, temps);
 		vect_dP += (dt * (r +s)) * 0.5;
-		vect_P += (dt * vect_dP) + (dt * dt * (r + (2*s)) * (1/6));
+        vect_P += (dt * vect_dP) + (dt * dt * (r + (2*s)) * (1./6.));
 	}
 }
 
@@ -46,7 +46,7 @@ void Toupie::RungeKutta (double dt, double temps) {
 	Vecteur k4 (vect_dP + (dt * k3b));
 	Vecteur k4b	(eq_evolution (vect_P + (dt * k3), vect_dP + (dt * k3b), temps));
 	
-	vect_P += ((dt/6) * (k1 + (2*k2) + (2*k3) + k4));
+    vect_P += ((dt/6) * (k1 + (2*k2) + (2*k3) + k4));
 	vect_dP += ((dt/6) * (k1b + (2*k2b) + (2*k3b) + k4b));
 }
 

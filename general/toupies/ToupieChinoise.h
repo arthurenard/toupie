@@ -18,7 +18,7 @@ class ToupieChinoise : public Toupie {
 		//methodes publiques
 		
 		//operateurs internes
-		Vecteur eq_evolution (Vecteur P, Vecteur dP, double temps = 0);
+        virtual Vecteur eq_evolution (Vecteur P, Vecteur dP, double temps = 0) override;
 		
 		//methodes inutiles aux beneficiares
 	
