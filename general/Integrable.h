@@ -13,16 +13,16 @@
 class Integrable {
 	public: 
 		//constructeurs
-		Toupie (Vecteur vect_P = 0, Vecteur vect_dP = 0);
-		Toupie (std::vector<double> vect_P, std::vector<double> vect_dP);
+		Integrable (Vecteur vect_P = 0, Vecteur vect_dP = 0);
+		Integrable (std::vector<double> vect_P, std::vector<double> vect_dP);
 		
-    //destructeur
+   		//destructeur
 		
 		//methodes 
-    virtual Vecteur eq_evolution (Vecteur P, Vecteur dP, double temps = 0)=0;
-    const Vecteur get_vect_P const ();
+   		virtual Vecteur eq_evolution (Vecteur P, Vecteur dP, double temps = 0) = 0;
+    		const Vecteur get_vect_P const ();
     
-    void EulerCromer (double pas_de_temps, double temps = 0);
+    		void EulerCromer (double pas_de_temps, double temps = 0);
 		void Newmark (double pas_de_temps, double temps = 0);
 		void RungeKutta (double pas_de_temps, double temps = 0);
     
