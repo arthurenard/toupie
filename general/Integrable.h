@@ -32,8 +32,8 @@ class Integrable {
 		void affiche (std::ostream&) const;
 			
 	protected:
-		Vecteur vect_P; // psi, theta, phi
-		Vecteur vect_dP; // psi-point, theta-point, phi-point
+		Vecteur vect_P; 
+		Vecteur vect_dP;
 };
 
 //methodes externes
