@@ -38,8 +38,6 @@ class ConeSimple : public Toupie {
 		const double I3 () const; // kg * m2
 		const double IA1 () const; // kg * m2
 		const double MA () const;
-				
-        Vecteur vect_rot () const;
 };
 
 #endif
