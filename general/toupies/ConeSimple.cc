@@ -65,14 +65,6 @@ const double ConeSimple::MA () const {
 	return (masse () * g * hauteur * sin(vect_P[1]));  // cas ou la toupie n'est soumise qu'a son seul poids
 }
 
-Vecteur ConeSimple::vect_rot () const {
-	Vecteur retour (3);
-	retour[0] = vect_dP[1];
-	retour[1] = vect_dP[0] * sin(vect_P[1]);
-	retour[2] = (vect_dP[0] * cos(vect_P[1])) + vect_dP[2];
-	return retour;
-}
-
 //operateurs externes
 
 
