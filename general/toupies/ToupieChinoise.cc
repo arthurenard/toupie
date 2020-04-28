@@ -1,4 +1,4 @@
-clude "ToupieChinoise.h"
+include "ToupieChinoise.h"
 
 //constructeurs
 
