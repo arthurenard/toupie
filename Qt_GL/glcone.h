@@ -9,7 +9,7 @@ class Glcone
 {
 public:
   Glcone(std::size_t nb_coins = 12);
-  void draw(QOpenGLShaderProgram& prog);
+  void draw(QOpenGLShaderProgram& );
 
 private:
  std::vector<double> coordX, coordY;

@@ -11,13 +11,27 @@ void VueOpenGL::dessine(Systeme const& systeme)
   glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
   dessineRepere();
   QMatrix4x4 matricecone;
+  matricecone.translate(systeme.getCone()->get_vect_P()[3],systeme.getCone()->get_vect_P()[4]);
   matricecone.rotate(systeme.getCone()->get_vect_P()[0] *180/pi, 0.0,0.0,1.0);
   matricecone.rotate(systeme.getCone()->get_vect_P()[1] *180/pi, 1.0,0.0,0.0);
   matricecone.rotate(systeme.getCone()->get_vect_P()[2] *180/pi, 0.0,0.0,1.0);
-  dessineRepere(matricecone);
-
   matricecone.scale(systeme.getCone()->getRayon(),systeme.getCone()->getRayon(), systeme.getCone()->getHauteur());
   dessineCone(matricecone);
+
+  QMatrix4x4 matricecone2;
+  matricecone2.translate(systeme.getCone2()->get_vect_P()[3],systeme.getCone2()->get_vect_P()[4]);
+  matricecone2.rotate(systeme.getCone2()->get_vect_P()[0] *180/pi, 0.0,0.0,1.0);
+  matricecone2.rotate(systeme.getCone2()->get_vect_P()[1] *180/pi, 1.0,0.0,0.0);
+  matricecone2.rotate(systeme.getCone2()->get_vect_P()[2] *180/pi, 0.0,0.0,1.0);
+  matricecone2.scale(systeme.getCone2()->getRayon(),systeme.getCone2()->getRayon(), systeme.getCone2()->getHauteur());
+  dessineCone(matricecone2);
+  matricecone2.setToIdentity();
+ // matricecone2.translate(systeme.getChinois()->get_vect_P()[3],systeme.getChinois()->get_vect_P()[4]);
+  matricecone2.rotate(systeme.getChinois()->get_vect_P()[0] *180/pi, 0.0,0.0,1.0);
+  matricecone2.rotate(systeme.getChinois()->get_vect_P()[1] *180/pi, 1.0,0.0,0.0);
+  matricecone2.rotate(systeme.getChinois()->get_vect_P()[2] *180/pi, 0.0,0.0,1.0);
+  //matricecone2.scale(systeme.getChinois()->getRayon(),systeme.getChinois()->getRayon(), systeme.getCone2()->getHauteur());
+  dessineSphere(matricecone2);
 
  /* for(size_t i(0); i < systeme.nbToupies(); i++){
       dessineToupie(systeme.getToupie(i));

@@ -21,16 +21,16 @@ ToupieChinoise::ToupieChinoise (std::vector<double> vect_P, std::vector<double> 
 //methodes publiques
 Vecteur ToupieChinoise::eq_evolution (Vecteur P, Vecteur dP, double temps) {
 	double r (rayon), m(masse());
-	Vecteur retour (3);
+    Vecteur retour (5);
 	double f1 (vect_dP[2] + (vect_dP[0] * cos(vect_P[1])));
 	double f3 ((I1() * I3()) + (masse() * I1() * pow(sin(vect_P[1]) * r, 2)) + (masse() * I3() * pow(r * (alpha() - cos(vect_P[1])), 2)));
-	double f2 ((vect_dP[1] * f1 * I3() * (I3() + (m * r * r * (1 - (alpha() * cos(vect_P[1])))))/(f3 * sin(vect_P[1]))) - (2 * vect_dP[0] * vect_dP[1] / tan(vect_P[0])));
+    double f2 ((vect_dP[1] * f1 * I3() * (I3() + (m * r * r * (1 - (alpha() * cos(vect_P[1])))))/(f3 * sin(vect_P[1]))) - (2 * vect_dP[0] * vect_dP[1] / tan(vect_P[1])));
 	
 	
 	retour[0] = f2;
 	
 	retour[1] =  sin(vect_P[1]) * (vect_dP[0] * vect_dP[0] * (-m * r * r * (alpha() - cos(vect_P[1])) * (1 - (alpha() * cos(vect_P[1]))) + (I1() * cos(vect_P[1]))) +
-	(f1 * vect_dP[0] * (m * r * r * ((alpha() * cos(vect_P[0])) - 1)) - I3()) - ((m * r * alpha()) * ((r * pow(vect_dP[1], 2)) + (m * g))))
+    (f1 * vect_dP[0] * (m * r * r * ((alpha() * cos(vect_P[1])) - 1)) - I3()) - ((m * r * r * alpha() * pow(vect_dP[1], 2))  - (m * g * r * alpha())))
 	/ (I1() + (m * r * r * (pow(alpha() - cos(vect_P[1]), 2) + pow(sin(vect_P[1]), 2))));
 	
 	retour[2] = (vect_dP[0] * vect_dP[1] * sin(vect_P[1])) - (cos(vect_P[1]) * f2) 
