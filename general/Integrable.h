@@ -13,16 +13,16 @@
 class Integrable {
 	public: 
 		//constructeurs
-		Integrable (Vecteur vect_P = 0, Vecteur vect_dP = 0);
-		Integrable (std::vector<double> vect_P, std::vector<double> vect_dP);
+        Integrable (Vecteur v = 0, Vecteur w = 0);
+        Integrable (std::vector<double> v, std::vector<double> w);
 		
    		//destructeur
 		
 		//methodes 
    		virtual Vecteur eq_evolution (Vecteur P, Vecteur dP, double temps = 0) = 0;
-    		const Vecteur get_vect_P const ();
+        const Vecteur get_vect_P ();
     
-    		void EulerCromer (double pas_de_temps, double temps = 0);
+        void EulerCromer (double pas_de_temps, double temps = 0);
 		void Newmark (double pas_de_temps, double temps = 0);
 		void RungeKutta (double pas_de_temps, double temps = 0);
     

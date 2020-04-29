@@ -9,7 +9,7 @@ SOURCES += Systeme.cc \
     toupies/Toupie.cc \
     toupies/ToupieChinoise.cc \
     toupies/ConeSimple.cc \
-    Integrable.cc \
+    Integrable.cc
 
 HEADERS += \
     Systeme.h \

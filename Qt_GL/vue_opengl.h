@@ -34,11 +34,10 @@ class VueOpenGL : public SupportADessin {
 
 
   // methodes de dessins de toupies
-  void dessineToupie(Toupie* toupie);
+ /* void dessineToupie(Toupie* toupie);
 
   void dessineToupie(ConeSimple* toupie);
-  void dessineToupie(ToupieChinoise* toupie);
-
+  void dessineToupie(ToupieChinoise* toupie);*/
 
   // méthode utilitaire offerte pour simplifier
   void dessineCube(QMatrix4x4 const& point_de_vue = QMatrix4x4() );

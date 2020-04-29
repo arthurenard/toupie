@@ -1,19 +1,19 @@
 #include "Integrable.h"
 
 //constructeurs
-Toupie::Integrable (Vecteur v, Vecteur w) :
+Integrable::Integrable (Vecteur v, Vecteur w) :
 	vect_P(v),
 	vect_dP(w)
 {}
 
-Integrateur::Integrable (std::vector<double> v, std::vector<double> w) :
+Integrable::Integrable (std::vector<double> v, std::vector<double> w) :
 	vect_P(v),
 	vect_dP(w)
 {}
 
 
 //methodes publiques
-const Integrable::get_vect_P () const {
+const Vecteur Integrable::get_vect_P (){
 	return vect_P;
 }
 

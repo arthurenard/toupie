@@ -20,8 +20,8 @@ class Systeme : public Dessinable {
 	public: 
     Systeme(SupportADessin* vue): Dessinable(vue)
     {
-        //addCone();
-        addToupie(new ConeSimple(Vecteur( 0.01, 0.01, 0.0), Vecteur(0.0, 0.0, 180), 1.0,1.5,0.5));
+        addCone();
+        //addToupie(new ConeSimple(Vecteur( 0.01, 0.01, 0.0), Vecteur(0.0, 0.0, 180), 1.0,1.5,0.5));
     }
 
         virtual void dessine() override
@@ -36,21 +36,21 @@ class Systeme : public Dessinable {
         Toupie* getToupie(size_t nb) const {
             return toupies[nb];
         }
-        /*void addCone(){
-            Vecteur P( 0.01, 0.01, 0.0);
-            Vecteur dP( 0.0, 0.0, 180);
+        void addCone(){
+            Vecteur P( 0.01, 0.01, 0.0, 0.0, 0.0);
+            Vecteur dP( 0.0, 0.0, 180,0.0,0.0);
            cone= new ConeSimple(P, dP, 1.0,1.5,0.5) ;
         }
         ConeSimple* getCone() const{
             return cone;
-        }*/
+        }
         const std::vector<Toupie*>* getToupies() const{
             return &toupies;
         }
 		
 	protected:
         std::vector<Toupie*> toupies;
-        //ConeSimple* cone;
+        ConeSimple* cone;
 
 };
 

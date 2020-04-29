@@ -13,7 +13,13 @@ Vecteur::Vecteur (double a, double b, double c) {
 	this->push_back(b);
 	this->push_back(c);
 }
-
+Vecteur::Vecteur (double a, double b, double c, double d, double e) {
+    this->push_back(a);
+    this->push_back(b);
+    this->push_back(c);
+    this->push_back(d);
+    this->push_back(e);
+}
 Vecteur::Vecteur (std::vector<double> liste) {
 	for (size_t i(0) ; i < liste.size() ; i++) {
 	this->push_back(liste[i]);

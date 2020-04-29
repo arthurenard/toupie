@@ -10,6 +10,7 @@
 		//constructeurs
 		Vecteur (size_t dimension = 0); //construit un Vecteur nulle de telle dimension
 		Vecteur (double, double, double); //construit un Vecteur 3D avec les valeurs passés en argument
+        Vecteur (double, double, double, double, double); //construit un Vecteur 3D avec les valeurs passés en argument
 		Vecteur (std::vector<double>); //construit un Vecteur avec la liste passé en argument
 	
 		//destructeur
