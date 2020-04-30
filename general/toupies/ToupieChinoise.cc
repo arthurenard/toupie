@@ -30,7 +30,7 @@ Vecteur ToupieChinoise::eq_evolution (Vecteur P, Vecteur dP, double temps) {
 	retour[0] = f2;
 	
 	retour[1] =  sin(vect_P[1]) * (vect_dP[0] * vect_dP[0] * (-m * r * r * (alpha() - cos(vect_P[1])) * (1 - (alpha() * cos(vect_P[1]))) + (I1() * cos(vect_P[1]))) +
-    (f1 * vect_dP[0] * (m * r * r * ((alpha() * cos(vect_P[1])) - 1)) - I3()) - ((m * r * r * alpha() * pow(vect_dP[1], 2))  - (m * g * r * alpha())))
+    (f1 * vect_dP[0] * (m * r * r * ((alpha() * cos(vect_P[1])) - 1) - I3())) - ((m * r * r * alpha() * pow(vect_dP[1], 2))  - (m * g * r * alpha())))
 	/ (I1() + (m * r * r * (pow(alpha() - cos(vect_P[1]), 2) + pow(sin(vect_P[1]), 2))));
 	
 	retour[2] = (vect_dP[0] * vect_dP[1] * sin(vect_P[1])) - (cos(vect_P[1]) * f2) 
