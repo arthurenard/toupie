@@ -59,12 +59,12 @@ const double ToupieChinoise::alpha() const {
 
 const double ToupieChinoise::I1 () const {
 	double r (rayon), h (hauteur);
-	return (0.5 * I3()) + (pi * (1.0/15) * masseVolumique * pow((2*r) - h, 2) * (pow(r, 3) + (h*r*r) - (3*h*h*r) + 3 * pow(h, 3))) - (masse() * pow(r * alpha(), 2)); // p9
+    return (0.5 * I3()) + (pi * (1.0/15.) * masseVolumique * pow((2*r) - h, 2) * (pow(r, 3) + (h*r*r) - (3*h*h*r) + 3 * pow(h, 3))) - (masse() * pow(r * alpha(), 2)); // p9
 }
 
 const double ToupieChinoise::I3 () const {
 	double r (rayon), h (hauteur);
-	return pi * (1.0/30) * masseVolumique * pow((2*r) - h, 3) * (2 * pow(r, 2) + (3 * h * r) + (3 * pow(h, 2))); // p9
+    return pi * (1.0/30.) * masseVolumique * pow((2*r) - h, 3) * (2 * pow(r, 2) + (3 * h * r) + (3 * pow(h, 2))); // p9
 }
 
 //operateurs internes

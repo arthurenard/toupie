@@ -63,6 +63,7 @@ double Vecteur::norme2 () const {
 	return retour;
 }
 
+
 //operateurs internes
 
 bool Vecteur::operator== (Vecteur const& v) const {

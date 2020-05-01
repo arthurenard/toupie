@@ -29,8 +29,15 @@ ConeSimple::ConeSimple (std::vector<double> vect_P, std::vector<double> vect_dP,
 
 Vecteur ConeSimple::eq_evolution (Vecteur P, Vecteur dP, double temps) {
     Vecteur retour (5);
-    retour[0] = (vect_dP[1] / (IA1() * sin(vect_P[1]))) * (((I3() - (2 * IA1())) * vect_dP[0] * cos(vect_P[1])) + (I3() * vect_dP[2]));
     retour[1] = (1/IA1() ) * (MA() + (vect_dP[0] * sin(vect_P[1]) * ( ( (IA1() - I3()) * vect_dP[0] * cos(vect_P[1])) - (I3() * vect_dP[2]))));
+
+    if(abs(vect_P[1]) < epsilontheta){
+        retour[0]=0.0;
+        retour[2]=0.0;
+        return retour;
+    }
+
+    retour[0] = (vect_dP[1] / (IA1() * sin(vect_P[1]))) * (((I3() - (2 * IA1())) * vect_dP[0] * cos(vect_P[1])) + (I3() * vect_dP[2]));
     retour[2] = (vect_dP[1] / (IA1() * sin(vect_P[1]))) * ( ( ( vect_dP[0] * ( IA1() - ( ( I3() - IA1() ) * cos(vect_P[1]) * cos(vect_P[1]))) - ( I3() *vect_dP[2] * cos(vect_P[1])))));
 	return retour;
 }

@@ -31,6 +31,8 @@ void VueOpenGL::dessine(Systeme const& systeme)
   matricecone2.rotate(systeme.getChinois()->get_vect_P()[1] *180/pi, 1.0,0.0,0.0);
   matricecone2.rotate(systeme.getChinois()->get_vect_P()[2] *180/pi, 0.0,0.0,1.0);
   //matricecone2.scale(systeme.getChinois()->getRayon(),systeme.getChinois()->getRayon(), systeme.getCone2()->getHauteur());
+  glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
   dessineSphere(matricecone2);
 
  /* for(size_t i(0); i < systeme.nbToupies(); i++){

@@ -37,3 +37,24 @@ Toupie::Toupie (std::vector<double> v, std::vector<double> w)
 
     Integrable:: vect_dP = w;
 }
+
+
+void Toupie::EulerCromer(double pas_de_temps, double temps) {
+    Integrable::EulerCromer(pas_de_temps, temps);
+    modulo2pi();
+}
+void Toupie::RungeKutta(double pas_de_temps, double temps) {
+    Integrable::RungeKutta(pas_de_temps, temps);
+    modulo2pi();
+}
+
+void Toupie::Newmark(double pas_de_temps, double temps) {
+    Integrable::Newmark(pas_de_temps, temps);
+    modulo2pi();
+}
+
+void Toupie::modulo2pi(){
+    Integrable::vect_P[0] = fmod(Integrable::vect_P[0], 2*pi);
+    Integrable::vect_P[1] = fmod(Integrable::vect_P[1], 2*pi);
+    Integrable::vect_P[2] = fmod(Integrable::vect_P[2], 2*pi);
+}

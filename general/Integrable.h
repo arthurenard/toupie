@@ -22,9 +22,9 @@ class Integrable {
    		virtual Vecteur eq_evolution (Vecteur P, Vecteur dP, double temps = 0) = 0;
         const Vecteur get_vect_P ();
     
-        void EulerCromer (double pas_de_temps, double temps = 0);
-		void Newmark (double pas_de_temps, double temps = 0);
-		void RungeKutta (double pas_de_temps, double temps = 0);
+        virtual void EulerCromer (double pas_de_temps, double temps = 0);
+        virtual void Newmark (double pas_de_temps, double temps = 0);
+        virtual void RungeKutta (double pas_de_temps, double temps = 0);
     
 		//operateurs internes
 		

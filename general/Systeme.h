@@ -37,16 +37,16 @@ class Systeme : public Dessinable {
             return toupies[nb];
         }
         void addCone(){
-            Vecteur P( 0.01, 0.01, 0.0, 1.0, 0.0);
+            Vecteur P( 0.0, 0.0, 0.0, 1.0, 0.0);
             Vecteur dP( 0.0, 0.0, 180,0.0,0.0);
            cone= new ConeSimple(P, dP, 1.0,1.5,0.5) ;
 
-           Vecteur P2( 0.01, 0.21, 0.0, -1.0, 0.0);
-           Vecteur dP2( 0.0, 0.0, 0.0,0.0,0.0);
+           Vecteur P2( 0.001, 0.001, 0.0, -1.0, 0.0);
+           Vecteur dP2( 0.0, 0.0, 180.0,0.0,0.0);
           cone2= new ConeSimple(P2, dP2, 1.0,1.5,0.5) ;
           Vecteur P3( 0.2, 0.2, 0.0, 0.0, 0.0);
           Vecteur dP3( 0.0, 0.0, 60,0.0,0.0);
-         chinoise= new ToupieChinoise(P3, dP3, 0.5,1.0,0.3) ;
+         chinoise= new ToupieChinoise(P3, dP3, 0.2,1.0,0.3) ;
         }
         ConeSimple* getCone() const{
             return cone;

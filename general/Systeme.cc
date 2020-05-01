@@ -7,5 +7,5 @@ void Systeme::evolue(double dt){
     }
     cone->EulerCromer(dt);
     cone2->RungeKutta(dt);
-    chinoise->RungeKutta(dt);
+    chinoise->EulerCromer(dt);
 }

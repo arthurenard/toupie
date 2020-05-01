@@ -5,7 +5,7 @@
 
 void TextViewer::dessine(Systeme const& a_dessiner)
 {
-    flot << *(a_dessiner.getCone()) << std::endl;
+    flot << *(a_dessiner.getChinois()) << std::endl;
    // flot << "Le systeme est composé de " << a_dessiner.toupies.size() << ;
 
 }
