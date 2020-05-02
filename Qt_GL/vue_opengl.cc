@@ -10,7 +10,7 @@ void VueOpenGL::dessine(Systeme const& systeme)
   dessinePlan();
   glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
   dessineRepere();
-  QMatrix4x4 matricecone;
+  /*QMatrix4x4 matricecone;
   matricecone.translate(systeme.getCone()->get_vect_P()[3],systeme.getCone()->get_vect_P()[4]);
   matricecone.rotate(systeme.getCone()->get_vect_P()[0] *180/pi, 0.0,0.0,1.0);
   matricecone.rotate(systeme.getCone()->get_vect_P()[1] *180/pi, 1.0,0.0,0.0);
@@ -31,9 +31,15 @@ void VueOpenGL::dessine(Systeme const& systeme)
   matricecone2.rotate(systeme.getChinois()->get_vect_P()[1] *180/pi, 1.0,0.0,0.0);
   matricecone2.rotate(systeme.getChinois()->get_vect_P()[2] *180/pi, 0.0,0.0,1.0);
   //matricecone2.scale(systeme.getChinois()->getRayon(),systeme.getChinois()->getRayon(), systeme.getCone2()->getHauteur());
+
+  //dessineToupie(systeme.getToupies()[0]);*/
+
+  for(size_t i(0); i < systeme.nbToupies(); i++){
+    dessineToupie(systeme.getToupie(i), systeme.getType(i));
+  }
+
   glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-  dessineSphere(matricecone2);
 
  /* for(size_t i(0); i < systeme.nbToupies(); i++){
       dessineToupie(systeme.getToupie(i));
@@ -249,9 +255,6 @@ void VueOpenGL::dessineRepere (QMatrix4x4 const& point_de_vue)
 
 
 }
-
-
-
 void VueOpenGL::dessineSphere (QMatrix4x4 const& point_de_vue,
                                double rouge, double vert, double bleu)
 {
@@ -265,27 +268,16 @@ void VueOpenGL::dessineCone (QMatrix4x4 const& point_de_vue)
   cone.draw(prog);                           // dessine la sphère
 }
 
-/*void VueOpenGL::dessineToupie(Toupie* toupie){
+void VueOpenGL::dessineToupie(Toupie* toupie, size_t nb){
     QMatrix4x4 matricecone;
-    matricecone.rotate(toupie->getP()[0] *180/pi, 0.0,0.0,1.0);
-    matricecone.rotate(toupie->getP()[1] *180/pi, 1.0,0.0,0.0);
-    matricecone.rotate(toupie->getP()[2] *180/pi, 0.0,0.0,1.0);
+    matricecone.translate(toupie->get_vect_P()[3],toupie->get_vect_P()[4]);
+    matricecone.rotate(toupie->get_vect_P()[0] *180/pi, 0.0,0.0,1.0);
+    matricecone.rotate(toupie->get_vect_P()[1] *180/pi, 1.0,0.0,0.0);
+    matricecone.rotate(toupie->get_vect_P()[2] *180/pi, 0.0,0.0,1.0);
+
+    if(nb ==0){
+    dessineCone(matricecone);}
+    if(nb==1)
     dessineSphere(matricecone);
 }
 
-void VueOpenGL::dessineToupie(ConeSimple* toupie){
-    QMatrix4x4 matricecone;
-    matricecone.rotate(toupie->getP()[0] *180/pi, 0.0,0.0,1.0);
-    matricecone.rotate(toupie->getP()[1] *180/pi, 1.0,0.0,0.0);
-    matricecone.rotate(toupie->getP()[2] *180/pi, 0.0,0.0,1.0);
-    matricecone.scale(toupie->getRayon(), toupie->getHauteur(), 1.0);
-    dessineCone(matricecone);
-}
-void VueOpenGL::dessineToupie(ToupieChinoise* toupie){
-    QMatrix4x4 matricecone;
-    matricecone.rotate(toupie->getP()[0] *180/pi, 0.0,0.0,1.0);
-    matricecone.rotate(toupie->getP()[1] *180/pi, 1.0,0.0,0.0);
-    matricecone.rotate(toupie->getP()[2] *180/pi, 0.0,0.0,1.0);
-    dessineCone(matricecone);
-}
-*/

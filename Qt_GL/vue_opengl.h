@@ -1,6 +1,8 @@
 #ifndef VUEOPENGL_H
 #define VUEOPENGL_H
 
+
+
 #include <QOpenGLShaderProgram> // Classe qui regroupe les fonctions OpenGL liées aux shaders
 #include <QMatrix4x4>
 #include "support_a_dessin.h"
@@ -32,12 +34,9 @@ class VueOpenGL : public SupportADessin {
   void rotateCamera(double angle, double dir_x, double dir_y, double dir_z);
   
 
-
   // methodes de dessins de toupies
- /* void dessineToupie(Toupie* toupie);
+  void dessineToupie(Toupie* toupie, size_t nb);
 
-  void dessineToupie(ConeSimple* toupie);
-  void dessineToupie(ToupieChinoise* toupie);*/
 
   // méthode utilitaire offerte pour simplifier
   void dessineCube(QMatrix4x4 const& point_de_vue = QMatrix4x4() );

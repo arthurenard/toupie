@@ -20,8 +20,18 @@ class Systeme : public Dessinable {
 	public: 
     Systeme(SupportADessin* vue): Dessinable(vue)
     {
-        addCone();
-        //addToupie(new ConeSimple(Vecteur( 0.01, 0.01, 0.0), Vecteur(0.0, 0.0, 180), 1.0,1.5,0.5));
+        //addCone();
+        addToupie(new ConeSimple(Vecteur( 0.01, 0.01, 0.0, 0., 0.), Vecteur(0.0, 0.0, 180, 0., 0.), 1.0,1.5,0.5));
+        addToupie(new ConeSimple(Vecteur( 0.01, 0.01, 0.0, 1., 1.), Vecteur(0.0, 0.0, 180, 0., 0.), 1.0,1.5,0.5));
+        addToupie(new ToupieChinoise(Vecteur( 0.01, 0.01, 0.0, -2., 0.), Vecteur(0.0, 0.0, 180, 0., 0.), 1.0,1.5,0.5));
+
+        types.push_back(0);
+        integrateurs.push_back(0);
+        types.push_back(0);
+        integrateurs.push_back(2);
+        types.push_back(1);
+        integrateurs.push_back(2);
+        //addToupie(0,0, 0.01, 0.01, 0.0,0.0,0.0,0.0, 0.0, 180)
     }
 
         virtual void dessine() override
@@ -32,10 +42,12 @@ class Systeme : public Dessinable {
         size_t nbToupies() const {return toupies.size(); }
 
         void addToupie(Toupie* newtoupie){toupies.push_back(newtoupie);}
+        void addToupie(int type, int integrateur,std::vector<double> data);
 
-        Toupie* getToupie(size_t nb) const {
-            return toupies[nb];
-        }
+        Toupie* getToupie(size_t nb) const;
+        int getType(size_t nb) const;
+        int getIntegrateur(size_t nb) const;
+
         void addCone(){
             Vecteur P( 0.0, 0.0, 0.0, 1.0, 0.0);
             Vecteur dP( 0.0, 0.0, 180,0.0,0.0);
@@ -60,9 +72,13 @@ class Systeme : public Dessinable {
         const std::vector<Toupie*>* getToupies() const{
             return &toupies;
         }
+
 		
 	protected:
         std::vector<Toupie*> toupies;
+        std::vector<int> types;
+        std::vector<int> integrateurs;
+
         ConeSimple* cone;
         ConeSimple* cone2;
         ToupieChinoise* chinoise;
