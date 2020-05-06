@@ -184,3 +184,13 @@ void GLWidget::toggleFullWindow()
         b_Fullscreen = true;
     }
 }
+size_t GLWidget::nb_toupie(){
+    return c.nbToupies();
+}
+void GLWidget::addToupie(std::vector<double> data){
+    c.addToupie(data);
+}
+void GLWidget::delToupie(size_t id){
+    c.delToupie(id);
+    emit toupieDeleted();
+}

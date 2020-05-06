@@ -4,46 +4,18 @@
 // ======================================================================
 void VueOpenGL::dessine(Systeme const& systeme)
 {
-   // Dessine le 1er cube (à l'origine)
-  //dessineCube();
+
   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
   dessinePlan();
   glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
   dessineRepere();
-  /*QMatrix4x4 matricecone;
-  matricecone.translate(systeme.getCone()->get_vect_P()[3],systeme.getCone()->get_vect_P()[4]);
-  matricecone.rotate(systeme.getCone()->get_vect_P()[0] *180/pi, 0.0,0.0,1.0);
-  matricecone.rotate(systeme.getCone()->get_vect_P()[1] *180/pi, 1.0,0.0,0.0);
-  matricecone.rotate(systeme.getCone()->get_vect_P()[2] *180/pi, 0.0,0.0,1.0);
-  matricecone.scale(systeme.getCone()->getRayon(),systeme.getCone()->getRayon(), systeme.getCone()->getHauteur());
-  dessineCone(matricecone);
 
-  QMatrix4x4 matricecone2;
-  matricecone2.translate(systeme.getCone2()->get_vect_P()[3],systeme.getCone2()->get_vect_P()[4]);
-  matricecone2.rotate(systeme.getCone2()->get_vect_P()[0] *180/pi, 0.0,0.0,1.0);
-  matricecone2.rotate(systeme.getCone2()->get_vect_P()[1] *180/pi, 1.0,0.0,0.0);
-  matricecone2.rotate(systeme.getCone2()->get_vect_P()[2] *180/pi, 0.0,0.0,1.0);
-  matricecone2.scale(systeme.getCone2()->getRayon(),systeme.getCone2()->getRayon(), systeme.getCone2()->getHauteur());
-  dessineCone(matricecone2);
-  matricecone2.setToIdentity();
- // matricecone2.translate(systeme.getChinois()->get_vect_P()[3],systeme.getChinois()->get_vect_P()[4]);
-  matricecone2.rotate(systeme.getChinois()->get_vect_P()[0] *180/pi, 0.0,0.0,1.0);
-  matricecone2.rotate(systeme.getChinois()->get_vect_P()[1] *180/pi, 1.0,0.0,0.0);
-  matricecone2.rotate(systeme.getChinois()->get_vect_P()[2] *180/pi, 0.0,0.0,1.0);
-  //matricecone2.scale(systeme.getChinois()->getRayon(),systeme.getChinois()->getRayon(), systeme.getCone2()->getHauteur());
-
-  //dessineToupie(systeme.getToupies()[0]);*/
 
   for(size_t i(0); i < systeme.nbToupies(); i++){
     dessineToupie(systeme.getToupie(i), systeme.getType(i));
   }
 
   glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-
- /* for(size_t i(0); i < systeme.nbToupies(); i++){
-      dessineToupie(systeme.getToupie(i));
-  }*/
 
 }
 
@@ -110,7 +82,7 @@ void VueOpenGL::init()
 void VueOpenGL::initializePosition()
 {
   // position initiale
-    rho = -2.0;
+    rho = -5.0;
     psi= -65;
     omega = 20;
   matrice_position.setToIdentity();
@@ -167,55 +139,7 @@ void VueOpenGL::updatePosition(){
 }
 
 // ======================================================================
-void VueOpenGL::dessineCube (QMatrix4x4 const& point_de_vue)
-{
-  prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
 
-  glBegin(GL_QUADS);
-  // face coté X = +1
-  prog.setAttributeValue(CouleurId, 1.0, 0.0, 0.0); // rouge
-  prog.setAttributeValue(SommetId, +1.0, -1.0, -1.0);
-  prog.setAttributeValue(SommetId, +1.0, +1.0, -1.0);
-  prog.setAttributeValue(SommetId, +1.0, +1.0, +1.0);
-  prog.setAttributeValue(SommetId, +1.0, -1.0, +1.0);
-
-  // face coté X = -1
-  prog.setAttributeValue(CouleurId, 0.0, 1.0, 0.0); // vert
-  prog.setAttributeValue(SommetId, -1.0, -1.0, -1.0);
-  prog.setAttributeValue(SommetId, -1.0, -1.0, +1.0);
-  prog.setAttributeValue(SommetId, -1.0, +1.0, +1.0);
-  prog.setAttributeValue(SommetId, -1.0, +1.0, -1.0);
-
-  // face coté Y = +1
-  prog.setAttributeValue(CouleurId, 0.0, 0.0, 1.0); // bleu
-  prog.setAttributeValue(SommetId, -1.0, +1.0, -1.0);
-  prog.setAttributeValue(SommetId, -1.0, +1.0, +1.0);
-  prog.setAttributeValue(SommetId, +1.0, +1.0, +1.0);
-  prog.setAttributeValue(SommetId, +1.0, +1.0, -1.0);
-
-  // face coté Y = -1
-  prog.setAttributeValue(CouleurId, 0.0, 1.0, 1.0); // cyan
-  prog.setAttributeValue(SommetId, -1.0, -1.0, -1.0);
-  prog.setAttributeValue(SommetId, +1.0, -1.0, -1.0);
-  prog.setAttributeValue(SommetId, +1.0, -1.0, +1.0);
-  prog.setAttributeValue(SommetId, -1.0, -1.0, +1.0);
-
-  // face coté Z = +1
-  prog.setAttributeValue(CouleurId, 1.0, 1.0, 0.0); // jaune
-  prog.setAttributeValue(SommetId, -1.0, -1.0, +1.0);
-  prog.setAttributeValue(SommetId, +1.0, -1.0, +1.0);
-  prog.setAttributeValue(SommetId, +1.0, +1.0, +1.0);
-  prog.setAttributeValue(SommetId, -1.0, +1.0, +1.0);
-
-  // face coté Z = -1
-  prog.setAttributeValue(CouleurId, 1.0, 0.0, 1.0); // magenta
-  prog.setAttributeValue(SommetId, -1.0, -1.0, -1.0);
-  prog.setAttributeValue(SommetId, -1.0, +1.0, -1.0);
-  prog.setAttributeValue(SommetId, +1.0, +1.0, -1.0);
-  prog.setAttributeValue(SommetId, +1.0, -1.0, -1.0);
-
-  glEnd();
-}
 
 void VueOpenGL::dessinePlan (QMatrix4x4 const& point_de_vue)
 {
@@ -225,10 +149,10 @@ void VueOpenGL::dessinePlan (QMatrix4x4 const& point_de_vue)
 
 
     prog.setAttributeValue(CouleurId, 0.8, 0.8, 0.8);
-    prog.setAttributeValue(SommetId, -2.0, +2.0, 0.0);
-    prog.setAttributeValue(SommetId, -2.0, -2.0, 0.0);
-    prog.setAttributeValue(SommetId, +2.0, -2.0, 0.0);
-    prog.setAttributeValue(SommetId, +2.0, +2.0, 0.0);
+    prog.setAttributeValue(SommetId, -10.0, +10.0, 0.0);
+    prog.setAttributeValue(SommetId, -10.0, -10.0, 0.0);
+    prog.setAttributeValue(SommetId, +10.0, -10.0, 0.0);
+    prog.setAttributeValue(SommetId, +10.0, +10.0, 0.0);
     glEnd();
 
 }
@@ -275,8 +199,9 @@ void VueOpenGL::dessineToupie(Toupie* toupie, size_t nb){
     matricecone.rotate(toupie->get_vect_P()[1] *180/pi, 1.0,0.0,0.0);
     matricecone.rotate(toupie->get_vect_P()[2] *180/pi, 0.0,0.0,1.0);
 
-    if(nb ==0){
+    if(nb==0){
     dessineCone(matricecone);}
+
     if(nb==1)
     dessineSphere(matricecone);
 }

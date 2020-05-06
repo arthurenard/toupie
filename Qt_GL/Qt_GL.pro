@@ -13,14 +13,18 @@ PRE_TARGETDEPS += ../general/libgeneral.a
 INCLUDEPATH = ../general
 
 SOURCES += \
+    addtoupie.cc \
     main_qt_gl.cc \
     glwidget.cc \
     glsphere.cc \
     glcone.cc \
+    mainwindow.cc \
     vue_opengl.cc
 
 HEADERS += \
+    addtoupie.h \
     glwidget.h \
+    mainwindow.h \
     vertex_shader.h \
     vue_opengl.h \
     glsphere.h \

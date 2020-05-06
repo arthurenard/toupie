@@ -21,7 +21,7 @@ class Systeme : public Dessinable {
     Systeme(SupportADessin* vue): Dessinable(vue)
     {
         //addCone();
-        addToupie(new ConeSimple(Vecteur( 0.01, 0.01, 0.0, 0., 0.), Vecteur(0.0, 0.0, 180, 0., 0.), 1.0,1.5,0.5));
+        /*addToupie(new ConeSimple(Vecteur( 0.01, 0.01, 0.0, 0., 0.), Vecteur(0.0, 0.0, 180, 0., 0.), 1.0,1.5,0.5));
         addToupie(new ConeSimple(Vecteur( 0.01, 0.01, 0.0, 1., 1.), Vecteur(0.0, 0.0, 180, 0., 0.), 1.0,1.5,0.5));
         addToupie(new ToupieChinoise(Vecteur( 0.01, 0.01, 0.0, -2., 0.), Vecteur(0.0, 0.0, 180, 0., 0.), 1.0,1.5,0.5));
 
@@ -31,7 +31,7 @@ class Systeme : public Dessinable {
         integrateurs.push_back(2);
         types.push_back(1);
         integrateurs.push_back(2);
-        //addToupie(0,0, 0.01, 0.01, 0.0,0.0,0.0,0.0, 0.0, 180)
+        //addToupie(0,0, 0.01, 0.01, 0.0,0.0,0.0,0.0, 0.0, 180)*/
     }
 
         virtual void dessine() override
@@ -42,7 +42,10 @@ class Systeme : public Dessinable {
         size_t nbToupies() const {return toupies.size(); }
 
         void addToupie(Toupie* newtoupie){toupies.push_back(newtoupie);}
-        void addToupie(int type, int integrateur,std::vector<double> data);
+        void addToupie(std::vector<double> data);
+
+        void delToupie(size_t id);
+
 
         Toupie* getToupie(size_t nb) const;
         int getType(size_t nb) const;

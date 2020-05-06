@@ -1,17 +1,22 @@
 #include "Systeme.h"
 
-void Systeme::addToupie(int type, int integrateur, std::vector<double> data){
-    types.push_back(type);
-    integrateurs.push_back(integrateur);
-    if(data.size()<13) throw "Add Toupie erreur declaration";
+void Systeme::addToupie(std::vector<double> data){
+    types.push_back(data[0]);
+    integrateurs.push_back(data[1]);
+    if(data.size()<15) throw "Add Toupie erreur declaration";
 
-    Vecteur P(data[0], data[1], data[2], data[3], data[4]), dP(data[5], data[6], data[7], data[8], data[9]);
-    if(type == 0)
-        addToupie(new ConeSimple(P, dP, data[10], data[11], data[12]));
-    if(type == 1)
-        addToupie(new ToupieChinoise(P, dP, data[10], data[11], data[12]));
+    Vecteur P(data[2], data[3], data[4], data[5], data[6]), dP(data[7], data[8], data[9], data[10], data[11]);
+    if(abs(data[0]) < epsilon)
+        addToupie(new ConeSimple(P, dP, data[12], data[13], data[14]));
+    if(abs(data[0] - 1) < epsilon)
+        addToupie(new ToupieChinoise(P, dP, data[12], data[13], data[14]));
 }
 
+void Systeme::delToupie(size_t id){
+    toupies.erase(toupies.begin() + id -1);
+    types.erase(types.begin() + id -1);
+    integrateurs.erase(integrateurs.begin() + id -1);
+}
 
 Toupie* Systeme::getToupie(size_t nb) const{
     return toupies[nb];

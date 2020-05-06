@@ -1,0 +1,90 @@
+#include "mainwindow.h"
+
+Mainwindow::Mainwindow()
+{
+    resize(1080, 1080);
+    this->move(0,0);
+
+    w= new GLWidget;
+    w->setFocusPolicy(Qt::StrongFocus);
+    setCentralWidget(w);
+
+
+    QObject::connect(this, SIGNAL(delClicked(size_t)), w, SLOT(delToupie(size_t)));
+    QObject::connect(w, SIGNAL(toupieDeleted()), this, SLOT(actualDelBtn()));
+
+
+       QMenu *menuAdd = menuBar()->addMenu("&Ajouter une Toupie");
+       QObject::connect(menuAdd, SIGNAL(aboutToShow()), this, SLOT(newForm()));
+
+       menuSupp = menuBar()->addMenu("&Supprimer une Toupie");
+       for (size_t i(0); i < 10 ;i++) {
+           delBouton.push_back(new QAction("Supprimer Toupie N°" + QString::number(i+1)));
+       }
+       QObject::connect(delBouton[0], SIGNAL(triggered()), this, SLOT(del1()));
+       QObject::connect(delBouton[1], SIGNAL(triggered()), this, SLOT(del2()));
+       QObject::connect(delBouton[2], SIGNAL(triggered()), this, SLOT(del3()));
+       QObject::connect(delBouton[3], SIGNAL(triggered()), this, SLOT(del4()));
+       QObject::connect(delBouton[4], SIGNAL(triggered()), this, SLOT(del5()));
+       QObject::connect(delBouton[5], SIGNAL(triggered()), this, SLOT(del6()));
+       QObject::connect(delBouton[6], SIGNAL(triggered()), this, SLOT(del7()));
+       QObject::connect(delBouton[7], SIGNAL(triggered()), this, SLOT(del8()));
+       QObject::connect(delBouton[8], SIGNAL(triggered()), this, SLOT(del9()));
+       QObject::connect(delBouton[9], SIGNAL(triggered()), this, SLOT(del10()));
+
+       newForm();
+}
+
+void Mainwindow::newForm(){
+    formulaire = new AddToupie(w->nb_toupie());
+    formulaire->show();
+    QObject::connect(formulaire, SIGNAL(dataSend(std::vector<double>)), w, SLOT(addToupie(std::vector<double>)));
+    QObject::connect(formulaire, SIGNAL(dataSend(std::vector<double>)), this, SLOT(actualDelBtn()));
+
+
+}
+
+void Mainwindow::actualDelBtn(){
+   size_t nb(w->nb_toupie());
+   for (size_t i(0); i < 10 ;i++) {
+    menuSupp->removeAction(delBouton[i]);
+   }
+   for (size_t i(0); i < nb ;i++) {
+    menuSupp->addAction(delBouton[i]);
+   }
+
+}
+
+
+
+void Mainwindow::del1(){
+    emit delClicked(1);
+}
+void Mainwindow::del2(){
+    emit delClicked(2);
+}
+void Mainwindow::del3(){
+    emit delClicked(3);
+}
+void Mainwindow::del4(){
+    emit delClicked(4);
+}
+void Mainwindow::del5(){
+    emit delClicked(5);
+}
+void Mainwindow::del6(){
+    emit delClicked(6);
+}
+void Mainwindow::del7(){
+    emit delClicked(7);
+}
+void Mainwindow::del8(){
+    emit delClicked(8);
+}
+void Mainwindow::del9(){
+    emit delClicked(9);
+}
+void Mainwindow::del10(){
+    emit delClicked(10);
+}
+

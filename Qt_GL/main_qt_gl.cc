@@ -1,14 +1,15 @@
 #include <QApplication>
+#include <QPushButton>
+#include <QtWidgets>
+#include "mainwindow.h"
 #include "glwidget.h"
 
 int main(int argc, char* argv[])
 {
   QApplication a(argc, argv);
 
-  GLWidget w;
+  Mainwindow window;
 
-
-  w.show();
-
+  window.show();
   return a.exec();
 }

@@ -11,6 +11,8 @@ class GLWidget : public QOpenGLWidget
  * les événements (clavier, souris, temps) sont des méthodes virtuelles à redéfinir.
  */
 {
+    Q_OBJECT
+
 public:
   GLWidget(QWidget* parent = nullptr)
     : QOpenGLWidget(parent)
@@ -20,6 +22,12 @@ public:
 
   virtual ~GLWidget() {}
   void toggleFullWindow();
+  size_t nb_toupie();
+signals:
+  void toupieDeleted();
+public slots:
+    void addToupie(std::vector<double> data);
+    void delToupie(size_t id);
 
 private:
   // Les 3 méthodes clés de la classe QOpenGLWidget à réimplémenter
