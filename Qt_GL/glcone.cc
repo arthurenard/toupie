@@ -31,4 +31,26 @@ void Glcone::draw(QOpenGLShaderProgram& prog){
     prog.setAttributeValue(SommetId, coordX[0],coordY[0], 1.0);
     prog.setAttributeValue(SommetId,0.0,0.0, 0.0);
     glEnd();
+
+    glBegin(GL_QUADS);
+    for(size_t i(0); i<coordX.size()-1; i++ ){
+        prog.setAttributeValue(CouleurId, i%3, (i+1)%3, (i+2)%3);
+        prog.setAttributeValue(SommetId,0.15 * coordX[i],0.15 * coordY[i], 1.0);
+        prog.setAttributeValue(SommetId,0.15 * coordX[i+1],0.15 * coordY[i+1], 1.0);
+        prog.setAttributeValue(SommetId,0.15 * coordX[i+1],0.15 * coordY[i+1], 1.5);
+        prog.setAttributeValue(SommetId,0.15 * coordX[i],0.15 * coordY[i], 1.5);
+    }
+    prog.setAttributeValue(CouleurId, (coordX.size()-1)%3, (coordX.size())%3, (coordX.size()+1)%3);
+    prog.setAttributeValue(SommetId, 0.15 * coordX[coordX.size()-1],0.15 * coordY[coordX.size()-1], 1.0);
+    prog.setAttributeValue(SommetId,0.15 *  coordX[0],0.15 * coordY[0], 1.0);
+    prog.setAttributeValue(SommetId,0.15 * coordX[0],0.15 * coordY[0], 1.5);
+    prog.setAttributeValue(SommetId,0.15 * coordX[coordX.size()-1],0.15 * coordY[coordX.size()-1], 1.5);
+    glEnd();
+
+    glBegin(GL_POLYGON);
+    prog.setAttributeValue(CouleurId, 1.0, 0.0, 0.0);
+    for(size_t i(0); i<coordX.size(); i++){
+    prog.setAttributeValue(SommetId,0.15 * coordX[i],0.15 * coordY[i], 1.5);
+    }
+    glEnd();
 }
