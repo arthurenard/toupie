@@ -1,6 +1,6 @@
 TEMPLATE = lib
 
-CONFIG = staticlib c++11
+CONFIG += staticlib c++11
 
 SOURCES += Systeme.cc \
     bases/Vecteur.cc \
