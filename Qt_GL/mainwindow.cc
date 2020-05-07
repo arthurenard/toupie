@@ -11,7 +11,7 @@ Mainwindow::Mainwindow()
 
 
     QObject::connect(this, SIGNAL(delClicked(size_t)), w, SLOT(delToupie(size_t)));
-    QObject::connect(w, SIGNAL(toupieDeleted()), this, SLOT(actualDelBtn()));
+    QObject::connect(this, SIGNAL(delClicked(size_t)), this, SLOT(actualDelBtn()));
 
 
        QMenu *menuAdd = menuBar()->addMenu("&Ajouter une Toupie");

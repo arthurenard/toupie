@@ -23,8 +23,7 @@ public:
   virtual ~GLWidget() {}
   void toggleFullWindow();
   size_t nb_toupie();
-signals:
-  void toupieDeleted();
+
 public slots:
     void addToupie(std::vector<double> data);
     void delToupie(size_t id);

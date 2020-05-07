@@ -8,7 +8,7 @@
 class Glcone
 {
 public:
-  Glcone(std::size_t nb_coins = 12);
+  Glcone(std::size_t nb_coins = 21);
   void draw(QOpenGLShaderProgram& prog);
 
 private:

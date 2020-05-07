@@ -192,5 +192,4 @@ void GLWidget::addToupie(std::vector<double> data){
 }
 void GLWidget::delToupie(size_t id){
     c.delToupie(id);
-    emit toupieDeleted();
 }
