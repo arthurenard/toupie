@@ -32,12 +32,13 @@ class ConeSimple : public Toupie {
 		double rayon; // metre
 		
 		//methodes privees
-		const double volume () const; // m3
-		const double masse () const; // kg
-		const double I1 () const; // kg * m2 
-		const double I3 () const; // kg * m2
-		const double IA1 () const; // kg * m2
-		const double MA () const;
+        	double volume () const override; // m3
+        	double I1 () const override; // kg * m2
+       		 double I3 () const override; // kg * m2
+       		 double IA1 () const; // kg * m2
+        	double MA () const;
+
+        	Vecteur OG() const override;
 };
 
 #endif
