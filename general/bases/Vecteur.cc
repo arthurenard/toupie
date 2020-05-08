@@ -63,6 +63,10 @@ double Vecteur::norme2 () const {
 	return retour;
 }
 
+Vecteur Vecteur::projection (Vecteur vect) const {
+    return ((this->prod_scal (vect)/vect.norme2()) * vect);
+}
+
 
 //operateurs internes
 
@@ -177,4 +181,8 @@ const Vecteur operator*(double b, Vecteur const& a) {
 std::ostream& operator<<(std::ostream& flux, Vecteur const& v) {
 	v.affiche(flux);
 	return flux;
+}
+
+double coplanaire (Vecteur a, Vecteur o, Vecteur L) {
+    return a.prod_scal(o^L);
 }
