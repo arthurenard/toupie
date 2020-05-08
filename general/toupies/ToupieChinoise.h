@@ -30,11 +30,12 @@ class ToupieChinoise : public Toupie {
 		double hauteur; // metre
 		
 		//methodes privees
-		const double masse () const; // kg
-		const double volume () const; // m3
-		const double alpha () const;
-		const double I1 () const; // kg * m2
-		const double I3 () const; // kg * m2
+        double volume () const override; // m3
+        double alpha () const;
+        double I1 () const override; // kg * m2
+        double I3 () const override; // kg * m2
+
+        Vecteur OG () const override; //on considere que G est le centre de la boule pour simplifier les calculs
 };
 
 
