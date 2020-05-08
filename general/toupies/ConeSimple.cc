@@ -47,28 +47,28 @@ Vecteur ConeSimple::eq_evolution (Vecteur P, Vecteur dP, double temps) {
 //methodes inutiles aux beneficiaires de la classe
 
 //methodes protegees
-const double ConeSimple::volume () const {
+double ConeSimple::volume () const {
 	return ((pi * rayon * rayon * hauteur) / 3);
 }
- 
-const double ConeSimple::masse () const {
-	return masseVolumique * volume();
-}
 
-const double ConeSimple::I1 () const {
+double ConeSimple::I1 () const {
     return (3./20.) * masse() * ((rayon * rayon) + (0.25 * hauteur * hauteur));
 }
 
-const double ConeSimple::I3 () const {
+double ConeSimple::I3 () const {
     return (3./10.) * masse() * rayon * rayon;
 }
 
-const double ConeSimple::IA1 () const {
+double ConeSimple::IA1 () const {
     return (I1() + ((9./16.) * hauteur * hauteur));
 }
 
-const double ConeSimple::MA () const {
+double ConeSimple::MA () const {
 	return (masse () * g * hauteur * sin(vect_P[1]));  // cas ou la toupie n'est soumise qu'a son seul poids
+}
+
+Vecteur ConeSimple::OG() const {
+    return (0.75 * hauteur * OG_unitaire());
 }
 
 //operateurs externes
