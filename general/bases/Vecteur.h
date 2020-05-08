@@ -21,6 +21,7 @@
 		double prod_scal (Vecteur const&) const; //retourne le produit scalaire
 		double norme () const; //retourne la norme euclidienne d'un Vecteur 
 		double norme2 () const; //retourne le carré de la norme euclidienne d'un Vecteur
+        Vecteur projection (Vecteur vect) const; //retourn leVecteur this projete sur vect
 		
 		//operateurs internes
 		bool operator== (Vecteur const&) const;
@@ -48,5 +49,7 @@
 //operateur externe
 const Vecteur operator* (double, Vecteur const&);
 std::ostream& operator<< (std::ostream&, Vecteur const&);
+
+double coplanaire (Vecteur, Vecteur, Vecteur); //retourne (v1 * (v2 ^ v3)) -> = 0 si les 3 vects sont coplanaires
 
 #endif
