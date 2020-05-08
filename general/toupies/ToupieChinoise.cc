@@ -3,15 +3,13 @@
 //constructeurs
 
 ToupieChinoise::ToupieChinoise (Vecteur vect_P, Vecteur vect_dP, double mV, double r, double h) :
-	Toupie (vect_P, vect_dP),
-	masseVolumique (abs(mV)),
+    Toupie (vect_P, vect_dP, abs(mV)),
 	rayon (abs(r)),
 	hauteur (abs(h))
 {}
 
 ToupieChinoise::ToupieChinoise (std::vector<double> vect_P, std::vector<double> vect_dP, double mV, double r, double h) : 
-	Toupie (vect_P, vect_dP),
-	masseVolumique (abs(mV)),
+    Toupie (vect_P, vect_dP, abs(mV)),
 	rayon (abs(r)),
 	hauteur (abs(h))
 {}
@@ -43,28 +41,28 @@ Vecteur ToupieChinoise::eq_evolution (Vecteur P, Vecteur dP, double temps) {
 }
 
 //methodes protegees
-const double ToupieChinoise::volume () const {
+double ToupieChinoise::volume () const {
 	double r (rayon), h (hauteur);
 	return pi * (((4.0/3) * pow(r, 3)) - (pow(h, 2) * (r - ((1.0/3) * h)))); // p9
 }
 
-const double ToupieChinoise::masse () const {
-	return masseVolumique * volume();
-}
-
-const double ToupieChinoise::alpha() const {
+double ToupieChinoise::alpha() const {
 	double r (rayon), h (hauteur);
 	return (0.75 * h * h) / ((r + h) * r);
 }
 
-const double ToupieChinoise::I1 () const {
+double ToupieChinoise::I1 () const {
 	double r (rayon), h (hauteur);
     return (0.5 * I3()) + (pi * (1.0/15.) * masseVolumique * pow((2*r) - h, 2) * (pow(r, 3) + (h*r*r) - (3*h*h*r) + 3 * pow(h, 3))) - (masse() * pow(r * alpha(), 2)); // p9
 }
 
-const double ToupieChinoise::I3 () const {
+double ToupieChinoise::I3 () const {
 	double r (rayon), h (hauteur);
     return pi * (1.0/30.) * masseVolumique * pow((2*r) - h, 3) * (2 * pow(r, 2) + (3 * h * r) + (3 * pow(h, 2))); // p9
+}
+
+Vecteur ToupieChinoise::OG () const {
+    return (rayon * OG_unitaire());
 }
 
 //operateurs internes
@@ -73,4 +71,3 @@ const double ToupieChinoise::I3 () const {
 
 
 //operateurs externes
-
