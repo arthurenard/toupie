@@ -36,6 +36,11 @@ class VueOpenGL : public SupportADessin {
 
   // methodes de dessins de toupies
   void dessineToupie(Toupie* toupie, size_t nb);
+  void dessineBalle(Balle* balle, size_t nb);
+
+  double getRho(){return rho;}
+  double getOmega(){return omega*pi/180.;}
+  double getPsi(){return psi*pi/180.;}
 
 
   // méthode utilitaire offerte pour simplifier

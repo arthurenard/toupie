@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 #include <cmath> 
+#include <stdlib.h>
+#include <time.h>
 
 #include "bases/Vecteur.h"
 
@@ -13,13 +15,15 @@
 
 #include "dessinable.h"
 #include "support_a_dessin.h"
+#include "balle.h"
+
 
 
 
 class Systeme : public Dessinable {
 	public: 
-    Systeme(SupportADessin* vue): Dessinable(vue)
-    {
+    Systeme(SupportADessin* vue): Dessinable(vue), WTF(false){
+        srand (time(NULL));
         //addCone();
         /*addToupie(new ConeSimple(Vecteur( 0.01, 0.01, 0.0, 0., 0.), Vecteur(0.0, 0.0, 180, 0., 0.), 1.0,1.5,0.5));
         addToupie(new ConeSimple(Vecteur( 0.01, 0.01, 0.0, 1., 1.), Vecteur(0.0, 0.0, 180, 0., 0.), 1.0,1.5,0.5));
@@ -76,6 +80,14 @@ class Systeme : public Dessinable {
             return &toupies;
         }
 
+
+        Balle* getBalle(size_t nb) const;
+        void partyWTF(){WTF = true;}
+        size_t nbBalles() const {return balles.size(); }
+        double random(double min=0., double max=1.);
+        void addBalle(Vecteur P, Vecteur dP);
+        void suppBalle(size_t id);
+
 		
 	protected:
         std::vector<Toupie*> toupies;
@@ -86,6 +98,9 @@ class Systeme : public Dessinable {
         ConeSimple* cone2;
         ToupieChinoise* chinoise;
 
-};
+        std::vector<Balle*> balles;
+        bool WTF;
 
+};
+double arrondis(double value);
 #endif

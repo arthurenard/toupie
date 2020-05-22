@@ -5,6 +5,8 @@
 #include <QTime>            // Classe pour gérer le temps
 #include "vue_opengl.h"
 #include "Systeme.h"
+#include <QSound>
+
 
 class GLWidget : public QOpenGLWidget
 /* La fenêtre hérite de QOpenGLWidget ;
@@ -17,7 +19,9 @@ public:
   GLWidget(QWidget* parent = nullptr)
     : QOpenGLWidget(parent)
     , c(&vue), speed(1)
-  {this->resize(1920, 1080);}
+  {this->resize(1920, 1080);
+   music = new QSound("music.wav");
+  }
 
 
   virtual ~GLWidget() {}
@@ -27,6 +31,8 @@ public:
 public slots:
     void addToupie(std::vector<double> data);
     void delToupie(size_t id);
+signals:
+    void fullWindow();
 
 private:
   // Les 3 méthodes clés de la classe QOpenGLWidget à réimplémenter
@@ -54,9 +60,9 @@ private:
 
   // objets à dessiner, faire évoluer
   Systeme c;
-  bool b_Fullscreen;
+  bool b_Fullscreen, WTF;
   int speed;
-
+  QSound* music;
 };
 
 #endif // GLWIDGET_H

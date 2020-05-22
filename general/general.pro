@@ -9,7 +9,8 @@ SOURCES += Systeme.cc \
     toupies/Toupie.cc \
     toupies/ToupieChinoise.cc \
     toupies/ConeSimple.cc \
-    Integrable.cc
+    Integrable.cc \
+    Balle.cc
 
 HEADERS += \
     Systeme.h \
@@ -21,4 +22,5 @@ HEADERS += \
     toupies/ConeSimple.h \
     dessinable.h \
     support_a_dessin.h \
-    Integrable.h
+    Integrable.h\
+    Balle.h

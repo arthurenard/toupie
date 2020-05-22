@@ -9,7 +9,7 @@ Mainwindow::Mainwindow()
     w->setFocusPolicy(Qt::StrongFocus);
     setCentralWidget(w);
 
-
+    QObject::connect(w, SIGNAL(fullWindow()), this, SLOT(fullWindow()));
     QObject::connect(this, SIGNAL(delClicked(size_t)), w, SLOT(delToupie(size_t)));
     QObject::connect(this, SIGNAL(delClicked(size_t)), this, SLOT(actualDelBtn()));
 
@@ -86,5 +86,8 @@ void Mainwindow::del9(){
 }
 void Mainwindow::del10(){
     emit delClicked(10);
+}
+void Mainwindow::fullWindow(){
+    showFullScreen();
 }
 

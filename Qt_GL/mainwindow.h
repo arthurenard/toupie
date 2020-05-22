@@ -16,6 +16,7 @@ signals:
    void delClicked(size_t id);
 
 public slots:
+   void fullWindow();
     void newForm();
     void actualDelBtn();
     void del1();

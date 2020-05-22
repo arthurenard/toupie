@@ -29,6 +29,26 @@ int Systeme::getIntegrateur(size_t nb) const{
 }
 
 
+Balle* Systeme::getBalle(size_t nb) const{
+    return balles[nb];
+}
+
+
+
+void Systeme::addBalle(Vecteur P, Vecteur dP){
+    balles.push_back(new Balle(P,dP, arrondis(random()) ,arrondis(random()) ,arrondis(random()) ));
+}
+void Systeme::suppBalle(size_t id){
+    delete balles[id];
+    balles.erase(balles.begin() + id);
+}
+
+double Systeme::random(double min, double max){
+    return min + fmod(1./1000. * rand(), max-min);
+}
+double arrondis(double value) {
+     return floor(value + 0.5);
+}
 
 void Systeme::evolue(double dt){
     for(size_t i(0); i < toupies.size(); i++){
@@ -50,4 +70,22 @@ void Systeme::evolue(double dt){
     /*cone->EulerCromer(dt);
     cone2->RungeKutta(dt);
     chinoise->EulerCromer(dt);*/
+
+
+    for(size_t i(0); i < balles.size(); i++){
+        balles[i]->EulerCromer(dt);
+        if(balles[i]->ouTof())
+            suppBalle(i);
+    }
+
+    if(WTF){
+        if(balles.size() < 4000){
+        for(size_t i(0); i <100; i++){
+        addBalle(Vecteur(random(-10.,10.),random(-10.,10.),random(7.,13.)),Vecteur(3));
+        }
+        }
+       // if(balles.size() > 1000)
+         //   suppBalle(1);
+    }
+
 }

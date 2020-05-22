@@ -10,8 +10,8 @@
 class ToupieChinoise : public Toupie {
 	public:
 		// constructeurs
-        	ToupieChinoise (Vecteur vect_P, Vecteur vect_dP, double masseVolumique, double rayon, double hauteur);
-		ToupieChinoise (std::vector<double> vect_P, std::vector<double> vect_dP, double masseVolumique, double rayon, double hauteur);
+            ToupieChinoise (Vecteur vect_P, Vecteur vect_dP, double masseVolumique, double hauteur, double rayon);
+        ToupieChinoise (std::vector<double> vect_P, std::vector<double> vect_dP, double masseVolumique, double hauteur, double rayon);
 		
 		// destructeurs
 		
@@ -25,8 +25,7 @@ class ToupieChinoise : public Toupie {
 	
 	protected: 
 		//attributs
-		double rayon; // metre
-		double hauteur; // metre
+
 		
 		//methodes privees
         	double volume () const override; // m3

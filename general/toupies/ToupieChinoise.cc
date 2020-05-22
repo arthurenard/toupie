@@ -2,16 +2,12 @@
 
 //constructeurs
 
-ToupieChinoise::ToupieChinoise (Vecteur vect_P, Vecteur vect_dP, double mV, double r, double h) :
-    	Toupie (vect_P, vect_dP, abs(mV)),
-	rayon (abs(r)),
-	hauteur (abs(h))
+ToupieChinoise::ToupieChinoise (Vecteur vect_P, Vecteur vect_dP, double mV, double h, double r) :
+        Toupie (vect_P, vect_dP, abs(mV), abs(h), abs(r))
 {}
 
-ToupieChinoise::ToupieChinoise (std::vector<double> vect_P, std::vector<double> vect_dP, double mV, double r, double h) : 
-    	Toupie (vect_P, vect_dP, abs(mV)),
-	rayon (abs(r)),
-	hauteur (abs(h))
+ToupieChinoise::ToupieChinoise (std::vector<double> vect_P, std::vector<double> vect_dP, double mV, double h, double r) :
+        Toupie (vect_P, vect_dP, abs(mV), abs(h), abs(r))
 {}
 
 //destructeurs
@@ -25,7 +21,7 @@ Vecteur ToupieChinoise::eq_evolution (Vecteur P, Vecteur dP, double temps) {
     	double f2 ((dP[1] * f1 * I3() * (I3() + (m * r * r * (1 - (alpha() * cos(P[1])))))/(f3 * sin(P[1]))) - (2 * dP[0] * dP[1] / tan(P[1])));
 	
 	
-	retour[0] = f2;
+        retour[0] = f2;
 	
     	retour[1] =  sin(P[1]) * (dP[0] * dP[0] * (-m * r * r * (alpha() - cos(P[1])) * (1 - (alpha() * cos(P[1]))) + (I1() * cos(P[1]))) +
     (f1 * dP[0] * (m * r * r * ((alpha() * cos(P[1])) - 1) - I3())) - ((m * r * r * alpha() * pow(dP[1], 2))  - (m * g * r * alpha())))
@@ -34,8 +30,8 @@ Vecteur ToupieChinoise::eq_evolution (Vecteur P, Vecteur dP, double temps) {
     	retour[2] = (dP[0] * dP[1] * sin(P[1])) - (cos(P[1]) * f2)
     - (m * pow(r, 2) * f1 * dP[1] * sin(P[1]) * ((I3() * (alpha() - cos(P[1]))) + (I1() * cos(P[1]))))/f3;
 	
-    	retour[3] = r * ( (dP[1] * sin(P[0])) - (vect_dP[2] * cos(P[0]) * sin(P[1])));
-    	retour[4] = - r * (dP[1] * cos(P[0]) + (vect_dP[2] * sin(P[0]) * sin(P[1])));
+        retour[3] = 0.;// r * ( (dP[1] * sin(P[0])) - (vect_dP[2] * cos(P[0]) * sin(P[1])));
+        retour[4] = 0.;//- r * (dP[1] * cos(P[0]) + (vect_dP[2] * sin(P[0]) * sin(P[1])));
 	
 	return retour;
 }

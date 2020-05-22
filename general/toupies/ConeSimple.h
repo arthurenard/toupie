@@ -17,8 +17,7 @@ class ConeSimple : public Toupie {
 		//methodes publiques
         	virtual Vecteur eq_evolution (Vecteur P = 0, Vecteur dP = 0, double temps = 0) override;
         	//accesseurs
-        	double getHauteur(){return hauteur;} // metre
-        	double getRayon(){return rayon;}
+
 		//operateurs internes
 
 
@@ -27,8 +26,7 @@ class ConeSimple : public Toupie {
 
 	private: 
 		//attributs
-		double hauteur; // metre
-		double rayon; // metre
+
 		
 		//methodes privees
        		double volume () const override; // m3

@@ -2,22 +2,18 @@
 
 //constructeurs
 ConeSimple::ConeSimple() :
-    	Toupie(),
-    	hauteur(1.0),
-    	rayon(1.0)
+        Toupie()
 {}
 
 
 ConeSimple::ConeSimple (Vecteur vect_P, Vecteur vect_dP, double mV, double h, double r) :
-    	Toupie (vect_P, vect_dP, mV),
-	hauteur (abs(h)),
-	rayon (abs(r))
+        Toupie (vect_P, vect_dP, mV, abs(h), abs(r))
+
 {}
 
 ConeSimple::ConeSimple (std::vector<double> vect_P, std::vector<double> vect_dP, double mV, double h, double r) : 
-    	Toupie (vect_P, vect_dP, mV),
-	hauteur (abs(h)),
-	rayon (abs(r))
+        Toupie (vect_P, vect_dP, mV, abs(h), abs(r))
+
 {}
 
 //destructeurs
@@ -36,7 +32,7 @@ Vecteur ConeSimple::eq_evolution (Vecteur P, Vecteur dP, double temps) {
     	}
 
     	retour[0] = (P[1] / (IA1() * sin(P[1]))) * (((I3() - (2 * IA1())) * dP[0] * cos(P[1])) + (I3() * dP[2]));
-    	retour[2] = (dP[1] / (IA1() * sin(P[1]))) * ( ( ( dP[0] * ( IA1() - ( ( I3() - IA1() ) * cos(P[1]) * cos(P[1]))) - ( I3() * dP[2] * cos(P[1])))));
+        retour[2] = (dP[1] / (IA1() * sin(P[1]))) *  ( dP[0] * ( IA1() - ( ( I3() - IA1() ) * cos(P[1]) * cos(P[1]))) - ( I3() * dP[2] * cos(P[1])));
 	return retour;
 }
 
@@ -58,11 +54,11 @@ double ConeSimple::I3 () const {
 }
 
 double ConeSimple::IA1 () const {
-    	return (I1() + ((9./16.) * hauteur * hauteur));
+        return masse() * ((3./20.)*rayon*rayon + 0.6*hauteur*hauteur);
 }
 
 double ConeSimple::MA () const {
-	return (masse () * g * hauteur * sin(vect_P[1]));  // cas ou la toupie n'est soumise qu'a son seul poids
+    return (0.75 * masse () * g * hauteur * sin(vect_P[1]));  // cas ou la toupie n'est soumise qu'a son seul poids
 }
 
 Vecteur ConeSimple::OG() const {

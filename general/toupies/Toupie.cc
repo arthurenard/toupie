@@ -1,8 +1,8 @@
 #include "Toupie.h"
 
 //constructeurs
-Toupie::Toupie (Vecteur v, Vecteur w, double mv)
-    : masseVolumique (mv)
+Toupie::Toupie (Vecteur v, Vecteur w, double mv, double h, double r)
+    : masseVolumique (mv), hauteur(h), rayon(r)
 {
 	if (v.size() == 3) {
         v.push_back(0.);
@@ -21,8 +21,8 @@ Toupie::Toupie (Vecteur v, Vecteur w, double mv)
     Integrable:: vect_dP = w;
 }
 
-Toupie::Toupie (std::vector<double> v, std::vector<double> w, double mv)
-    : masseVolumique (mv)
+Toupie::Toupie (std::vector<double> v, std::vector<double> w, double mv, double h, double r)
+    : masseVolumique (mv), hauteur(h), rayon(r)
 {
 	if (v.size() == 3) {
         v.push_back(0.);

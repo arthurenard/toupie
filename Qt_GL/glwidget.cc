@@ -52,6 +52,15 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
 
   switch (event->key()) {
 
+  case Qt::Key_W:
+      c.addBalle(Vecteur(- vue.getRho()*sin(vue.getOmega())*sin(vue.getPsi()) ,- vue.getRho()*cos(vue.getOmega())*sin(vue.getPsi()), -0.9 * vue.getRho()*cos(vue.getPsi()) ), Vecteur(-0.5 *vue.getRho()*sin(vue.getOmega()) , - 0.5 *vue.getRho()*cos(vue.getOmega()),1.));
+      break;
+  case Qt::Key_T:
+    c.partyWTF();
+    music->play();
+    WTF =true;
+    emit fullWindow();
+    break;
   case Qt::Key_Left:
     vue.turnAround(petit_angle, 0.0, 0.0, 1.0);
     break;
