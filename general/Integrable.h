@@ -21,6 +21,8 @@ class Integrable {
 		//methodes 
         	virtual Vecteur eq_evolution (Vecteur P, Vecteur dP, double temps = 0) = 0;
         	const Vecteur get_vect_P ();
+            const Vecteur get_vect_dP ();
+
     
         	virtual void EulerCromer (double pas_de_temps, double temps = 0);
       	  	virtual void Newmark (double pas_de_temps, double temps = 0);

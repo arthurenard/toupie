@@ -16,6 +16,9 @@ Integrable::Integrable (std::vector<double> v, std::vector<double> w) :
 const Vecteur Integrable::get_vect_P (){
 	return vect_P;
 }
+const Vecteur Integrable::get_vect_dP (){
+    return vect_dP;
+}
 
 void Integrable::EulerCromer (double dt, double temps) {
     vect_dP += dt * eq_evolution (vect_P, vect_dP, temps);

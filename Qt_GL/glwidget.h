@@ -31,8 +31,11 @@ public:
 public slots:
     void addToupie(std::vector<double> data);
     void delToupie(size_t id);
+    void sauvegarder();
 signals:
     void fullWindow();
+    void allDataSend(std::vector<std::vector<double>>);
+    void closeAll();
 
 private:
   // Les 3 méthodes clés de la classe QOpenGLWidget à réimplémenter

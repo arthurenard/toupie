@@ -4,6 +4,7 @@
 #include <QtWidgets>
 #include "glwidget.h"
 #include "addtoupie.h"
+#include "sauvegarde.h"
 
 
 class Mainwindow : public QMainWindow
@@ -35,6 +36,11 @@ private:
     std::vector<QAction*> delBouton;
     AddToupie* formulaire;
     QMenu* menuSupp;
+    QAction* charger;
+    QAction* sauvegarder;
+
+    Sauvegarde* saveObject;
+    bool windowsState;
 
 };
 

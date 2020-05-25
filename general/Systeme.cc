@@ -66,6 +66,9 @@ void Systeme::evolue(double dt){
             toupies[i]->EulerCromer(dt);
             break;
         }
+        if(trace){
+            toupies[i]->recordTrace();
+        }
     }
     /*cone->EulerCromer(dt);
     cone2->RungeKutta(dt);
@@ -88,4 +91,30 @@ void Systeme::evolue(double dt){
          //   suppBalle(1);
     }
 
+}
+std::vector<double> Systeme::getDataTop(size_t id){
+    std::vector<double> data; //type, integrateur, psi, teta, phi, x, y, Dpsi, Dteta, Dphi, Dx, Dy, masse-vo, hauteur, rayon
+    data.push_back(types[id]);
+    data.push_back(integrateurs[id]);
+    data.push_back(toupies[id]->get_vect_P()[0]);
+    data.push_back(toupies[id]->get_vect_P()[1]);
+    data.push_back(toupies[id]->get_vect_P()[2]);
+    data.push_back(toupies[id]->get_vect_P()[3]);
+    data.push_back(toupies[id]->get_vect_P()[4]);
+    data.push_back(toupies[id]->get_vect_dP()[0]);
+    data.push_back(toupies[id]->get_vect_dP()[1]);
+    data.push_back(toupies[id]->get_vect_dP()[2]);
+    data.push_back(toupies[id]->get_vect_dP()[3]);
+    data.push_back(toupies[id]->get_vect_dP()[4]);
+    data.push_back(toupies[id]->getMV());
+    data.push_back(toupies[id]->getHauteur());
+    data.push_back(toupies[id]->getRayon());
+    return data;
+}
+std::vector<std::vector<double>> Systeme::getAllData(){
+    std::vector<std::vector<double>> data;
+    for(size_t i(0); i < toupies.size(); i++){
+        data.push_back(getDataTop(i));
+    }
+    return data;
 }

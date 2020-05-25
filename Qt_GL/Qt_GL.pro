@@ -5,7 +5,7 @@ CONFIG += c++11
 win32:LIBS += -lopengl32
 
 
-TARGET = beyblade_gl
+TARGET = beyblade_gl3
 
 LIBS += -L../general -lgeneral
 PRE_TARGETDEPS += ../general/libgeneral.a
@@ -19,12 +19,14 @@ SOURCES += \
     glsphere.cc \
     glcone.cc \
     mainwindow.cc \
+    sauvegarde.cc \
     vue_opengl.cc
 
 HEADERS += \
     addtoupie.h \
     glwidget.h \
     mainwindow.h \
+    sauvegarde.h \
     vertex_shader.h \
     vue_opengl.h \
     glsphere.h \

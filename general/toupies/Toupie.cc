@@ -141,3 +141,6 @@ double Toupie::invariant_moment_cin_Az () const {
 double Toupie::invariant_coplanaires() const {
     return coplanaire((OG_unitaire()), vect_rot_Rg(), moment_cin_G());
 }
+void Toupie::recordTrace(){
+    trace.add_vect(OG_unitaire());
+}

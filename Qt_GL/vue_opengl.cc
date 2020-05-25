@@ -13,7 +13,12 @@ void VueOpenGL::dessine(Systeme const& systeme)
 
   for(size_t i(0); i < systeme.nbToupies(); i++){
     dessineToupie(systeme.getToupie(i), systeme.getType(i));
+    if(systeme.getTrace()){
+        dessineTrace(systeme.getToupie(i), i);
+
+    }
   }
+
   for(size_t i(0); i < systeme.nbBalles(); i++){
     dessineBalle(systeme.getBalle(i), i);
   }
@@ -219,3 +224,26 @@ void VueOpenGL::dessineBalle(Balle *balle, size_t nb){
     dessineSphere(matricecone,balle->getRVB()[0],balle->getRVB()[1],balle->getRVB()[2]);
 }
 
+void VueOpenGL::dessineTrace(Toupie *toupie, size_t nb){
+QMatrix4x4 position;
+position.translate(toupie->get_vect_P()[3], toupie->get_vect_P()[4]);
+    prog.setUniformValue("vue_modele", matrice_vue * position);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+    glBegin(GL_LINE_STRIP);
+    if(nb%6 == 0){    prog.setAttributeValue(CouleurId, 1.0, 0.0, 1.0); }
+    else if(nb%5 == 0){    prog.setAttributeValue(CouleurId, 1.0, 1.0, 0.0); }
+    else if(nb%4 == 0){    prog.setAttributeValue(CouleurId, 0.0, 1.0, 0.0); }
+    else if(nb%3 == 0){    prog.setAttributeValue(CouleurId, 0.0, 0.0, 1.0); }
+    else if(nb%2 == 0){    prog.setAttributeValue(CouleurId, 1.0, 0.0, 0.0); }
+    else {    prog.setAttributeValue(CouleurId, 0.0, 1.0, 1.0); }
+
+
+
+
+
+    for(size_t i(0) ; i < toupie->nbVectTrace() ; i++){
+        prog.setAttributeValue(SommetId, 3*toupie->getVectNb(i)[0], 3*toupie->getVectNb(i)[1], 3*toupie->getVectNb(i)[2]);
+    }
+   glEnd();
+}

@@ -51,7 +51,9 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
   constexpr double petit_pas(0.1);
 
   switch (event->key()) {
-
+  case Qt::Key_Y:
+      c.invertTrace();
+      break;
   case Qt::Key_W:
       c.addBalle(Vecteur(- vue.getRho()*sin(vue.getOmega())*sin(vue.getPsi()) ,- vue.getRho()*cos(vue.getOmega())*sin(vue.getPsi()), -0.9 * vue.getRho()*cos(vue.getPsi()) ), Vecteur(-0.5 *vue.getRho()*sin(vue.getOmega()) , - 0.5 *vue.getRho()*cos(vue.getOmega()),1.));
       break;
@@ -99,11 +101,13 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
     vue.initializePosition();
     break;
   case Qt::Key_Escape:
-      close();
+      if(!WTF)
+      emit closeAll();
       break;
 
   case Qt::Key_F1:
-      toggleFullWindow();
+      if(!WTF)
+      emit fullWindow();
       break;
 
   case Qt::Key_Space:
@@ -201,4 +205,7 @@ void GLWidget::addToupie(std::vector<double> data){
 }
 void GLWidget::delToupie(size_t id){
     c.delToupie(id);
+}
+void GLWidget::sauvegarder(){
+    emit allDataSend( c.getAllData() );
 }

@@ -12,6 +12,7 @@ SOURCES += Systeme.cc \
     toupies/ConeSimple.cc \
     Integrable.cc \
     Balle.cc \
+    Memoire.cc\
     toupies/ToupieG_Conique.cc
 
 HEADERS += \
@@ -27,4 +28,5 @@ HEADERS += \
     support_a_dessin.h \
     Integrable.h\
     Balle.h \
+    Memoire.h\
     toupies/ToupieG_Conique.h

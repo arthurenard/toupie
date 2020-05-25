@@ -4,12 +4,16 @@ Mainwindow::Mainwindow()
 {
     resize(1080, 1080);
     this->move(0,0);
+    windowsState = false;
 
     w= new GLWidget;
     w->setFocusPolicy(Qt::StrongFocus);
     setCentralWidget(w);
 
+
     QObject::connect(w, SIGNAL(fullWindow()), this, SLOT(fullWindow()));
+    QObject::connect(w, SIGNAL(closeAll()), this, SLOT(close()));
+
     QObject::connect(this, SIGNAL(delClicked(size_t)), w, SLOT(delToupie(size_t)));
     QObject::connect(this, SIGNAL(delClicked(size_t)), this, SLOT(actualDelBtn()));
 
@@ -32,6 +36,25 @@ Mainwindow::Mainwindow()
        QObject::connect(delBouton[8], SIGNAL(triggered()), this, SLOT(del9()));
        QObject::connect(delBouton[9], SIGNAL(triggered()), this, SLOT(del10()));
 
+
+       saveObject = new Sauvegarde;
+       QMenu *menuSave = menuBar()->addMenu("&Sauvegarde");
+       charger = new QAction("Charger un systeme");
+       sauvegarder = new QAction("Sauvegarder le systeme");
+       menuSave->addAction(charger);
+       menuSave->addAction(sauvegarder);
+
+
+       QObject::connect(charger, SIGNAL(triggered()), saveObject, SLOT(charger()));
+       QObject::connect(saveObject, SIGNAL(dataLoaded(std::vector<double>)), w, SLOT(addToupie(std::vector<double>)));
+       QObject::connect(saveObject, SIGNAL(dataLoaded(std::vector<double>)), this, SLOT(actualDelBtn()));
+
+
+       QObject::connect(sauvegarder, SIGNAL(triggered()), w, SLOT(sauvegarder()));
+       QObject::connect(w, SIGNAL(allDataSend(std::vector<std::vector<double>>)), saveObject, SLOT(sauvegarder(std::vector<std::vector<double>>)));
+
+
+
        newForm();
 }
 
@@ -40,6 +63,8 @@ void Mainwindow::newForm(){
     formulaire->show();
     QObject::connect(formulaire, SIGNAL(dataSend(std::vector<double>)), w, SLOT(addToupie(std::vector<double>)));
     QObject::connect(formulaire, SIGNAL(dataSend(std::vector<double>)), this, SLOT(actualDelBtn()));
+    QObject::connect(w, SIGNAL(closeAll()), formulaire, SLOT(close()));
+
 
 
 }
@@ -88,6 +113,10 @@ void Mainwindow::del10(){
     emit delClicked(10);
 }
 void Mainwindow::fullWindow(){
-    showFullScreen();
+    if(windowsState)
+    {showFullScreen();}
+    else
+    {showNormal();}
+    windowsState = !windowsState;
 }
 

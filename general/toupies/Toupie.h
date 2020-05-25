@@ -7,6 +7,7 @@
 #include "bases/Vecteur.h"
 #include "bases/Matrice33.h"
 #include "../Integrable.h"
+#include "Memoire.h"
 
 #define PSI (vect_P[0])
 #define THETA (vect_P[1])
@@ -37,12 +38,20 @@ class Toupie : public Integrable {
         void modulo2pi();
         double getHauteur(){return hauteur;} // metre
         double getRayon(){return rayon;}
+        double getMV(){return masseVolumique;}
+
+        void recordTrace();
+        Vecteur getVectNb(size_t nb){return trace.get_vect(nb);}
+        size_t nbVectTrace(){return trace.taille();}
+        void clearTrace(){trace.clear();}
 
     protected:
         //attributs
         double masseVolumique;
         double hauteur; // metre
         double rayon; // metre
+
+        Memoire trace;
 
         //methodes
         Matrice33 passage_RgRo () const;

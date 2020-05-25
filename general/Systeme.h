@@ -88,6 +88,19 @@ class Systeme : public Dessinable {
         void addBalle(Vecteur P, Vecteur dP);
         void suppBalle(size_t id);
 
+
+        void invertTrace(){
+            trace = !trace;
+            for(size_t i(0); i < toupies.size() ; i++){
+              toupies[i]->clearTrace();
+                          }}
+        bool getTrace() const{return trace;}
+        void clearAll(){toupies.clear();
+                       types.clear();
+                       integrateurs.clear();
+                       }
+        std::vector<std::vector<double>> getAllData();
+
 		
 	protected:
         std::vector<Toupie*> toupies;
@@ -100,6 +113,9 @@ class Systeme : public Dessinable {
 
         std::vector<Balle*> balles;
         bool WTF;
+
+        bool trace;
+        std::vector<double> getDataTop(size_t id);
 
 };
 double arrondis(double value);
