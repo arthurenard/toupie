@@ -5,7 +5,7 @@ CONFIG += c++11
 win32:LIBS += -lopengl32
 
 
-TARGET = beyblade_gl3
+TARGET = beyblade
 
 LIBS += -L../general -lgeneral
 PRE_TARGETDEPS += ../general/libgeneral.a

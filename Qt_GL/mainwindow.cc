@@ -18,8 +18,10 @@ Mainwindow::Mainwindow()
     QObject::connect(this, SIGNAL(delClicked(size_t)), this, SLOT(actualDelBtn()));
 
 
-       QMenu *menuAdd = menuBar()->addMenu("&Ajouter une Toupie");
-       QObject::connect(menuAdd, SIGNAL(aboutToShow()), this, SLOT(newForm()));
+       QMenu* menuAdd = menuBar()->addMenu("&Ajouter une Toupie");
+       QAction* addTopAction = new QAction("&Ajouter une Toupie");
+       menuAdd -> addAction(addTopAction);
+       QObject::connect(addTopAction, SIGNAL(triggered()), this, SLOT(newForm()));
 
        menuSupp = menuBar()->addMenu("&Supprimer une Toupie");
        for (size_t i(0); i < 10 ;i++) {
@@ -53,6 +55,8 @@ Mainwindow::Mainwindow()
        QObject::connect(sauvegarder, SIGNAL(triggered()), w, SLOT(sauvegarder()));
        QObject::connect(w, SIGNAL(allDataSend(std::vector<std::vector<double>>)), saveObject, SLOT(sauvegarder(std::vector<std::vector<double>>)));
 
+       QObject::connect(saveObject, SIGNAL(errorFile()), this, SLOT(close()));
+
 
 
        newForm();
@@ -64,6 +68,8 @@ void Mainwindow::newForm(){
     QObject::connect(formulaire, SIGNAL(dataSend(std::vector<double>)), w, SLOT(addToupie(std::vector<double>)));
     QObject::connect(formulaire, SIGNAL(dataSend(std::vector<double>)), this, SLOT(actualDelBtn()));
     QObject::connect(w, SIGNAL(closeAll()), formulaire, SLOT(close()));
+    QObject::connect(saveObject, SIGNAL(errorFile()), formulaire, SLOT(close()));
+
 
 
 
@@ -113,7 +119,7 @@ void Mainwindow::del10(){
     emit delClicked(10);
 }
 void Mainwindow::fullWindow(){
-    if(windowsState)
+    if(!windowsState)
     {showFullScreen();}
     else
     {showNormal();}

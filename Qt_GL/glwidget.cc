@@ -60,8 +60,14 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
   case Qt::Key_T:
     c.partyWTF();
     music->play();
+    if(!WTF){
+        emit fullWindow();
+    }
+    if (timerId == 0) {
+      timerId = startTimer(20);
+      chronometre.restart();
+    }
     WTF =true;
-    emit fullWindow();
     break;
   case Qt::Key_Left:
     vue.turnAround(petit_angle, 0.0, 0.0, 1.0);

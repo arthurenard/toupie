@@ -4,7 +4,9 @@
 #include <QtWidgets>
 #include <QFileDialog>
 #include <fstream>
-
+#include <string>
+#include <iostream>
+#include <unordered_map>
 
 
 class Sauvegarde : public QWidget
@@ -17,6 +19,7 @@ public:
 
 signals:
     void dataLoaded(std::vector<double>);
+    void errorFile();
 
 
 public slots:
@@ -28,6 +31,9 @@ public slots:
 private:
     std::string fileName;
     bool loadFile();
+    std::string dataToString(std::vector<std::vector<double>> data);
+    size_t hashData(std::string data);
+
 
 };
 
