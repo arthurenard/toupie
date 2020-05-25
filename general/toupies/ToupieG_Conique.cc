@@ -7,6 +7,7 @@ Vecteur ToupieG_Conique::eq_evolution (Vecteur P, Vecteur dP, double temps) {
         retour[0] += ((vect_rot_P_Rg()[1] - (PSI_P * THETA_P * cos(THETA))) / sin(THETA));
         retour[2] += (((PSI_P * THETA_P) - (vect_rot_P_Rg()[1] * cos(THETA))) / sin(THETA));
     }
+    return retour;
 }
 
 Vecteur ToupieG_Conique::MA_Rg() const {

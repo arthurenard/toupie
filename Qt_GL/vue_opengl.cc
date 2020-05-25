@@ -237,10 +237,6 @@ position.translate(toupie->get_vect_P()[3], toupie->get_vect_P()[4]);
     else if(nb%2 == 0){    prog.setAttributeValue(CouleurId, 1.0, 0.0, 0.0); }
     else {    prog.setAttributeValue(CouleurId, 0.0, 1.0, 1.0); }
 
-
-
-
-
     for(size_t i(0) ; i < toupie->nbVectTrace() ; i++){
         prog.setAttributeValue(SommetId, 3*toupie->getVectNb(i)[0], 3*toupie->getVectNb(i)[1], 3*toupie->getVectNb(i)[2]);
     }

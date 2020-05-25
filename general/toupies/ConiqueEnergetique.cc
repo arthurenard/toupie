@@ -15,6 +15,7 @@ Vecteur ConiqueEnergetique::eq_evolution (Vecteur P, double temps) {
             THETA += theta_P * delta_T;
         } // retour[1] est de base = 0, inutile donc de le repréciser
     }
+    return retour;
 }
 
 double ConiqueEnergetique::V (double t) const {
