@@ -33,7 +33,9 @@ Vecteur ConeSimple::eq_evolution (Vecteur P, Vecteur dP, double temps) {
 
     	retour[0] = (P[1] / (IA1() * sin(P[1]))) * (((I3() - (2 * IA1())) * dP[0] * cos(P[1])) + (I3() * dP[2]));
         retour[2] = (dP[1] / (IA1() * sin(P[1]))) *  ( dP[0] * ( IA1() - ( ( I3() - IA1() ) * cos(P[1]) * cos(P[1]))) - ( I3() * dP[2] * cos(P[1])));
-	return retour;
+
+
+        return retour;
 }
 
 //operateurs internes
@@ -58,11 +60,15 @@ double ConeSimple::IA1 () const {
 }
 
 double ConeSimple::MA () const {
-    return (0.75 * masse () * g * hauteur * sin(vect_P[1]));  // cas ou la toupie n'est soumise qu'a son seul poids
+    return (d() * masse () * g * sin(THETA));  // cas ou la toupie n'est soumise qu'a son seul poids
+}
+
+double ConeSimple::d () const {
+    return (0.75 * hauteur);
 }
 
 Vecteur ConeSimple::OG() const {
-    	return (0.75 * hauteur * OG_unitaire());
+        return (d() * OG_unitaire());
 }
 
 //operateurs externes

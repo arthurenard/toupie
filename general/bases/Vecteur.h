@@ -21,7 +21,7 @@
 		double prod_scal (Vecteur const&) const; //retourne le produit scalaire
 		double norme () const; //retourne la norme euclidienne d'un Vecteur 
 		double norme2 () const; //retourne le carré de la norme euclidienne d'un Vecteur
-        Vecteur projection (Vecteur vect) const; //retourn leVecteur this projete sur vect
+        Vecteur projection (Vecteur vect) const; //retourn le Vecteur this projete sur vect
 		
 		//operateurs internes
 		bool operator== (Vecteur const&) const;

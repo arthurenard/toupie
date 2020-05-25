@@ -74,8 +74,16 @@ Matrice33 Toupie::inertie () const {
     return Matrice33 (I1(), I1(), I3());
 }
 
+Vecteur Toupie::vect_k_Ro() const {
+    return Vecteur(cos(PSI), sin(PSI), 0);
+}
+
 Vecteur Toupie::moment_cin_G() const {
     return (inertie() * vect_rot_Rg());
+}
+
+Vecteur Toupie::moment_cin_A() const {
+    return ((masse() * (OG() ^ vitesse_G_Ro())) + moment_cin_G());
 }
 
 Vecteur Toupie::vect_rot_Rg() const {
@@ -85,6 +93,10 @@ Vecteur Toupie::vect_rot_Rg() const {
 Vecteur Toupie::vect_rot_Ro() const {
     return (passage_RgRo() * vect_rot_Rg());
 }
+
+Vecteur Toupie::vect_rotDeRg_Rg() const {
+    Vecteur v(1, 0, 0);
+    return (vect_rot_Rg() - (PHI_P * v));}
 
 Vecteur Toupie::vitesse_G_Rg() const {
     return ((- OG()) ^ vect_rot_Rg());
@@ -107,11 +119,23 @@ double Toupie::energie_cin() const {
 }
 
 double Toupie::energie_pot() const {
-    return (masse() * (vecteur_g.prod_scal(OG () ) ) );
+    return (masse() * (vecteur_g.prod_scal(OG ())));
 }
 
 double Toupie::energie_totale() const {
     return (energie_cin() - energie_pot());
+}
+
+double Toupie::invariant_vect_rot_Rg3 () const {
+    return (vect_rot_Rg()[2]);
+}
+
+double Toupie::invariant_moment_cin_A3 () const {
+    return (invariant_vect_rot_Rg3() * I3());
+}
+
+double Toupie::invariant_moment_cin_Az () const {
+    return (moment_cin_A().prod_scal(vect_k_Ro()));
 }
 
 double Toupie::invariant_coplanaires() const {

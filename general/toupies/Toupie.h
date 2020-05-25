@@ -19,6 +19,10 @@
  * Base Ro = (O, x, y, z) repere galileen de reference
  * Base Rg (G, u, b, a) un repere d'inertie du solide, a etant l'axe principal de la toupie)
  *
+ * O est donc l'origine de Ro
+ * G (centre de gravité) est donc l'origine de Rg
+ * A est le point de contact entre la toupie et le plan (x, y) de Ro
+ *      -> dans les equations il a souvent été considéré que A = O
  */
 class Toupie : public Integrable {
 	public: 
@@ -45,9 +49,12 @@ class Toupie : public Integrable {
         Matrice33 passage_RoRg () const;
         Matrice33 inertie () const;
 
+        Vecteur vect_k_Ro () const; //retourne le vecteur k dans la base Ro
         Vecteur moment_cin_G () const;
+        Vecteur moment_cin_A () const;
         Vecteur vect_rot_Rg () const;
         Vecteur vect_rot_Ro () const;
+        Vecteur vect_rotDeRg_Rg () const; //retourne le vecteur de rotation du repere Rg dans la base Rg
         Vecteur vitesse_G_Rg () const;
         Vecteur vitesse_G_Ro () const;
         Vecteur OG_unitaire () const;
@@ -62,6 +69,9 @@ class Toupie : public Integrable {
         double energie_cin () const;
         double energie_pot () const;
         double energie_totale () const;
+        double invariant_vect_rot_Rg3 () const; //retourne la 3eme coordonnée de vect_rot_Rg qui devrait etre une constante
+        double invariant_moment_cin_A3 () const; //retourne le I3 * invariant_vect_rot_Rg3 qui est une constante
+        double invariant_moment_cin_Az () const; //retourne moment_cin_A * vect_k
         double invariant_coplanaires () const; //calcule coplanaire( (0, 0, 1), vect_rot_Rg, moment_cin_G), renvoie "0" si ils sont coplanaires
 };
 

@@ -8,7 +8,7 @@
 class ConeSimple : public Toupie {
 	public:
 		// constructeurs
-        	ConeSimple ();
+            ConeSimple ();
 		ConeSimple (Vecteur vect_P, Vecteur vect_dP, double masseVolumique, double hauteur, double rayon);
 		ConeSimple (std::vector<double> vect_P, std::vector<double> vect_dP, double masseVolumique, double hauteur, double rayon);
 		
@@ -24,7 +24,7 @@ class ConeSimple : public Toupie {
 		//methodes inutiles aux beneficiares
 	
 
-	private: 
+    protected:
 		//attributs
 
 		
@@ -34,6 +34,7 @@ class ConeSimple : public Toupie {
         	double I3 () const override; // kg * m2
        		double IA1 () const; // kg * m2
         	double MA () const;
+            double d () const; //retourne ||OG|| (=3/4 de la hauteur)
 
         Vecteur OG() const override;
 };

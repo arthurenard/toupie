@@ -10,7 +10,7 @@
 class ToupieChinoise : public Toupie {
 	public:
 		// constructeurs
-            ToupieChinoise (Vecteur vect_P, Vecteur vect_dP, double masseVolumique, double hauteur, double rayon);
+        ToupieChinoise (Vecteur vect_P, Vecteur vect_dP, double masseVolumique, double hauteur, double rayon);
         ToupieChinoise (std::vector<double> vect_P, std::vector<double> vect_dP, double masseVolumique, double hauteur, double rayon);
 		
 		// destructeurs
