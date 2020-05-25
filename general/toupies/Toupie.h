@@ -15,6 +15,11 @@
 #define PSI_P (vect_dP[0])
 #define THETA_P (vect_dP[1])
 #define PHI_P (vect_dP[2])
+#define CONIQUE (0)
+#define CHINOISE (1)
+
+
+
 
 /*
  * Base Ro = (O, x, y, z) repere galileen de reference
@@ -39,6 +44,8 @@ class Toupie : public Integrable {
         double getHauteur(){return hauteur;} // metre
         double getRayon(){return rayon;}
         double getMV(){return masseVolumique;}
+
+        virtual int getType(){return 0;}
 
         void recordTrace();
         Vecteur getVectNb(size_t nb){return trace.get_vect(nb);}

@@ -52,30 +52,8 @@ class Systeme : public Dessinable {
 
 
         Toupie* getToupie(size_t nb) const;
-        int getType(size_t nb) const;
         int getIntegrateur(size_t nb) const;
 
-        void addCone(){
-            Vecteur P( 0.0, 0.0, 0.0, 1.0, 0.0);
-            Vecteur dP( 0.0, 0.0, 180,0.0,0.0);
-           cone= new ConeSimple(P, dP, 1.0,1.5,0.5) ;
-
-           Vecteur P2( 0.001, 0.001, 0.0, -1.0, 0.0);
-           Vecteur dP2( 0.0, 0.0, 180.0,0.0,0.0);
-          cone2= new ConeSimple(P2, dP2, 1.0,1.5,0.5) ;
-          Vecteur P3( 0.2, 0.2, 0.0, 0.0, 0.0);
-          Vecteur dP3( 0.0, 0.0, 60,0.0,0.0);
-         chinoise= new ToupieChinoise(P3, dP3, 0.2,1.0,0.3) ;
-        }
-        ConeSimple* getCone() const{
-            return cone;
-        }
-        ConeSimple* getCone2() const{
-            return cone2;
-        }
-        ToupieChinoise* getChinois() const{
-            return chinoise;
-        }
         const std::vector<Toupie*>* getToupies() const{
             return &toupies;
         }
@@ -96,7 +74,6 @@ class Systeme : public Dessinable {
                           }}
         bool getTrace() const{return trace;}
         void clearAll(){toupies.clear();
-                       types.clear();
                        integrateurs.clear();
                        }
         std::vector<std::vector<double>> getAllData();
@@ -104,12 +81,8 @@ class Systeme : public Dessinable {
 		
 	protected:
         std::vector<Toupie*> toupies;
-        std::vector<int> types;
         std::vector<int> integrateurs;
 
-        ConeSimple* cone;
-        ConeSimple* cone2;
-        ToupieChinoise* chinoise;
 
         std::vector<Balle*> balles;
         bool WTF;

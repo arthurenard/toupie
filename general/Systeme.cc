@@ -1,7 +1,6 @@
 #include "Systeme.h"
 
 void Systeme::addToupie(std::vector<double> data){
-    types.push_back(data[0]);
     integrateurs.push_back(data[1]);
     if(data.size()<15) throw "Add Toupie erreur declaration";
 
@@ -14,16 +13,13 @@ void Systeme::addToupie(std::vector<double> data){
 
 void Systeme::delToupie(size_t id){
     toupies.erase(toupies.begin() + id -1);
-    types.erase(types.begin() + id -1);
     integrateurs.erase(integrateurs.begin() + id -1);
 }
 
 Toupie* Systeme::getToupie(size_t nb) const{
     return toupies[nb];
 }
-int Systeme::getType(size_t nb) const{
-    return types[nb];
-}
+
 int Systeme::getIntegrateur(size_t nb) const{
     return integrateurs[nb];
 }
@@ -94,7 +90,7 @@ void Systeme::evolue(double dt){
 }
 std::vector<double> Systeme::getDataTop(size_t id){
     std::vector<double> data; //type, integrateur, psi, teta, phi, x, y, Dpsi, Dteta, Dphi, Dx, Dy, masse-vo, hauteur, rayon
-    data.push_back(types[id]);
+    data.push_back(toupies[id]->getType());
     data.push_back(integrateurs[id]);
     data.push_back(toupies[id]->get_vect_P()[0]);
     data.push_back(toupies[id]->get_vect_P()[1]);

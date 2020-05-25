@@ -35,8 +35,8 @@ class VueOpenGL : public SupportADessin {
   
 
   // methodes de dessins de toupies
-  void dessineToupie(Toupie* toupie, size_t nb);
-  void dessineBalle(Balle* balle, size_t nb);
+  void dessineToupie(Toupie* toupie);
+  void dessineBalle(Balle* balle);
   void dessineTrace(Toupie* toupie, size_t nb);
 
 

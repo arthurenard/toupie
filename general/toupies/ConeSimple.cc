@@ -71,6 +71,7 @@ Vecteur ConeSimple::OG() const {
         return (d() * OG_unitaire());
 }
 
+int ConeSimple::getType(){return CONIQUE;}
 //operateurs externes
 
 

@@ -16,6 +16,8 @@ class ConeSimple : public Toupie {
 		
 		//methodes publiques
         	virtual Vecteur eq_evolution (Vecteur P = 0, Vecteur dP = 0, double temps = 0) override;
+
+        virtual int getType() override;
         	//accesseurs
 
 		//operateurs internes

@@ -60,6 +60,7 @@ double ToupieChinoise::I3 () const {
 Vecteur ToupieChinoise::OG () const {
     	return (rayon * OG_unitaire());
 }
+int ToupieChinoise::getType(){return CHINOISE;}
 
 //operateurs internes
 

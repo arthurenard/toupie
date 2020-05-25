@@ -144,3 +144,4 @@ double Toupie::invariant_coplanaires() const {
 void Toupie::recordTrace(){
     trace.add_vect(OG_unitaire());
 }
+
