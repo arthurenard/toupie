@@ -1,0 +1,151 @@
+\documentclass[a4paper]{article}
+
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{layout}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+
+
+\begin{document}
+
+\author{Joseph El-Forzli & Arthur Renard}
+\date{}
+\title{Réponses aux questions}
+\maketitle
+
+	\begin{enumerate} 
+		\item \textbf{Vecteur}
+		
+		\begin{description}
+			\item[P1.1] Comment représentez-vous ces vecteurs ? Comment sont-ils organisés : quels attributs ? quelles méthodes ? quels droits d'accès?
+			
+			\begin{itemize} 
+				\item Par des \emph{vector}. L'unique attribut utilisé est un \emph{vector}, les méthodes utilisées sont celles demandées en exercice, les droits d'accès sont publics. 
+			\end{itemize}
+			
+			\item	[P1.2] Quel choix avez vous fait pour les opérations entre vecteurs de dimensions différentes ?			
+			
+			\begin{itemize} 
+				\item Une exception est lancée.
+			\end{itemize}
+		\end{description}
+		
+		\item \textbf{Modularisation} 
+		\\
+		\item \textbf{Révision des vecteurs}
+		
+			\begin{description}
+				\item[P4.1]  Avez-vous ajouté un constructeur de copie ? Pourquoi (justifiez votre choix) ?
+				
+				\begin {itemize}
+					\item Non pour le moment ça n'a pas d'intérêt.
+				\end {itemize}
+				
+				\item[P4.2]  Si l'on souhaitait ajouter un constructeur par coordonnées sphériques (deux angles et une longueur) pour les vecteurs de dimension 3,
+				
+				\begin{enumerate}
+				\item que cela impliquerait-il au niveau des attributs de la classe ?
+				
+				\begin {itemize}
+					\item 
+				\end {itemize}
+				
+				\item quelle serait la difficulté majeure (voire l'impossibilité) de sa réalisation en C++ ? (C'est d'ailleurs pour cela qu'on ne vous demande pas de faire un tel constructeur !)
+				
+				\begin {itemize}
+					\item 
+				\end {itemize}
+				\end{enumerate}
+				
+				\item[P4.3] Quels opérateurs avez vous introduits ?
+				
+				\begin {itemize}
+					\item Les opérateurs "operator<<", "operator!=" et "operator==" pour afficher les Vecteur et les comparer.
+				\end {itemize}
+				
+			\end{description}
+		\item \textbf{Matrice 3x3}
+		\\
+		\item \textbf{Premières Toupies}
+		
+			\begin{description}
+				\item[P6.1]  Comment se situe cette classe par rapport à la classe \emph{Toupie} précédemment définie ?
+				
+				\begin {itemize}
+					\item C'est une sous classe de \emph{Toupie}, en effet \emph{ConeSimple} est avant tout une toupie.
+				\end {itemize}
+				
+			\end{description}
+		\item \textbf{Intégrateurs}
+		
+			\begin{description}
+				\item[P7.1]  Comment avez vous conçu votre classe \emph{Intégrateur} ? 
+				
+				\begin {itemize}
+					\item Nous n'avons pas coder une classe \emph{Intégrateur} mais une classe \emph{Intégrable}. Au lieu de voir un intégrateur comme un moyen de faire évoluer les toupies, nous avons vu les toupies comme des objets "intégrables". Notre classe \emph{intégrable} possède donc deux vecteurs (P et dP), une équation d'évolution virtuelle et différents intégrateurs.
+				\end {itemize}
+				
+				\item[P7.2] Quelle est la relation entre les classes Intégrateur et IntégrateurEulerCromer ?
+				
+				\begin {itemize}
+					\item Il n'y a donc pas de classe \emph{Intégrateur}, mais \emph{EulerCromer} est une méthode de la classe \emph{Intégrable}.
+				\end {itemize}
+			\end{description}
+		\item \textbf{Système}
+		
+			\begin{description}
+				\item[P8.1] En termes de POO, quelle est donc la nature de la méthode \emph{dessine()} ?
+			
+				\begin{itemize} 
+					\item 
+				\end{itemize}
+			
+				\item[P8.2] Quelle est la bonne façon de le faire dans un cadre de programmation orientée-objet ?
+			
+				\begin{itemize} 
+					\item 
+				\end{itemize}
+			
+				\item[P8.3] A quoi faut-il faire attention pour les classes contenant des pointeurs ? Quelles solutions peut-on envisager ?
+			
+				\begin{itemize} 
+					\item 
+				\end{itemize}
+
+				\item[P8.4] Comment représentez vous la classe \emph{Système} ? 
+			
+				\begin{itemize} 
+					\item 
+				\end{itemize}
+
+		\end{description}
+		\item \textbf{Première simulation (mode texte)}
+		\\
+		\item \textbf{Graphisme}
+		\\
+		\item \textbf{Indicateurs (invariants, traces)}
+			\begin{description}
+				\item[P11.1]  Dans quelle(s) classe(s)/fichier(s) mettez-vous ces méthodes/fonctions ?
+				
+				\begin {itemize}
+					\item Dans \emph{Toupie}, en effet l'énergie, le moment cinétique et les grandeurs du produit mixte ne sont pas des valeurs propres à certaines toupies, seul leur "côté invariant" l'est. De plus, il pourrait être intéressant d'observer comment se comportent ces valeurs avec des toupies qui les font varier.
+				\end {itemize}
+			\end{description}
+		\item \textbf{Toupies générales}
+		\\
+		\item \textbf{Autres intégrateurs}
+		
+			\begin{description}
+				\item[P13.1] Où cela s'intègre-t-il dans votre projet/conception ? Quels changements cela engendre-t-il (ou pas) ? 
+							
+				\begin{itemize} 
+					\item Les intégrateurs s'intègrent dans \emph{Intégrable} comme méthodes supplémentaires. Cela n'implique aucun changement, il suffit de rajouter les intégrateurs dans les options de démarrage du programme.
+				\end{itemize}
+					
+	\end{enumerate}
+
+
+\end{document}
+
+

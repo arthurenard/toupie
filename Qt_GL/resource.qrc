@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>vertex_shader.glsl</file>
+        <file>fragment_shader.glsl</file>
+	<file>nyan.png</file>
+	<file>whitetexture.jpg</file>
+	<file>by.png</file>
+    </qresource>
+</RCC>
