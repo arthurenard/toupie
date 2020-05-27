@@ -3,7 +3,6 @@ TEMPLATE = lib
 CONFIG += staticlib c++11
 
 SOURCES += Systeme.cc \
-    Exception.cc \
     bases/Vecteur.cc \
     bases/Matrice33.cc \
     bases/constantes.cc \
@@ -18,7 +17,6 @@ SOURCES += Systeme.cc \
     toupies/ToupieG_Conique.cc
 
 HEADERS += \
-    Exception.h \
     Systeme.h \
     bases/Vecteur.h \
     bases/Matrice33.h \
