@@ -10,7 +10,7 @@
 class ToupieChinoise : public Toupie {
 	public:
 		// constructeurs
-        ToupieChinoise (std::vector<Vecteur>, double masseVolumique, double hauteur, double rayon);
+        ToupieChinoise (std::vector<Vecteur>, double masseVolumique, double hauteur, double rayon, bool move = false);
 
 		// destructeurs
 		
@@ -19,7 +19,7 @@ class ToupieChinoise : public Toupie {
 		//operateurs internes
         Vecteur eq_evolution (std::vector<Vecteur>, double temps = 0) override;
         int getType() override;
-		
+
 		//methodes inutiles aux beneficiares
 	
 	

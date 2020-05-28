@@ -7,7 +7,7 @@
 
 class Cone : public Toupie {
     public:
-        Cone(std::vector<Vecteur> position, size_t degre, double masseVolumique, double hauteur, double rayon);
+        Cone(std::vector<Vecteur> position, size_t degre, double masseVolumique, double hauteur, double rayon, bool move = false);
 
     protected:
         //attributs
@@ -21,6 +21,8 @@ class Cone : public Toupie {
             double d () const; //retourne ||OG|| (=3/4 de la hauteur)
 
             Vecteur OG() const override;
+
+
 };
 
 #endif // CONE_H

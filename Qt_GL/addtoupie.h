@@ -22,6 +22,7 @@ signals:
     void dataSend(std::vector<double>data);
 public slots:
     void getData();
+    void adaptInit();
 
 private:
     //QWidget *onglet;

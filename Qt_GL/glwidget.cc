@@ -52,6 +52,9 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
   constexpr double petit_pas(0.1);
 
   switch (event->key()) {
+  case Qt::Key_U:
+      c.invertConeFixe();
+      break;
   case Qt::Key_Y:
       c.invertTrace();
       break;

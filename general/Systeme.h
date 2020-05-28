@@ -25,7 +25,7 @@
 
 class Systeme : public Dessinable {
 	public: 
-    Systeme(SupportADessin* vue): Dessinable(vue), WTF(false), trace(false){
+    Systeme(SupportADessin* vue): Dessinable(vue), WTF(false), trace(false), toupieFixe(true){
         srand (time(NULL));
         nyan = new JCC;
 
@@ -61,7 +61,12 @@ class Systeme : public Dessinable {
         double getNyan() const{return  nyan->get_vect_P()[2];}
 
         bool getWTF() const{return WTF;}
-
+        void invertConeFixe(){
+            toupieFixe = !toupieFixe;
+            for(auto toupie : toupies){
+                toupie->invertMoveXY();
+            }
+        }
         void invertTrace(){
             trace = !trace;
             for(size_t i(0); i < toupies.size() ; i++){
@@ -81,6 +86,7 @@ class Systeme : public Dessinable {
 
         std::vector<Balle*> balles;
         bool WTF;
+        bool toupieFixe;
         JCC* nyan;
 
 

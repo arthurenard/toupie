@@ -7,7 +7,7 @@
 
 class ToupieG_Conique : public Cone {
     public:
-        ToupieG_Conique(std::vector<Vecteur>, double masseVolumique, double hauteur, double rayon);
+        ToupieG_Conique(std::vector<Vecteur>, double masseVolumique, double hauteur, double rayon, bool move = false);
 
         virtual Vecteur eq_evolution (std::vector<Vecteur>, double temps = 0) override;
 

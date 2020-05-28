@@ -3,7 +3,7 @@
 Balle::Balle(std::vector<Vecteur> p, double r, double v, double b) :
     Integrable(p, degre()),
     rayon(0.1),
-    coefRest(1.0)
+    coefRest(1.02)
 {
     rvb.push_back(r);
     rvb.push_back(v);

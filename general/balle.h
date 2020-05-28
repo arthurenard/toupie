@@ -23,7 +23,7 @@ public:
         return false;
     }
 
-private:
+protected:
     double rayon, coefRest;
     std::vector<double>rvb;
     size_t degre () const override;

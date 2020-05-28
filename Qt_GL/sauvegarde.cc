@@ -31,9 +31,9 @@ void Sauvegarde::sauvegarder(std::vector<std::vector<double>> data){
         if(file)
         {
             for (size_t i(0); i < data.size() ; i++) {
-                file << data[i][0] << " " << data[i][1] << " " << data[i][2] << " " << data[i][3] << " " << data[i][4] << " "
+                file <<  std::fixed << std::setprecision(9) << data[i][0] << " " << data[i][1] << " " << data[i][2] << " " << data[i][3] << " " << data[i][4] << " "
                      << data[i][5] << " " << data[i][6] << " " << data[i][7] << " " << data[i][8] << " " << data[i][9] << " "
-                     << data[i][10] << " " << data[i][11] << " " << data[i][12] << " " << data[i][13] << " " << data[i][14] << std::endl;
+                     << data[i][10] << " " << data[i][11] << " " << data[i][12] <<  '\n';
             }
             file << hashData(dataToString(data));
         }
@@ -57,7 +57,7 @@ void Sauvegarde::charger(){
         std::vector<std::vector<double> > allData;
          for (int i(0); i < nbToupies - 1; i++) {
              std::vector<double> data;
-                for(int j(0) ; j < 15 ; j++){
+                for(int j(0) ; j < 13 ; j++){
                     double coord;
                     file2 >> coord;
                     data.push_back(coord);
@@ -83,10 +83,7 @@ std::string mot;
     for (size_t i(0) ; i < data.size() ; i++) {
         for (size_t j(0) ; j < data[i].size() ; j++) {
             mot =std::to_string(data[i][j]);
-            mot.pop_back();
-            mot.pop_back();
-            mot.pop_back();
-            mot.pop_back();
+
 
             phrase += mot;
         }

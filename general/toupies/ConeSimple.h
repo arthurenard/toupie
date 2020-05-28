@@ -8,12 +8,14 @@
 class ConeSimple : public Cone {
 	public:
 		// constructeurs
-        ConeSimple (std::vector<Vecteur>, double masseVolumique, double hauteur, double rayon);
+        ConeSimple (std::vector<Vecteur>, double masseVolumique, double hauteur, double rayon, bool move = false);
 		
 		// destructeurs
 		
 		//methodes publiques
         Vecteur eq_evolution (std::vector<Vecteur>, double temps = 0) override;
+
+
 
         int getType() override;
         	//accesseurs

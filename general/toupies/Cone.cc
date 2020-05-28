@@ -1,7 +1,7 @@
 #include "Cone.h"
 
-Cone::Cone(std::vector<Vecteur> p, size_t d, double mV, double h, double r) :
-    Toupie(p, d, mV, h, r)
+Cone::Cone(std::vector<Vecteur> p, size_t d, double mV, double h, double r, bool move) :
+    Toupie(p, d, mV, h, r, move)
 {}
 
 //methodes protegees

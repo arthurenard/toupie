@@ -1,8 +1,8 @@
 #include "ConeSimple.h"
 
 //constructeurs
-ConeSimple::ConeSimple (std::vector<Vecteur> p, double mV, double h, double r) :
-        Cone (p, degre(), mV, abs(h), abs(r))
+ConeSimple::ConeSimple (std::vector<Vecteur> p, double mV, double h, double r, bool move) :
+        Cone (p, degre(), mV, abs(h), abs(r), move)
 {}
 
 //destructeurs
@@ -25,11 +25,16 @@ Vecteur ConeSimple::eq_evolution (std::vector<Vecteur> p, double) {
 
     	retour[0] = (P[1] / (IA1() * sin(P[1]))) * (((I3() - (2 * IA1())) * dP[0] * cos(P[1])) + (I3() * dP[2]));
         retour[2] = (dP[1] / (IA1() * sin(P[1]))) *  ( dP[0] * ( IA1() - ( ( I3() - IA1() ) * cos(P[1]) * cos(P[1]))) - ( I3() * dP[2] * cos(P[1])));
-
-
+        if(moveXY){
+            retour[3]= 0.0;
+            retour[4]=0.0;
+        }
+        else{
+        retour[3]= vitesse_G_Rg()[0];
+        retour[4]= vitesse_G_Rg()[1];
+        }
         return retour;
 }
-
 //operateurs internes
 
 //methodes inutiles aux beneficiaires de la classe

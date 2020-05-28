@@ -2,8 +2,8 @@
 
 //constructeurs
 
-ToupieChinoise::ToupieChinoise (std::vector<Vecteur> p, double mV, double h, double r) :
-        Toupie (p, degre(), abs(mV), abs(h), abs(r))
+ToupieChinoise::ToupieChinoise (std::vector<Vecteur> p, double mV, double h, double r, bool move) :
+        Toupie (p, degre(), abs(mV), abs(h), abs(r), move)
 {
     if (p.size() != 2) throw "ToupieChinoise degree";
 }
@@ -12,30 +12,43 @@ ToupieChinoise::ToupieChinoise (std::vector<Vecteur> p, double mV, double h, dou
 
 //methodes publiques
 Vecteur ToupieChinoise::eq_evolution (std::vector<Vecteur> p, double) {
-        if (p.size() != degre()) throw "ToupieChinoise equa evol";
-        Vecteur P = p[0];
-        Vecteur dP = p[1];
-        double r (rayon), m(masse());
-    	Vecteur retour (5);
+    double psi(p[0][0]), theta(p[0][1]), phi(p[0][2]);
+            double dPsi(p[1][0]), dTheta(p[1][1]), dPhi(p[1][2]);
+            double r (rayon), m(masse()), a(alpha());
+            Vecteur retour (5);
 
-    	double f1 (dP[2] + (dP[0] * cos(P[1])));
-    	double f3 ((I1() * I3()) + (masse() * I1() * pow(sin(P[1]) * r, 2)) + (masse() * I3() * pow(r * (alpha() - cos(P[1])), 2)));
-    	double f2 ((dP[1] * f1 * I3() * (I3() + (m * r * r * (1 - (alpha() * cos(P[1])))))/(f3 * sin(P[1]))) - (2 * dP[0] * dP[1] / tan(P[1])));
-	
-	
-        retour[0] = f2;
-	
-    	retour[1] =  sin(P[1]) * (dP[0] * dP[0] * (-m * r * r * (alpha() - cos(P[1])) * (1 - (alpha() * cos(P[1]))) + (I1() * cos(P[1]))) +
-    (f1 * dP[0] * (m * r * r * ((alpha() * cos(P[1])) - 1) - I3())) - ((m * r * r * alpha() * pow(dP[1], 2))  - (m * g * r * alpha())))
-    / (I1() + (m * r * r * (pow(alpha() - cos(P[1]), 2) + pow(sin(P[1]), 2))));
-	
-    	retour[2] = (dP[0] * dP[1] * sin(P[1])) - (cos(P[1]) * f2)
-    - (m * pow(r, 2) * f1 * dP[1] * sin(P[1]) * ((I3() * (alpha() - cos(P[1]))) + (I1() * cos(P[1]))))/f3;
-	
-        retour[3] = r * ( (dP[1] * sin(P[0]) ) - (dP[2] * cos(P[0]) * sin(P[1])));
-        retour[4] = - r * (dP[1] * cos(P[0]) + (dP[2] * sin(P[0]) * sin(P[1])));
+
+            double f1 (dPhi + (dPsi * cos(theta)));
+            double f3 ((I1() * I3()) + (m * I1() * pow(sin(theta) * r, 2)) + (m * I3() * pow(r * (a - cos(theta)), 2)));
+            double f2 ((dTheta * f1 * I3() * (I3() + (m * r * r * (1 - (a * cos(theta)))))/(f3 * sin(theta))) - (2 * dPsi * dTheta / tan(theta)));
+
+            if(fmod(abs(theta), pi) < 0.01){
+                f2 = 0.0;
+            }
+            retour[0] = f2;
+
+            retour[1] = (sin(theta) / (I1() + m *r*r*(pow(a - cos(theta), 2) + sin(theta) * sin(theta)))) *
+                    (dPsi * dPsi * (m * r * r * (cos(theta) - a) * (1 - a*cos(theta)) + I1() * cos(theta)) +
+                     f1 * dPsi * ( m * r * r * (a * cos(theta) - 1) - I3()) - m * a * pow(r * dTheta, 2) - m * r * a * g);
+
+
+
+            retour[2] = dPsi * dTheta * sin(theta) - cos(theta) * f2 -
+                    f1 * dTheta * sin(theta) * m * r * r * (I3() * (a - cos(theta)) + I1() * cos(theta)) / f3;
+
+
+
+        if(moveXY){
+            retour[3]= 0.0;
+            retour[4]=0.0;
+        }
+        else{
+            retour[3]= rayon * ( (Position[1][1] * sin(Position[0][0]) ) - (Position[1][2] * cos(Position[0][0]) * sin(Position[0][1])));
+            retour[4]= (- rayon) * (Position[1][1] * cos(Position[0][0]) + (Position[1][2] * sin(Position[0][0]) * sin(Position[0][1])));
+        }
 	
 	return retour;
+
 }
 
 //methodes protegees

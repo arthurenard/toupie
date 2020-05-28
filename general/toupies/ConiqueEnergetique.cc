@@ -1,7 +1,7 @@
 #include "ConiqueEnergetique.h"
 
-ConiqueEnergetique::ConiqueEnergetique (std::vector<Vecteur> p, double mV, double h, double r) :
-    Cone (p, degre(), mV, h, r)
+ConiqueEnergetique::ConiqueEnergetique (std::vector<Vecteur> p, double mV, double h, double r, bool move) :
+    Cone (p, degre(), mV, h, r, move)//, theta_P(0.)
 {
 
 }

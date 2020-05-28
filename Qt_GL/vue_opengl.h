@@ -9,6 +9,7 @@
 #include "support_a_dessin.h"
 #include "glsphere.h"
 #include "glcone.h"
+#include "glchinoise.h"
 #include "bases/Vecteur.h"
 #include <cmath>
 #include "support_a_dessin.h"
@@ -50,6 +51,9 @@ class VueOpenGL : public SupportADessin, protected QOpenGLFunctions {
 
   // méthode utilitaire offerte pour simplifier
   void dessinePlan(QMatrix4x4 const& point_de_vue = QMatrix4x4() );
+  void dessineBarriere(QMatrix4x4 const& point_de_vue = QMatrix4x4() );
+  void dessineContour(QMatrix4x4  point_de_vue = QMatrix4x4());
+
   void dessineRepere(QMatrix4x4 const& point_de_vue = QMatrix4x4() );
   void updatePosition();
 
@@ -60,6 +64,7 @@ class VueOpenGL : public SupportADessin, protected QOpenGLFunctions {
   void drawJCC(double x, double y, double z);
   void drawNousWTF(QMatrix4x4 const& point_de_vue = QMatrix4x4());
   void drawBY(QMatrix4x4 const& point_de_vue = QMatrix4x4());
+  void dessineChinoise(QMatrix4x4 const& point_de_vue = QMatrix4x4(), double hauteurNorm = 0.,double paraColor= 1.);
 
   std::vector<double> gradColor(double x);
 
@@ -77,10 +82,13 @@ class VueOpenGL : public SupportADessin, protected QOpenGLFunctions {
   double psi, omega, rho;
   GLSphere sphere;
   Glcone cone;
+  GlChinoise chinoise;
 
   GLuint textureDeChat;
   GLuint textureBlanche;
   GLuint texturenous;
+  GLuint epfl;
+
 
 };
 

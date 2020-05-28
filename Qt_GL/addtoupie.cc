@@ -18,6 +18,7 @@ AddToupie::AddToupie(size_t nb):id(nb)
     type->addItem("Toupie Chinoise");
     type->addItem("Cone Général");
     type->addItem("Cone Energétique");
+    QObject::connect(type, SIGNAL(currentIndexChanged(int)), this, SLOT(adaptInit()));
 
     integrateur = new QComboBox(this);
     integrateur->addItem("Euler-Cromer");
@@ -42,13 +43,13 @@ AddToupie::AddToupie(size_t nb):id(nb)
     coord[4]->setRange(-10,10);
     coord[4]->setSingleStep(1.0);
     coord[0]->setValue(0.);
-    coord[1]->setValue(0.);
+    coord[1]->setValue(0.2);
     coord[2]->setValue(0.);
     coord[3]->setValue(0.);
     coord[4]->setValue(0.);
 
 
-    for (size_t i(0); i<5; i++) {
+    for (size_t i(0); i<3; i++) {
         vit.push_back(new QDoubleSpinBox);
         vit[i]->setDecimals(2);
         vit[i]->setRange(0.0,500.0);
@@ -58,9 +59,8 @@ AddToupie::AddToupie(size_t nb):id(nb)
     }
     vit[0]->setValue(0.);
     vit[1]->setValue(0.);
-    vit[2]->setValue(180.);
-    vit[3]->setValue(0.);
-    vit[4]->setValue(0.);
+    vit[2]->setValue(40.);
+
 
     for (size_t i(0); i<3; i++) {
         caract.push_back(new QDoubleSpinBox);
@@ -70,8 +70,8 @@ AddToupie::AddToupie(size_t nb):id(nb)
         initcondi->addWidget(caract[i], 2,  1+i*2);
     }
     caract[0]->setValue(1.0);
-    caract[1]->setValue(1.5);
-    caract[2]->setValue(0.5);
+    caract[1]->setValue(1.1);
+    caract[2]->setValue(1.0);
 
 
 
@@ -84,8 +84,7 @@ AddToupie::AddToupie(size_t nb):id(nb)
     initcondi->addWidget(new QLabel(QString("d") + psi + QString("/dt :")), 1,0);
     initcondi->addWidget(new QLabel(QString("d") + theta + QString("/dt :")), 1,2);
     initcondi->addWidget(new QLabel(QString("d") + phi + QString("/dt :")), 1,4);
-    initcondi->addWidget(new QLabel("dX/dt :"), 1,6);
-    initcondi->addWidget(new QLabel("dY/dt :"), 1,8);
+
 
     initcondi->addWidget(new QLabel("MasseVol. :"), 2,0);
     initcondi->addWidget(new QLabel("Hauteur :"), 2,2);
@@ -117,7 +116,7 @@ void AddToupie::getData(){
     for (size_t i(0); i<5; i++) {
         data.push_back(coord[i]->value());
     }
-    for (size_t i(0); i<5; i++) {
+    for (size_t i(0); i<3 ; i++) {
         data.push_back(vit[i]->value());
     }
     for (size_t i(0); i<3; i++) {
@@ -127,4 +126,47 @@ void AddToupie::getData(){
     emit dataSend(data);
     this->close();
     delete this;
+}
+void AddToupie::adaptInit(){
+    switch (type->currentIndex()) {
+    case 1:
+        coord[0]->setValue(0.);
+        coord[1]->setValue(0.2);
+        coord[2]->setValue(0.);
+        coord[3]->setValue(0.);
+        coord[4]->setValue(0.);
+        vit[0]->setValue(3.);
+        vit[1]->setValue(0.3);
+        vit[2]->setValue(4.);
+        caract[0]->setValue(1.0);
+        caract[1]->setValue(0.5);
+        caract[2]->setValue(1.0);
+        integrateur->clear();
+        integrateur->addItem("Euler-Cromer (Ne marche pas)");
+        integrateur->addItem("Newmark");
+        integrateur->addItem("Runge-Kutta");
+        integrateur->setCurrentIndex(1);
+        break;
+    default:
+        coord[0]->setValue(0.);
+        coord[1]->setValue(0.2);
+        coord[2]->setValue(0.);
+        coord[3]->setValue(0.);
+        coord[4]->setValue(0.);
+        vit[0]->setValue(0.);
+        vit[1]->setValue(0.);
+        vit[2]->setValue(40.);
+        caract[0]->setValue(1.0);
+        caract[1]->setValue(1.1);
+        caract[2]->setValue(1.0);
+        integrateur->clear();
+        integrateur->addItem("Euler-Cromer");
+        integrateur->addItem("Newmark");
+        integrateur->addItem("Runge-Kutta");
+        break;
+
+    }
+
+
+
 }

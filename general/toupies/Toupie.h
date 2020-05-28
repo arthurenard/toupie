@@ -31,7 +31,7 @@
 class Toupie : public Integrable {
 	public: 
         //constructeurs
-        Toupie (std::vector<Vecteur>, size_t degre, double masseVolumique = 1, double hauteur = 1.5, double rayon = 0.5); // psi, théta, phi, x, y ; les toupie sont au plus de degree 2
+        Toupie (std::vector<Vecteur>, size_t degre, double masseVolumique = 1, double hauteur = 1.5, double rayon = 0.5, bool move = false); // psi, théta, phi, x, y ; les toupie sont au plus de degree 2
 
         virtual void EulerCromer(double pas_de_temps, double temps = 0) override;
         virtual void Newmark(double pas_de_temps, double temps = 0) override;
@@ -48,6 +48,16 @@ class Toupie : public Integrable {
         Vecteur getVectNb(size_t nb){return trace.get_vect(nb);}
         size_t nbVectTrace(){return trace.taille();}
         void clearTrace(){trace.clear();}
+
+        double energie_totale () const;
+        double invariant_vect_rot_Rg3 () const; //retourne la 3eme coordonnée de vect_rot_Rg qui devrait etre une constante
+        double invariant_moment_cin_A3 () const; //retourne le I3 * invariant_vect_rot_Rg3 qui est une constante
+        double invariant_moment_cin_Az () const; //retourne moment_cin_A * vect_k
+        double invariant_coplanaires () const;
+        double energie_cin () const;
+
+        void invertMoveXY(){moveXY = !moveXY;}
+
 
     protected:
         //attributs
@@ -79,13 +89,10 @@ class Toupie : public Integrable {
         virtual double volume () const = 0;
 
         //Invariants
-        double energie_cin () const;
         double energie_pot () const;
-        double energie_totale () const;
-        double invariant_vect_rot_Rg3 () const; //retourne la 3eme coordonnée de vect_rot_Rg qui devrait etre une constante
-        double invariant_moment_cin_A3 () const; //retourne le I3 * invariant_vect_rot_Rg3 qui est une constante
-        double invariant_moment_cin_Az () const; //retourne moment_cin_A * vect_k
-        double invariant_coplanaires () const; //calcule coplanaire( (0, 0, 1), vect_rot_Rg, moment_cin_G), renvoie "0" si ils sont coplanaires
+
+        bool moveXY;
+
 
 };
 

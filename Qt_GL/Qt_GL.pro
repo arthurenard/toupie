@@ -14,6 +14,7 @@ INCLUDEPATH = ../general
 
 SOURCES += \
     addtoupie.cc \
+    glchinoise.cc \
     information.cc \
     main_qt_gl.cc \
     glwidget.cc \
@@ -25,6 +26,7 @@ SOURCES += \
 
 HEADERS += \
     addtoupie.h \
+    glchinoise.h \
     glwidget.h \
     information.h \
     mainwindow.h \
@@ -36,6 +38,7 @@ HEADERS += \
     ../general/dessinable.h \
     ../general/support_a_dessin.h \
     ../general/Systeme.h
+    ../general/bases/constantes.h
 
 RESOURCES += \
     resource.qrc

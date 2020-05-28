@@ -7,7 +7,7 @@
 
 class ConiqueEnergetique : public Cone {
     public:
-    ConiqueEnergetique (std::vector<Vecteur>, double masseVolumique, double hauteur, double rayon);
+    ConiqueEnergetique (std::vector<Vecteur>, double masseVolumique, double hauteur, double rayon, bool move = false);
 
     Vecteur eq_evolution (std::vector<Vecteur>, double temps = 0) override;
 

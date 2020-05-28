@@ -1,8 +1,8 @@
 #include "Toupie.h"
 
 //constructeurs
-Toupie::Toupie (std::vector<Vecteur> p, size_t d, double mv, double h, double r)
-    : Integrable(p, d), masseVolumique (mv), hauteur(h), rayon(r)
+Toupie::Toupie (std::vector<Vecteur> p, size_t d, double mv, double h, double r, bool move)
+    : Integrable(p, d), masseVolumique (mv), hauteur(h), rayon(r), moveXY(move)
 {
     for (size_t i(0); i<p.size(); i++) {
 
@@ -95,7 +95,7 @@ double Toupie::energie_pot() const {
 }
 
 double Toupie::energie_totale() const {
-    return (energie_cin() - energie_pot());
+    return (energie_cin() + energie_pot());
 }
 
 double Toupie::invariant_vect_rot_Rg3 () const {
@@ -114,5 +114,7 @@ double Toupie::invariant_coplanaires() const {
     return coplanaire((OG_unitaire()), vect_rot_Rg(), moment_cin_G());
 }
 void Toupie::recordTrace(){
-    trace.add_vect(OG_unitaire());
+    Vecteur XY(Position[1][3], Position[1][4], 0.);
+    Vecteur OG(4*OG_unitaire()[0], 4*OG_unitaire()[1], 2*OG_unitaire()[2]);
+    trace.add_vect( OG + XY);
 }

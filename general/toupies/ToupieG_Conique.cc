@@ -1,14 +1,14 @@
 #include "ToupieG_Conique.h"
 
-ToupieG_Conique::ToupieG_Conique(std::vector<Vecteur> p, double mV, double h, double r) :
-    Cone (p, degre(), mV, h, r)
+ToupieG_Conique::ToupieG_Conique(std::vector<Vecteur> p, double mV, double h, double r, bool move) :
+    Cone (p, degre(), mV, h, r, move)
 {}
 
 
 Vecteur ToupieG_Conique::eq_evolution (std::vector<Vecteur>, double) {
-    Vecteur retour(0, vect_rot_P_Rg()[1], vect_rot_P_Rg()[2], 0, 0);
+    Vecteur retour(0, vect_rot_P_Rg()[0], vect_rot_P_Rg()[2], 0, 0);
 
-    if (THETA >= epsilon) {
+    if (abs(THETA) >= epsilon) {
         retour[0] += ((vect_rot_P_Rg()[1] - (PSI_P * THETA_P * cos(THETA))) / sin(THETA));
         retour[2] += (((PSI_P * THETA_P) - (vect_rot_P_Rg()[1] * cos(THETA))) / sin(THETA));
     }

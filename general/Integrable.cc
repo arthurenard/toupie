@@ -87,16 +87,16 @@ void Integrable::RungeKutta (double dt, double temps) {
     case 2: {
         Vecteur k1 (Position[1]);
         Vecteur k1b (eq_evolution(Position, temps));
-        Vecteur k2 (Position[1] + ((dt/2) * k1b));
+        Vecteur k2 (Position[1] + ((dt*0.5) * k1b));
         std::vector<Vecteur> pk2b = Position;
         pk2b[0] += 0.5 * dt * k1;
         pk2b[1] += 0.5 * dt *k1b;
-        Vecteur k2b (eq_evolution (pk2b, temps + dt/2));
-        Vecteur k3 (Position[1] + ((dt/2) * k2b));
+        Vecteur k2b (eq_evolution (pk2b, temps + dt*0.5));
+        Vecteur k3 (Position[1] + ((dt*0.5) * k2b));
         std::vector<Vecteur> pk3b = Position;
         pk3b[0] += 0.5 * dt * k2;
         pk3b[1] += 0.5 * dt *k2b;
-        Vecteur k3b (eq_evolution (pk3b, temps + dt/2));
+        Vecteur k3b (eq_evolution (pk3b, temps + dt*0.5));
         Vecteur k4 (Position[1] + (dt * k3b));
         std::vector<Vecteur> pk4b = Position;
         pk4b[0] += dt * k3;

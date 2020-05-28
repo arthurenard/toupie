@@ -2,8 +2,6 @@
 #define GLCONE_H
 #include <vector>
 #include <cmath>
-
-
 #include <QOpenGLShaderProgram>
 
 class Glcone

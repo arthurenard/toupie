@@ -13,10 +13,12 @@ Information::Information()
     list.push_back(new QLabel(psi + QString("-point :")));
     list.push_back(new QLabel(theta + QString("-point :")));
     list.push_back(new QLabel(phi + QString("-point :")));
+    list.push_back(new QLabel("Energie : "));
+
 
     QVBoxLayout* box = new QVBoxLayout;
     box->addWidget(select);
-    for (size_t i(0); i < 8; i++) {
+    for (size_t i(0); i < 9; i++) {
         box->addWidget(list[i]);
     }
     this->setLayout(box);
@@ -39,6 +41,8 @@ void Information::actuData(std::vector<double> data){
     list[5]->setText(psi + QString("-point :") + QString::number(data[7]));
     list[6]->setText(theta + QString("-point :") + QString::number(data[8]));
     list[7]->setText(phi + QString("-point :") + QString::number(data[9]));
+    //list[8]->setText("Energie : " + QString::number(data[15]));
+
 }
 
 void Information::treatData(std::vector<std::vector<double>> data){
