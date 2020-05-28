@@ -6,13 +6,22 @@ Sauvegarde::Sauvegarde()
 
 
 
-bool Sauvegarde::loadFile(){
-
-    QString filename =  QFileDialog::getSaveFileName(
+bool Sauvegarde::loadFile(int type){
+    QString filename;
+    if(type == 0){
+    filename =  QFileDialog::getSaveFileName(
              this,
              "Select Document",
              QDir::currentPath(),
              "Text files (*.txt)");
+    }else{
+    filename =  QFileDialog::getOpenFileName(
+             this,
+             "Select Document",
+             QDir::currentPath(),
+             "Text files (*.txt)");
+    }
+
 
        if( !filename.isNull() )
        {
@@ -25,7 +34,7 @@ bool Sauvegarde::loadFile(){
 }
 
 void Sauvegarde::sauvegarder(std::vector<std::vector<double>> data){
-    if(loadFile()){
+    if(loadFile(0)){
         std::ofstream file(fileName);
 
         if(file)
@@ -46,7 +55,7 @@ void Sauvegarde::sauvegarder(std::vector<std::vector<double>> data){
 
 
 void Sauvegarde::charger(){
-    if(loadFile()){
+    if(loadFile(1)){
         std::ifstream file(fileName);
          int nbToupies(0);
          std::string line;
