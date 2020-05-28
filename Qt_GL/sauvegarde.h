@@ -30,7 +30,7 @@ public slots:
 
 private:
     std::string fileName;
-    bool loadFile();
+    bool loadFile(int type = 0);
     std::string dataToString(std::vector<std::vector<double>> data);
     size_t hashData(std::string data);
 
