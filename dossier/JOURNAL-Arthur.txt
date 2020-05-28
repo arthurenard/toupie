@@ -1,5 +1,10 @@
 Journal Projet Toupie
 
+Légende:
+$ Solution trouvée aux problèmes rencontrés précédemment 
+- Point réalisé 
+@ Problèmes rencontrés / à régler
+
 ######
 27 fevrier 
 - Création du github
