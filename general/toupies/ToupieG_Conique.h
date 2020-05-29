@@ -20,7 +20,7 @@ class ToupieG_Conique : public Cone {
         Matrice33 IA_P_Rg () const; //retourne la "dérivée" de la matrice IA dans Rg
 
     private:
-        size_t degre () const override;
+        size_t degre_eqEvol () const override;
 };
 
 #endif

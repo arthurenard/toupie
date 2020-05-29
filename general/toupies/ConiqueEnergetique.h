@@ -18,8 +18,13 @@ class ConiqueEnergetique : public Cone {
         double delta_T = 0.0001;
         double V (double theta) const;
         double H (double theta) const;
+/*
+        double EnergieTotaleInitiale;
+        double MomentCinAzInitial;
+        double VectRot3Initiale;
+*/
     private:
-        size_t degre () const override;
+        size_t degre_eqEvol () const override;
 };
 
 int signe(double); //retourne + ou - 1 en fct du signe de l'entrée

@@ -26,7 +26,7 @@ class ConeSimple : public Cone {
 		//methodes inutiles aux beneficiares
 	
     private:
-        virtual size_t degre () const override;
+        virtual size_t degre_eqEvol () const override;
 };
 
 #endif

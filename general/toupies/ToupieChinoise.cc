@@ -3,7 +3,7 @@
 //constructeurs
 
 ToupieChinoise::ToupieChinoise (std::vector<Vecteur> p, double mV, double h, double r, bool move) :
-        Toupie (p, degre(), abs(mV), abs(h), abs(r), move)
+        Toupie (p, abs(mV), abs(h), abs(r), move)
 {
     if (p.size() != 2) throw Erreur("ToupieChinoise degree");
 }
@@ -12,6 +12,7 @@ ToupieChinoise::ToupieChinoise (std::vector<Vecteur> p, double mV, double h, dou
 
 //methodes publiques
 Vecteur ToupieChinoise::eq_evolution (std::vector<Vecteur> p, double) {
+    if (p.size() != degre_Position()) throw Erreur("ToupieChinoise eq evol");
     double psi(p[0][0]), theta(p[0][1]), phi(p[0][2]);
             double dPsi(p[1][0]), dTheta(p[1][1]), dPhi(p[1][2]);
             double r (rayon), m(masse()), a(alpha());
@@ -84,6 +85,6 @@ int ToupieChinoise::getType(){return CHINOISE;}
 
 //operateurs externes
 
-size_t ToupieChinoise::degre () const {
+size_t ToupieChinoise::degre_eqEvol() const {
     return 2;
 }

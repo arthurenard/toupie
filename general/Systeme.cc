@@ -15,7 +15,6 @@ void Systeme::addToupie(std::vector<double> data){
     if(abs(data[0] - 2) < epsilon)
         addToupie(new ToupieG_Conique(p, data[10], data[11], data[12], toupieFixe));
     if(abs(data[0] - 3) < epsilon){
-        p.pop_back();
         addToupie(new ConiqueEnergetique(p, data[10], data[11], data[12], toupieFixe));
     }
 }
@@ -61,7 +60,6 @@ void Systeme::evolue(double dt){
 
 
                     toupies[i]->EulerCromer(dt);
-
 
 
             break;
@@ -118,7 +116,6 @@ void Systeme::evolue(double dt){
 }
 std::vector<double> Systeme::getDataTop(size_t id){
     std::vector<double> data; //type, integrateur, psi, teta, phi, x, y, Dpsi, Dteta, Dphi, Dx, Dy, masse-vo, hauteur, rayon
-    if(toupies[id]->getType() != 3){
         data.push_back(toupies[id]->getType());
         data.push_back(integrateurs[id]);
         data.push_back(toupies[id]->get_vect_P()[0]);
@@ -131,20 +128,8 @@ std::vector<double> Systeme::getDataTop(size_t id){
         data.push_back(toupies[id]->get_vect_dP()[2]);
         data.push_back(toupies[id]->getMV());
         data.push_back(toupies[id]->getHauteur());
-        data.push_back(toupies[id]->getRayon());}
-    else{
-        data.push_back(toupies[id]->getType());
-        data.push_back(integrateurs[id]);
-        data.push_back(toupies[id]->get_vect_P()[0]);
-        data.push_back(toupies[id]->get_vect_P()[1]);
-        data.push_back(toupies[id]->get_vect_P()[2]);
-        data.push_back(toupies[id]->get_vect_P()[3]);
-        data.push_back(toupies[id]->get_vect_P()[4]);
-
-        data.push_back(toupies[id]->getMV());
-        data.push_back(toupies[id]->getHauteur());
         data.push_back(toupies[id]->getRayon());
-    }
+
     return data;
 }
 std::vector<std::vector<double>> Systeme::getAllData(){

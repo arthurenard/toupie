@@ -225,11 +225,9 @@ void VueOpenGL::dessineChinoise(const QMatrix4x4 &point_de_vue, double hauteurNo
 
 void VueOpenGL::dessineToupie(Toupie* toupie){
     QMatrix4x4 matricecone;
-    if(toupie->getType() != CONIQUEE){
-        matricecone.translate(toupie->get_vect_dP()[3],toupie->get_vect_dP()[4]);
-    }else{
-        matricecone.translate(toupie->get_vect_P()[3],toupie->get_vect_P()[4]);
-    }
+
+    matricecone.translate(toupie->get_vect_dP()[3],toupie->get_vect_dP()[4]);
+
     matricecone.rotate(toupie->get_vect_P()[0] *180/pi, 0.0,0.0,1.0);
     matricecone.rotate(toupie->get_vect_P()[1] *180/pi, 1.0,0.0,0.0);
     matricecone.rotate(toupie->get_vect_P()[2] *180/pi, 0.0,0.0,1.0);

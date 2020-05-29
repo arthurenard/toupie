@@ -1,7 +1,7 @@
 #include "balle.h"
 
 Balle::Balle(std::vector<Vecteur> p, double r, double v, double b) :
-    Integrable(p, degre()),
+    Integrable(p, degre_Position()),
     rayon(0.1),
     coefRest(1.02)
 {
@@ -22,6 +22,10 @@ void Balle::EulerCromer(double pas_de_temps, double temps){
     }
 }
 
-size_t Balle::degre () const {
+size_t Balle::degre_Position() const {
+    return 2;
+}
+
+size_t Balle::degre_eqEvol() const {
     return 2;
 }

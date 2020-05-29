@@ -33,7 +33,7 @@
 class Toupie : public Integrable {
 	public: 
         //constructeurs
-        Toupie (std::vector<Vecteur>, size_t degre, double masseVolumique = 1, double hauteur = 1.5, double rayon = 0.5, bool move = false); // psi, théta, phi, x, y ; les toupie sont au plus de degree 2
+        Toupie (std::vector<Vecteur>, double masseVolumique = 1, double hauteur = 1.5, double rayon = 0.5, bool move = false); // psi, théta, phi, x, y ; les toupie sont au plus de degree 2
 
         virtual void EulerCromer(double pas_de_temps, double temps = 0) override;
         virtual void Newmark(double pas_de_temps, double temps = 0) override;
@@ -95,7 +95,7 @@ class Toupie : public Integrable {
 
         bool moveXY;
 
-
+        size_t degre_Position() const override;
 };
 
 #endif

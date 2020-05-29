@@ -2,7 +2,7 @@
 
 //constructeurs
 ConeSimple::ConeSimple (std::vector<Vecteur> p, double mV, double h, double r, bool move) :
-        Cone (p, degre(), mV, abs(h), abs(r), move)
+        Cone (p, mV, abs(h), abs(r), move)
 {}
 
 //destructeurs
@@ -10,7 +10,7 @@ ConeSimple::ConeSimple (std::vector<Vecteur> p, double mV, double h, double r, b
 //methodes publiques
 
 Vecteur ConeSimple::eq_evolution (std::vector<Vecteur> p, double) {
-    if (p.size() != degre()) throw Erreur("Cone Simple eq evol");
+    if (p.size() != degre_Position()) throw Erreur("Cone Simple eq evol");
     Vecteur P = p[0];
     Vecteur dP = p[1];
 	Vecteur retour (5);
@@ -42,7 +42,6 @@ Vecteur ConeSimple::eq_evolution (std::vector<Vecteur> p, double) {
 int ConeSimple::getType(){return CONIQUE;}
 //operateurs externes
 
-size_t ConeSimple::degre () const {
+size_t ConeSimple::degre_eqEvol() const {
     return 2;
 }
-

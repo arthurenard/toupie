@@ -26,7 +26,8 @@ public:
 protected:
     double rayon, coefRest;
     std::vector<double>rvb;
-    size_t degre () const override;
+    size_t degre_Position () const override;
+    size_t degre_eqEvol() const override;
 };
 
 #endif // BALLE_H

@@ -1,16 +1,18 @@
 #include "ToupieG_Conique.h"
 
 ToupieG_Conique::ToupieG_Conique(std::vector<Vecteur> p, double mV, double h, double r, bool move) :
-    Cone (p, degre(), mV, h, r, move)
+    Cone (p, mV, h, r, move)
 {}
 
 
-Vecteur ToupieG_Conique::eq_evolution (std::vector<Vecteur>, double) {
+Vecteur ToupieG_Conique::eq_evolution (std::vector<Vecteur> p, double) {
+    if (p.size() != degre_Position()) throw Erreur("ToupieG_Conique eq evol");
     Vecteur retour(0, vect_rot_P_Rg()[0], vect_rot_P_Rg()[2], 0, 0);
+    double theta(p[0][1]), psi_P(p[1][0]), theta_P(p[1][1]);
 
-    if (abs(THETA) >= epsilon) {
-        retour[0] += ((vect_rot_P_Rg()[1] - (PSI_P * THETA_P * cos(THETA))) / sin(THETA));
-        retour[2] += (((PSI_P * THETA_P) - (vect_rot_P_Rg()[1] * cos(THETA))) / sin(THETA));
+    if (abs(theta) >= epsilon) {
+        retour[0] += ((vect_rot_P_Rg()[1] - (psi_P * theta_P * cos(theta))) / sin(theta));
+        retour[2] += (((psi_P * theta_P) - (vect_rot_P_Rg()[1] * cos(theta))) / sin(theta));
     }
     return retour;
 }
@@ -32,8 +34,8 @@ Matrice33 ToupieG_Conique::IA_P_Rg() const {
     return Matrice33(0, 0, 0);
 }
 
-size_t ToupieG_Conique::degre () const {
-    return 2;
-}
 int ToupieG_Conique::getType(){return CONIQUEG;}
 
+size_t ToupieG_Conique::degre_eqEvol() const {
+    return 2;
+}

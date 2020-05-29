@@ -35,7 +35,7 @@ class ToupieChinoise : public Toupie {
 
         	Vecteur OG () const override; //on considere que G est le centre de la boule pour simplifier les calculs
     private:
-            size_t degre () const override;
+            size_t degre_eqEvol () const override;
 };
 
 

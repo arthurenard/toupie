@@ -1,8 +1,8 @@
 #include "Toupie.h"
 
 //constructeurs
-Toupie::Toupie (std::vector<Vecteur> p, size_t d, double mv, double h, double r, bool move)
-    : Integrable(p, d), masseVolumique (mv), hauteur(h), rayon(r), moveXY(move)
+Toupie::Toupie (std::vector<Vecteur> p, double mv, double h, double r, bool move)
+    : Integrable(p, degre_Position()), masseVolumique (mv), hauteur(h), rayon(r), moveXY(move)
 {
     for (size_t i(0); i<p.size(); i++) {
 
@@ -117,4 +117,8 @@ void Toupie::recordTrace(){
     Vecteur XY(Position[1][3], Position[1][4], 0.);
     Vecteur OG(4*OG_unitaire()[0], 4*OG_unitaire()[1], 2*OG_unitaire()[2]);
     trace.add_vect( OG + XY);
+}
+
+size_t Toupie::degre_Position() const{
+    return 2;
 }

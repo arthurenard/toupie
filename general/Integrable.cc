@@ -18,7 +18,7 @@ const Vecteur Integrable::get_vect_dP (){
 
 //intgerateur
 void Integrable::EulerCromer (double dt, double temps) {
-    switch(degre()) {
+    switch(degre_eqEvol()) {
     case 1: {
         Position[0] += dt * eq_evolution(Position, temps);
     }break;
@@ -34,7 +34,7 @@ void Integrable::EulerCromer (double dt, double temps) {
 
 
 void Integrable::Newmark (double dt, double temps) {
-    switch(degre()) {
+    switch(degre_eqEvol()) {
     case 2: {
         double T0 = temps;
         double T1 = dt + T0;
@@ -62,12 +62,12 @@ void Integrable::Newmark (double dt, double temps) {
         Position[1] = dP1;
     }break;
 
-    default: throw "Erreur de degree Newmark";
+    default: throw Erreur("Integrable degree Newmark");
     }
 }
 
 void Integrable::RungeKutta (double dt, double temps) {
-    switch (degre()) {
+    switch (degre_eqEvol()) {
     case 1: {
         Vecteur k1 (eq_evolution(Position, temps));
         std::vector<Vecteur> pk1 = Position;
@@ -107,7 +107,7 @@ void Integrable::RungeKutta (double dt, double temps) {
         Position[1] += ((dt/6) * (k1b + (2*k2b) + (2*k3b) + k4b));
         } break;
 
-    default: throw "Erreur de degree RungeKutta";
+    default: throw Erreur("Integrable degree RungeKutta");
     }
 }
 

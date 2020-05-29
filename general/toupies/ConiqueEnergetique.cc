@@ -1,13 +1,13 @@
 #include "ConiqueEnergetique.h"
 
 ConiqueEnergetique::ConiqueEnergetique (std::vector<Vecteur> p, double mV, double h, double r, bool move) :
-    Cone (p, degre(), mV, h, r, move)//, theta_P(0.)
+    Cone (p, mV, h, r, move)
 {
 
 }
 
 Vecteur ConiqueEnergetique::eq_evolution (std::vector<Vecteur> p, double) {
-    if (p.size() != degre()) throw Erreur("ConiqueEnergetique eq evol");
+    if (p.size() != degre_Position()) throw Erreur("ConiqueEnergetique eq evol");
     Vecteur retour(5);
     double theta = p[0][1];
 
@@ -39,7 +39,8 @@ int signe(double x) {
     return 1;
 }
 
-size_t ConiqueEnergetique::degre () const {
+int ConiqueEnergetique::getType(){return CONIQUEE;}
+
+size_t ConiqueEnergetique::degre_eqEvol() const {
     return 1;
 }
-int ConiqueEnergetique::getType(){return CONIQUEE;}

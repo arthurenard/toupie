@@ -7,7 +7,7 @@
 
 class Cone : public Toupie {
     public:
-        Cone(std::vector<Vecteur> position, size_t degre, double masseVolumique, double hauteur, double rayon, bool move = false);
+        Cone(std::vector<Vecteur> position, double masseVolumique, double hauteur, double rayon, bool move = false);
 
     protected:
         //attributs

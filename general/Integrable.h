@@ -14,7 +14,7 @@
 class Integrable {
 	public: 
 		//constructeurs
-            Integrable (std::vector<Vecteur>, size_t);
+            Integrable (std::vector<Vecteur>, size_t degre_Position);
 		
    		//destructeur
 		
@@ -36,7 +36,8 @@ class Integrable {
 	protected:
         std::vector<Vecteur> Position;
 
-        virtual size_t degre () const = 0;
+        virtual size_t degre_Position () const = 0;
+        virtual size_t degre_eqEvol () const = 0;
 };
 
 //methodes externes
