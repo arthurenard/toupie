@@ -10,6 +10,8 @@ class ConiqueEnergetique : public Cone {
     ConiqueEnergetique (std::vector<Vecteur>, double masseVolumique, double hauteur, double rayon, bool move = false);
 
     Vecteur eq_evolution (std::vector<Vecteur>, double temps = 0) override;
+    int getType() override;
+
 
     protected:
         double theta_P;

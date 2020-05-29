@@ -11,7 +11,7 @@
 class GlChinoise
 {
 public:
-    GlChinoise(size_t slices = 40, size_t stacks = 40);
+    GlChinoise(size_t slices = 20, size_t stacks = 20);
     void draw(QOpenGLShaderProgram& prog, double hauteurNorm ,std::vector<double> rvb);
 
   private:

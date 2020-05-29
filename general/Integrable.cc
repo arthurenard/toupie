@@ -2,7 +2,7 @@
 
 //constructeurs
 Integrable::Integrable (std::vector<Vecteur> p, size_t d) {
-    if (p.size() != d) throw "Integrable Degre";
+    if (p.size() != d) throw Erreur("Integrable Degre");
     Position = p;
 }
 
@@ -11,7 +11,7 @@ const Vecteur Integrable::get_vect_P (){
     return Position[0];
 }
 const Vecteur Integrable::get_vect_dP (){
-    if (Position.size() < 2) throw "Integrable get vect_dP";
+    if (Position.size() < 2) throw Erreur("Integrable get vect_dP");
     return Position[1];
 }
 
@@ -28,7 +28,7 @@ void Integrable::EulerCromer (double dt, double temps) {
         Position[0] += dt * Position[1];
     }break;
 
-    default: throw "Erreur degree EulerCrommer";
+    default: throw Erreur("degree EulerCrommer");
     }
 }
 

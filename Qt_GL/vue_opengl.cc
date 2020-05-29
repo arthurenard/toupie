@@ -225,16 +225,25 @@ void VueOpenGL::dessineChinoise(const QMatrix4x4 &point_de_vue, double hauteurNo
 
 void VueOpenGL::dessineToupie(Toupie* toupie){
     QMatrix4x4 matricecone;
-    matricecone.translate(toupie->get_vect_dP()[3],toupie->get_vect_dP()[4]);
+    if(toupie->getType() != CONIQUEE){
+        matricecone.translate(toupie->get_vect_dP()[3],toupie->get_vect_dP()[4]);
+    }else{
+        matricecone.translate(toupie->get_vect_P()[3],toupie->get_vect_P()[4]);
+    }
     matricecone.rotate(toupie->get_vect_P()[0] *180/pi, 0.0,0.0,1.0);
     matricecone.rotate(toupie->get_vect_P()[1] *180/pi, 1.0,0.0,0.0);
     matricecone.rotate(toupie->get_vect_P()[2] *180/pi, 0.0,0.0,1.0);
 
-    if(toupie->getType()==0){
+    if(toupie->getType()==CONIQUE || toupie->getType() == CONIQUEG){
     matricecone.scale(toupie->getRayon(), toupie->getRayon(), toupie->getHauteur());
-    dessineCone(matricecone, toupie->get_vect_dP()[2]/5.);}
+    dessineCone(matricecone, toupie->get_vect_dP()[2]/5.);
+    }
+    if(toupie->getType()==CONIQUEE){
+    matricecone.scale(toupie->getRayon(), toupie->getRayon(), toupie->getHauteur());
+    dessineCone(matricecone, 1.0);
+    }
 
-    if(toupie->getType()==1){
+    if(toupie->getType()==CHINOISE){
         matricecone.scale(toupie->getRayon());
         dessineChinoise(matricecone, toupie->getHauteur()/toupie->getRayon(), toupie->get_vect_dP()[2]/5.);
     }
@@ -252,7 +261,6 @@ void VueOpenGL::dessineBalle(Balle *balle){
 
 void VueOpenGL::dessineTrace(Toupie *toupie, size_t nb){
 QMatrix4x4 position;
-//position.translate(toupie->get_vect_P()[3], toupie->get_vect_P()[4]);
     prog.setUniformValue("vue_modele", matrice_vue * position);
 
     glBegin(GL_LINE_STRIP);

@@ -10,6 +10,8 @@ class ToupieG_Conique : public Cone {
         ToupieG_Conique(std::vector<Vecteur>, double masseVolumique, double hauteur, double rayon, bool move = false);
 
         virtual Vecteur eq_evolution (std::vector<Vecteur>, double temps = 0) override;
+        int getType() override;
+
 
     protected:
         Vecteur MA_Rg () const; //retourne le moment de force en A exprimé dans Rg

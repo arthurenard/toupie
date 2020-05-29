@@ -10,7 +10,7 @@ Toupie::Toupie (std::vector<Vecteur> p, size_t d, double mv, double h, double r,
             Position[i].push_back(0.);
             Position[i].push_back(0.);
         }
-        if (Position[i].size() != 5) throw "vecteur Toupie";
+        if (Position[i].size() != 5) throw Erreur("vecteur Toupie");
     }
 }
 

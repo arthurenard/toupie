@@ -3,7 +3,6 @@
 void Systeme::addToupie(std::vector<double> data){
     integrateurs.push_back(data[1]);
     if(data.size()<13) throw "Add Toupie erreur declaration";
-    std::cout << data << std::endl;
     std::vector<Vecteur> p;
     Vecteur P (data[2], data[3], data[4], 0.0, 0.0);
     Vecteur dP (data[7], data[8], data[9], data[5], data[6]);
@@ -119,19 +118,33 @@ void Systeme::evolue(double dt){
 }
 std::vector<double> Systeme::getDataTop(size_t id){
     std::vector<double> data; //type, integrateur, psi, teta, phi, x, y, Dpsi, Dteta, Dphi, Dx, Dy, masse-vo, hauteur, rayon
-    data.push_back(toupies[id]->getType());
-    data.push_back(integrateurs[id]);
-    data.push_back(toupies[id]->get_vect_P()[0]);
-    data.push_back(toupies[id]->get_vect_P()[1]);
-    data.push_back(toupies[id]->get_vect_P()[2]);
-    data.push_back(toupies[id]->get_vect_dP()[3]);
-    data.push_back(toupies[id]->get_vect_dP()[4]);
-    data.push_back(toupies[id]->get_vect_dP()[0]);
-    data.push_back(toupies[id]->get_vect_dP()[1]);
-    data.push_back(toupies[id]->get_vect_dP()[2]);
-    data.push_back(toupies[id]->getMV());
-    data.push_back(toupies[id]->getHauteur());
-    data.push_back(toupies[id]->getRayon());
+    if(toupies[id]->getType() != 3){
+        data.push_back(toupies[id]->getType());
+        data.push_back(integrateurs[id]);
+        data.push_back(toupies[id]->get_vect_P()[0]);
+        data.push_back(toupies[id]->get_vect_P()[1]);
+        data.push_back(toupies[id]->get_vect_P()[2]);
+        data.push_back(toupies[id]->get_vect_dP()[3]);
+        data.push_back(toupies[id]->get_vect_dP()[4]);
+        data.push_back(toupies[id]->get_vect_dP()[0]);
+        data.push_back(toupies[id]->get_vect_dP()[1]);
+        data.push_back(toupies[id]->get_vect_dP()[2]);
+        data.push_back(toupies[id]->getMV());
+        data.push_back(toupies[id]->getHauteur());
+        data.push_back(toupies[id]->getRayon());}
+    else{
+        data.push_back(toupies[id]->getType());
+        data.push_back(integrateurs[id]);
+        data.push_back(toupies[id]->get_vect_P()[0]);
+        data.push_back(toupies[id]->get_vect_P()[1]);
+        data.push_back(toupies[id]->get_vect_P()[2]);
+        data.push_back(toupies[id]->get_vect_P()[3]);
+        data.push_back(toupies[id]->get_vect_P()[4]);
+
+        data.push_back(toupies[id]->getMV());
+        data.push_back(toupies[id]->getHauteur());
+        data.push_back(toupies[id]->getRayon());
+    }
     return data;
 }
 std::vector<std::vector<double>> Systeme::getAllData(){

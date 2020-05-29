@@ -220,6 +220,7 @@ size_t GLWidget::nb_toupie(){
 }
 void GLWidget::addToupie(std::vector<double> data){
     c.addToupie(data);
+    emit sendEverySecond(c.getAllData());
 }
 void GLWidget::delToupie(size_t id){
     c.delToupie(id);

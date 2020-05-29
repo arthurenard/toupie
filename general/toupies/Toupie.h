@@ -17,6 +17,8 @@
 #define PHI_P (Position[1][2])
 #define CONIQUE (0)
 #define CHINOISE (1)
+#define CONIQUEG (2)
+#define CONIQUEE (3)
 
 /*
  * Base Ro = (O, x, y, z) repere galileen de reference

@@ -5,6 +5,8 @@ Information::Information()
     this->resize(300, 300);
     this->move(1100, 400);
     select = new QComboBox();
+    list.push_back(new QLabel("Type : "));
+    list.push_back(new QLabel("Integrateur : "));
     list.push_back(new QLabel(psi + QString(" :")));
     list.push_back(new QLabel(theta + QString(" :")));
     list.push_back(new QLabel(phi + QString(" :")));
@@ -18,10 +20,11 @@ Information::Information()
 
     QVBoxLayout* box = new QVBoxLayout;
     box->addWidget(select);
-    for (size_t i(0); i < 9; i++) {
+    for (size_t i(0); i < 11; i++) {
         box->addWidget(list[i]);
     }
     this->setLayout(box);
+
 }
 
 void Information::actuNbToupie(size_t nb){
@@ -33,14 +36,44 @@ void Information::actuNbToupie(size_t nb){
 }
 
 void Information::actuData(std::vector<double> data){
-    list[0]->setText(psi + QString(" :") + QString::number(data[2]));
-    list[1]->setText(theta + QString(" :") + QString::number(data[3]));
-    list[2]->setText(phi + QString(" :") + QString::number(data[4]));
-    list[3]->setText("X : " + QString::number(data[5]));
-    list[4]->setText("Y : " + QString::number(data[6]));
-    list[5]->setText(psi + QString("-point :") + QString::number(data[7]));
-    list[6]->setText(theta + QString("-point :") + QString::number(data[8]));
-    list[7]->setText(phi + QString("-point :") + QString::number(data[9]));
+    int type(data[0]), integrateur(data[1]);
+    switch (type) {
+        case 0:
+        list[0]->setText("Type : Cone Simple");
+    break;
+        case 1:
+        list[0]->setText("Type : Toupie Chinoise");
+    break;
+        case 2:
+        list[0]->setText("Type : Cone Général");
+    break;
+        case 3:
+        list[0]->setText("Type : Cone Energétique");
+    break;
+
+    }
+    switch (integrateur) {
+        case 0:
+        list[1]->setText("Integrateur : Euler-Cromer");
+    break;
+        case 1:
+        list[1]->setText("Integrateur : Newmark");
+    break;
+        case 2:
+        list[1]->setText("Integrateur : Runge-Kutta");
+    break;
+
+    }
+
+
+    list[2]->setText(psi + QString(" :") + QString::number(data[2]));
+    list[3]->setText(theta + QString(" :") + QString::number(data[3]));
+    list[4]->setText(phi + QString(" :") + QString::number(data[4]));
+    list[5]->setText("X : " + QString::number(data[5]));
+    list[6]->setText("Y : " + QString::number(data[6]));
+    list[7]->setText(psi + QString("-point :") + QString::number(data[7]));
+    list[8]->setText(theta + QString("-point :") + QString::number(data[8]));
+    list[9]->setText(phi + QString("-point :") + QString::number(data[9]));
     //list[8]->setText("Energie : " + QString::number(data[15]));
 
 }

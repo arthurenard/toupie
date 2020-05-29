@@ -4,6 +4,7 @@
 #include <iostream>
 #include <deque>
 
+#include "Erreur.h"
 #include "bases/Vecteur.h"
 
 //#define min(a, b) ((a) < (b) ? (a) : (b))

@@ -35,3 +35,5 @@ Matrice33 ToupieG_Conique::IA_P_Rg() const {
 size_t ToupieG_Conique::degre () const {
     return 2;
 }
+int ToupieG_Conique::getType(){return CONIQUEG;}
+

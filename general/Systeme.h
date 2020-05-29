@@ -9,6 +9,7 @@
 
 #include "bases/Vecteur.h"
 
+#include "Erreur.h"
 #include "toupies/Toupie.h"
 #include "toupies/ConeSimple.h"
 #include "toupies/ToupieChinoise.h"

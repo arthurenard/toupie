@@ -6,19 +6,21 @@ ConiqueEnergetique::ConiqueEnergetique (std::vector<Vecteur> p, double mV, doubl
 
 }
 
-Vecteur ConiqueEnergetique::eq_evolution (std::vector<Vecteur>, double) {
+Vecteur ConiqueEnergetique::eq_evolution (std::vector<Vecteur> p, double) {
+    if (p.size() != degre()) throw Erreur("ConiqueEnergetique eq evol");
     Vecteur retour(5);
+    double theta = p[0][1];
 
-    retour[0] = H(THETA);
-    retour[2] = vect_rot_Rg()[2] - (cos(THETA) * H (THETA));
-    if (V(THETA) <= 2 * energie_totale()) {
-        retour[1] = signe(theta_P) * sqrt(((2 * energie_totale()) - V(THETA)) / (I1() + (masse() * d() *d())));
+    retour[0] = H(theta);
+    retour[2] = vect_rot_Rg()[2] - (cos(theta) * H (theta));
+    if (V(theta) <= 2 * energie_totale()) {
+        retour[1] = signe(theta_P) * sqrt(((2 * energie_totale()) - V(theta)) / (I1() + (masse() * d() *d())));
         if (signe(theta_P) != signe(retour[1])) theta_P *= -1;
     }
     else {
         theta_P *= -1;
-        while (V(THETA) > 2 * energie_totale()) {
-            THETA += theta_P * delta_T;
+        while (V(theta) > 2 * energie_totale()) {
+            theta += theta_P * delta_T;
         } // retour[1] est de base = 0, inutile donc de le repréciser
     }
     return retour;
@@ -40,3 +42,4 @@ int signe(double x) {
 size_t ConiqueEnergetique::degre () const {
     return 1;
 }
+int ConiqueEnergetique::getType(){return CONIQUEE;}

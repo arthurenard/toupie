@@ -5,7 +5,7 @@
 ToupieChinoise::ToupieChinoise (std::vector<Vecteur> p, double mV, double h, double r, bool move) :
         Toupie (p, degre(), abs(mV), abs(h), abs(r), move)
 {
-    if (p.size() != 2) throw "ToupieChinoise degree";
+    if (p.size() != 2) throw Erreur("ToupieChinoise degree");
 }
 
 //destructeurs

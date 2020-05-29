@@ -5,6 +5,7 @@
 #include <vector>
 #include <cmath> 
 
+#include "Erreur.h"
 #include "bases/Vecteur.h"
 #include "bases/constantes.h"
 
