@@ -8,10 +8,12 @@ int main()
   TextViewer ecran(cout);
   Systeme c(&ecran);
 
-  cout << "Au départ :" << endl;
-  for(int i(0); i< 200; i++){
+
+  c.addToupie(std::vector<double>{0,0, 0,0.523599,0,0,0, 0,0,60, 0.1,1.5,0.5});
+
+  for(int i(0); i< 20; i++){
       c.dessine();
-      c.evolue(0.05);
+      c.evolue(0.01);
   }
 
 

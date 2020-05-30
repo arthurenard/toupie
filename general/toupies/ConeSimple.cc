@@ -23,7 +23,7 @@ Vecteur ConeSimple::eq_evolution (std::vector<Vecteur> p, double) {
         	return retour;
     	}
 
-    	retour[0] = (P[1] / (IA1() * sin(P[1]))) * (((I3() - (2 * IA1())) * dP[0] * cos(P[1])) + (I3() * dP[2]));
+        retour[0] = (dP[1] / (IA1() * sin(P[1]))) * (((I3() - (2 * IA1())) * dP[0] * cos(P[1])) + (I3() * dP[2]));
         retour[2] = (dP[1] / (IA1() * sin(P[1]))) *  ( dP[0] * ( IA1() - ( ( I3() - IA1() ) * cos(P[1]) * cos(P[1]))) - ( I3() * dP[2] * cos(P[1])));
         if(moveXY){
             retour[3]= 0.0;

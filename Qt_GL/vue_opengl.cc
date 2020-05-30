@@ -270,7 +270,7 @@ QMatrix4x4 position;
     else {    prog.setAttributeValue(CouleurId, 0.0, 1.0, 1.0); }
 
     for(size_t i(0) ; i < toupie->nbVectTrace() ; i++){
-        prog.setAttributeValue(SommetId, toupie->getVectNb(i)[0], toupie->getVectNb(i)[1], toupie->getVectNb(i)[2] + 1.0);
+        prog.setAttributeValue(SommetId, toupie->getVectNb(i)[0], toupie->getVectNb(i)[1], toupie->getVectNb(i)[2]);
     }
    glEnd();
 }
