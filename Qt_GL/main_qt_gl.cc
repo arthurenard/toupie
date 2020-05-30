@@ -3,13 +3,18 @@
 #include <QtWidgets>
 #include "mainwindow.h"
 #include "glwidget.h"
+#include "Erreur.h"
 
 int main(int argc, char* argv[])
 {
-  QApplication a(argc, argv);
+    try {
+        QApplication a(argc, argv);
 
-  Mainwindow window;
+        Mainwindow window;
 
-  window.show();
-  return a.exec();
+        window.show();
+        return a.exec();
+    } catch (Erreur probleme) {
+        probleme.affiche();
+    }
 }
