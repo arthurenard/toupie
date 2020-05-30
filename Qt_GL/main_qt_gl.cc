@@ -15,6 +15,6 @@ int main(int argc, char* argv[])
         window.show();
         return a.exec();
     } catch (Erreur probleme) {
-        probleme.affiche();
+        std::cerr << probleme;
     }
 }
