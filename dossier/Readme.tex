@@ -1,0 +1,100 @@
+\documentclass[a4paper]{article}%
+
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[super]{nth}
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+
+
+\begin{document}
+
+\author{Joseph El-Forzli & Arthur Renard}
+\date{}
+\title{\textbf{\underline{Projet Beyblade}}}
+\maketitle
+
+\section {Descriptif du projet}
+	\subsection{Introduction}
+		Le projet Beyblade, dont le nom est issu d'un dessin animé relatant la vie de valeureux combattants ayant pour uniques armes des toupies, a pour objectif principal de permettre à l'utilisateur d'observer des toupies de formes différentes évoluer selon les valeurs initiales et les intégrateurs numériques de son choix parmi les choix suivants: 
+	
+	\subsection {Toupie:} 
+		\begin {itemize} 
+			\item Toupie Conique (CôneSimple)
+			\item Toupie Chinoise 
+			\item Toupie Générale Conique (Une toupie conique avec des équations d'évolution plus générales)
+			\item Toupie Énergétique Conique (Une toupie conique avec des équations d'évolution basées sur l'énergie)
+		\end {itemize} \\
+	
+	\subsection {Intégrateurs:}
+		\begin {itemize} 
+			\item Euler-Crommer (pour des équations du 1\ier{} et 2\ieme{} degré)
+			\item Newmark (uniquement 2\ieme{}
+			\item Runge-Kutta (pour le 1\ier{} et 2\ieme{} degré)
+		\end {itemize} 
+	\textbf {Remarques: }Toupie Générale et Énergétique Conique ont quelques soucis avec leurs équations d'évolution. L'intégrateur d'Euler-Crommer ne semble pas être adapté à Toupie Chinoise qui diverge rapidement. 
+		
+	\subsection {Améliorations}
+		Plusieurs améliorations, qui font la fierté de leurs créateurs, ont ensuite été ajoutées au projet telles que (liste non exhaustive):
+	
+		\begin {itemize}
+			\item Possibilité d'ajouter des toupies de hauteur, rayon et forme variables.
+			\item Possibilité de choisir si les toupies se déplacent dans l'espace ou restent à un endroit fixe. 
+			\item Possibilité d'afficher la trace de leurs axes de symétrie. 
+			\item Possibilité de sauvegarder l'état de plusieurs toupies et de charger d'anciennes sauvegardes en étant certain de leur authenticité.
+			\item Les couleurs des toupies varient en fonction de leur vitesse de rotation.
+			\item La création de balles rebondissantes.
+			\item Un mode WTF 
+		\end {itemize}
+		Et bien plus…
+
+\section{Installation de beyblade}
+
+\section{Utilisation de beyblade}
+	\subsection {Configuration des paramètres initiaux}
+		Une fois le projet exécuté, deux fenêtres devraient apparaître, l'une avec la photo des auteurs et une description telle que "By Arthur et Jojo" et l'autre étant un panneau de configuration ayant pour titre "Toupie Nº1". Dans ce dernier vous pouvez sélectionner le type de la toupie, l'intégrateur, les valeurs initiales des angles (en radians) et de leurs dérivées ainsi que la position initiale de la toupie. Appuyez ensuite sur \emph{Valider}. \\
+	
+	La toupie sélectionnée devrait alors apparaître sur la première fenêtre citée. 
+	\subsection {Lancement et interactions durant l'exécution}
+		Pour que la toupie se mette en mouvement, appuyez sur  la touche \emph{Espace} de votre clavier. Appuyez à nouveau sur celle-ci pour mettre pause. Plusieurs autres touches de votre clavier permettent d'interargir avec le programme: 
+		\begin {itemize} 
+			\item[\textbf{u}] Permet aux toupies de se déplacer dans l'espace (appuyez à nouveau pour annuler).
+			\item[\textbf{y}] Affiche la \emph{trace} de la toupie (prolongement du vecteur (point de contact - centre de gravité)).
+			\item[\textbf{w}] Lancement d'une balle de couleur aléatoire.
+			\item[\textbf{t}] Lancement de l'option \emph {WTF} qui met l'arène en plein écran et chamboule le programme en cours.
+			
+		\end {itemize}
+	\subsection {Déplacement de la caméra}
+		La caméra évolue dans un repère sphérique centré à l'origine. Il n'est pas possible de changer ce repère.
+		\begin {itemize}
+			\item[\textbf{z}] Zoom.
+			\item[\textbf{s}] Dézoom.
+			\item[\textbf{q}] Tourne la caméra dans le sens anti-horloger.
+			\item[\textbf{d}] Tourne la caméra dans le sens horloger.
+			\item Les touches\emph {flèche directionnelle} permettent quant à elles d'évoluer dans le repère sphérique centré à l'origine.
+			\item La souris (en maintenant le clique gauche) permet également de déplacer la caméra.
+		\end{itemize}
+	\subsection {Paramètres avancés}
+		Pour le bon déroulement de ces opérations, mettez sur pause le programme.
+		Dans les options du programme plusieurs choix s'offrent à vous:
+		\subsubsection {Ajouter une toupie}
+			Rouvre le panneau de configurations pour ajouter une toupie dans l'arène. 
+		\subsubsection {Supprimer une toupie}
+			Supprime la toupie sélectionnée.
+		\subsubsection {Sauvegarde et chargement d'anciennes sauvegardes}
+			\emph {Sauvegarder le système} ouvre une fenêtre vous permettant de sélectionner le nom du fichier où les toupies seront sauvegardées, ainsi que l'emplacement de ce dernier. (Si un fichier du même nom existe déjà, il sera remplacé). 
+			Le fichier de sauvegarde ainsi créé contient un code de sécurité généré par une fonction de hachage permettant de vérifier l'authenticité du document lors de sa réouverture. \\
+			
+			\emph {Charger un système} ouvre une fenêtre vous permettant de sélectionner le fichier de sauvegarde. Si le fichier de sauvegarde a été corrompu, un message d'erreur sera lancé et le programme s'arrêtera.
+		\subsubsection {Informations}
+			Une fenêtre apparait. Sélectionnez la toupie de votre choix pour obtenir des informations.
+	\subsection {Exécution des tests}
+\section{Développé avec}
+	Le projet Beyblade a été codé en \emph{C++}  depuis l'\emph{IDE Qt Creator} où plusieurs de ses bibliothèques internes furent utilisées.
+	
+\section {Auteurs}
+	\begin{itemize}
+		\item Joseph El-Forzli, section de Physique
+		\item Arthur Renard, section de Mathématiques
+	\end{itemize}
+\end{document}

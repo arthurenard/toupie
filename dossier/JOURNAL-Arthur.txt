@@ -1,0 +1,132 @@
+Journal Projet Toupie
+
+Légende:
+$ Réponse / solution aux problèmes rencontrés lors des semaines précédentes
+- Tache réalisée
+@ Problème rencontré
+
+ ######
+ 27 fevrier 
+ - Création du github
+ - Répartition des taches (Jojo graphisme et moi le code de base lié au complément mathématique)
+ - Création de la classe Vecteur
+ - Réponse à P1
+
+ @ Comment connecter Vecteur.h à Vecteur.cc?
+
+ ######
+ 3 mars
+
+ $ Connexion entre Vecteur.h et .cc
+
+ - Modification de la classe Vecteur
+ 	- ajout des opérateurs algébriques etc
+ 	- ajout de la méthode et opérateur "unitaire"
+ - Suppression du int main du Git
+ - Création du Makefile
+ - Création de Matrice33 avec opérateur méthode etc
+
+ @ Comment on compile avec le Makefile? -> Demander à Jojo 
+ @ Faire les fichiers tests
+ @ Problème avec le produit Matrice33 * Vecteur(3), comment faire pour que les deux classes héritent l'une de l'autre? Pas de friend!
+
+ ######
+ 5 mars 
+
+ - Correction de Matrice33.inv()
+
+ #####
+ 23 mars
+
+ $ Matrice33 * Vecteur(3) réalisé grâce à (*)
+
+ - Rajout des #ifnedf, #define et #endif
+ - (*) Rajout de la surcharge d'opérateur[] pour Vecteur 
+ - Restructuration du code (Public: constructeurs/ destructeurs/ méthodes/ opérateur/ méthode inutile aux bénéficiaires/ Private: //idem)
+ - Création du ficher Constantes
+ - Création de Toupie et de ses constructeurs 
+ - Creation de ConeSimple
+
+ ####
+ 5 avril
+
+ - Changement de la valeur d'epsilon (de 10-5 à 10-9)
+ - Création de la classe Intégrateur 
+ - Rajout des équations d'évolution  de ConeSimple
+ - Création de ToupieChinoise avec ses équations d'évolution
+
+ @ Incompréhension dd la classe intégrateur, comment faire pour que intégrateur ait connaissance des vect_P et dP??
+
+ #### 
+ 9 avril 
+
+ - Rajout du vecteur vect_g, modification de g (devient un double) et creation de pi
+
+ ####
+ 28 avril 
+
+ - Modification de Intégrateur en Intégrable (qui est une copie de Toupie)
+ - Suppression d'une grande partie de la classe Toupie (qui hérite d'intégrable)
+ - Rajout du vecteur_rot dans Toupie
+ - Modifications liées au changement de conception d'intégrable
+ - Modification de la taille des vecteur vect_P et dP (taille de 3 à 5)
+
+ ####
+ 30 avril 
+
+ - Correction erreur dans eq évolution de ConeSimple
+
+ @ Newmark ne marche pas (pq?)
+
+ ####
+ 8 mai
+
+ - Rajout de macro dans Toupie pour améliorer la lisibilité du code
+ - Rajout de l'attribut protected masseVolumique dans Toupie et modifications des constructeurs de Toupie et ses classes filles
+ - Rajout d'outils mathématiques (matrice de changement de repère, moment cin etc) dans Toupie
+ - Rajout des invariants dans Toupie + de la fonction coplanaire dans Vecteur
+ - Modification de Toupie pour un meilleur héritage (volume, masse, I1, etc sont mon des attributs/méthodes de Toupie)
+
+ @ Les invariants sont ils aussi valable pour Toupie Chinoise?
+ 	-> $ Autant laisser les invariants dans Toupie pour pouvoir constater qu'ils ne sont pas invariants pour certaines toupies!(Toujours mieux pour la curiosité personnelle) Au pire, il suffit de déplacer les méthodes dans ConeSimple
+ ####
+ 22 mai 
+
+ $ Correction de Newmark
+ - Re-planification des objectifs et des fichiers à terminer avec Jojo
+ - Ajout de la classe mémoire pour la trace 
+ - Légère correction dans les toupies
+
+ ####
+ 23 mai
+
+ - Finalisation du fichier Réponse en Latex
+ - Rajout de Toupie Générale Conique et Énergétique
+
+ @ Problème avec le degré de Énergétique, il faut rajouter des intégrateurs du premier degré (un intégrateur du deuxième degré n'est pas, par définition, un intégrateur du 1er? Puisque une équation du 1er degré est également une équation du deuxième avec un coefficient nul?)
+ @ Comment doivent être liée Toupie Générale et Toupie? Ou bien il faut la faire hériter de ConeSimple comme c'est aussi un code? Pas propre tout ça
+ @ Faut il coder Toupie Générale Chinoise?
+ @ Il faut encore rajouter la gestion des exceptions!
+ @ Il faudra faire attention à vérifier que notre projet compile et s'exécute correctement lorsqu'on utilise le même compilateur que celui de l'évaluation
+
+ ####
+ 26 mai
+
+ $ Après relecture du complément mathématique et une discussion avec Jojo, Toupie Générale Chinoise n'a pas l'air d'avoir beaucoup de sens physiquement, on oublie
+ $ Les intégrateurs du 2ème degré ne sont définitivement pas des intégrateurs du 1er (puisque l'accélération n'est pas forcément nul!) 
+ $ Création de la classe Exception pour gérer les exceptions
+ - Modification profonde avec la création du vector<Vecteur> Position pour ne plus avoir de vect_P et dP et pouvoir avoir une Toupie Énergétique codée proprement
+ - Modification (et simplification!) du code liée à la création de Position
+
+ @ Problème à l'exécution lors de la création d'une toupie (incompréhensible)
+ @ Qt ne fonctionne jamais à la première compilation, normal?
+ @ La classe Exception pourrait être vide on arriverait quand même à afficher les erreurs, mais si on enlève le #include "Exception.h" du main pour le remplacer par #include <exception> et <iostream> (les seuls header files dans "Exception.h") ça ne marche pas (???)
+
+ #### 
+ 27 mai
+
+ $ Amélioration de position et création de la méthode degré pour les constructeurs (tout est parfaitement adapté maintenant)
+ - Création de la classe abstraite Cone pour améliorer le Code et l'implémentation de Toupie Générale et Énergétique (ConeSimple, Toupie Générale et Énergétique héritent toutes de la classe Cone)
+
+ @ Toupie Énergétique ne marche pas du tout et Général pas trop bien
+
