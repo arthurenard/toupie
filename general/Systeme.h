@@ -25,74 +25,56 @@
 
 
 class Systeme : public Dessinable {
-	public: 
-    Systeme(SupportADessin* vue): Dessinable(vue), WTF(false), trace(false), toupieFixe(true){
-        srand (time(NULL));
-        nyan = new JCC;
+    public:
+        Systeme(SupportADessin* vue);
+        ~Systeme();
 
-    }
-
-        virtual void dessine() override
-        { support->dessine(*this); }
-
-        void evolue(double dt);
-
-        size_t nbToupies() const {return toupies.size(); }
-
-        void addToupie(Toupie* newtoupie){toupies.push_back(newtoupie);}
-        void addToupie(std::vector<double> data);
-
-        void delToupie(size_t id);
+        virtual void dessine() override;
 
 
-        Toupie* getToupie(size_t nb) const;
-        int getIntegrateur(size_t nb) const;
-
-        const std::vector<Toupie*>* getToupies() const{
-            return &toupies;
-        }
+        void evolue(double dt); //Appelle les integrateurs de chaques integrable du systeme; toupies et balles
 
 
-        Balle* getBalle(size_t nb) const;
-        void partyWTF(){WTF = true;}
-        size_t nbBalles() const {return balles.size(); }
-        double random(double min=0., double max=1.);
-        void addBalle(std::vector<Vecteur>);
-        void suppBalle(size_t id);
-        double getNyan() const{return  nyan->get_vect_P()[2];}
 
-        bool getWTF() const{return WTF;}
-        void invertConeFixe(){
-            toupieFixe = !toupieFixe;
-            for(auto toupie : toupies){
-                toupie->invertMoveXY();
-            }
-        }
-        void invertTrace(){
-            trace = !trace;
-            for(size_t i(0); i < toupies.size() ; i++){
-              toupies[i]->clearTrace();
-                          }}
-        bool getTrace() const{return trace;}
-        void clearAll(){toupies.clear();
-                       integrateurs.clear();
-                       }
-        std::vector<std::vector<double>> getAllData();
+        //Methodes de gestions des toupies :
+        void addToupie(Toupie* newtoupie); //Ajoute un pointeur au vector de toupies*
+        void addToupie(std::vector<double> data); //Ajoute une toupiee au systeme a partir de données brutes
+        void delToupie(size_t nb); //permet de supprimer la toupie d'index nb
+        size_t nbToupies() const; //retourne le nombre de toupies du systeme
+        Toupie* getToupie(size_t nb) const; //retourne un pointeur vers la toupie d'index nb
+        int getIntegrateur(size_t nb) const; //retourne le chiffre integrateur (0: Euler 1: NEwmark 2: RungeKutta) de la toupie d'index nb
+        bool getTrace() const; //retourne la valeur de trace
+        void invertTrace(); //inverse trace
+        void invertConeFixe(); //inverse toupieFixe et moveXY de chaques toupies du systeme
+        void clearAll(); // vide et delete les toupies et integrable
 
-		
+
+        //Methodes de gestions des balles :
+        Balle* getBalle(size_t nb) const; //retourne un pointeur vers la balle d'index nb
+        void addBalle(std::vector<Vecteur>); //Ajoute une balle a partir d'un vector<Vecteur>{(X,Y,Z),(Xpoint,Ypoint,Zpoint)}
+        void suppBalle(size_t nb);//Supprime la balle d'index nb
+        size_t nbBalles() const;//Retourne le nombre de balles du systeme
+        double random(double min=0., double max=1.);//Sort un double aleatoire entre min et max (quand ils sont petits)
+
+        void partyWTF();//SURPRISE
+        bool getWTF() const;//SURPRISE
+        double getNyan() const;//SURPRISE
+
+        std::vector<std::vector<double>> getAllData(); //retourne toutes les données liées aux toupies
+
+
 	protected:
         std::vector<Toupie*> toupies;
         std::vector<int> integrateurs;
-
-
         std::vector<Balle*> balles;
-        bool WTF;
-        bool toupieFixe;
         JCC* nyan;
 
-
+        bool toupieFixe;
         bool trace;
-        std::vector<double> getDataTop(size_t id);
+        bool WTF;
+
+        std::vector<double> getDataTop(size_t nb);//Retourne toutes les données de la toupie d'index nb
+
 
 };
 double arrondis(double value);

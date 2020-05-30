@@ -7,6 +7,7 @@ SOURCES += Systeme.cc \
     bases/Vecteur.cc \
     bases/Matrice33.cc \
     bases/constantes.cc \
+    dessinable.cc \
     jcc.cc \
     toupies/ConiqueEnergetique.cc \
     toupies/Toupie.cc \

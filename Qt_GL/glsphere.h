@@ -4,6 +4,8 @@
 #include <QGLBuffer>
 #include <QOpenGLShaderProgram>
 
+//Classe qui provient d'un exemple du cours
+
 class GLSphere
 {
 public:

@@ -18,7 +18,7 @@ signals:
    void delClicked(size_t id);
 
 public slots:
-   void fullWindow();
+    void fullWindow();
     void newForm();
     void newInfo();
     void actualDelBtn();
@@ -36,14 +36,17 @@ public slots:
 
 private:
     GLWidget* w;
-    std::vector<QAction*> delBouton;
     AddToupie* formulaire;
+
     QMenu* menuSupp;
+    std::vector<QAction*> delBouton;
+
     QAction* charger;
     QAction* sauvegarder;
-    Information* dataScreen;
-
     Sauvegarde* saveObject;
+
+
+    Information* dataScreen;
     bool windowsState;
 
 };

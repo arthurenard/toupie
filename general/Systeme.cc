@@ -1,57 +1,22 @@
 #include "Systeme.h"
-
-void Systeme::addToupie(std::vector<double> data){
-    integrateurs.push_back(data[1]);
-    if(data.size()<13) throw "Add Toupie erreur declaration";
-    std::vector<Vecteur> p;
-    Vecteur P (data[2], data[3], data[4], 0.0, 0.0);
-    Vecteur dP (data[7], data[8], data[9], data[5], data[6]);
-    p.push_back(P);
-    p.push_back(dP);
-    if(abs(data[0]) < epsilon)
-        addToupie(new ConeSimple(p, data[10], data[11], data[12], toupieFixe));
-    if(abs(data[0] - 1) < epsilon)
-        addToupie(new ToupieChinoise(p, data[10], data[11], data[12], toupieFixe));
-    if(abs(data[0] - 2) < epsilon)
-        addToupie(new ToupieG_Conique(p, data[10], data[11], data[12], toupieFixe));
-    if(abs(data[0] - 3) < epsilon){
-        addToupie(new ConiqueEnergetique(p, data[10], data[11], data[12], toupieFixe));
-    }
+//constructeur
+Systeme::Systeme(SupportADessin* vue) :
+    Dessinable(vue),
+    WTF(false),
+    toupieFixe(true),
+    nyan(new JCC),
+    trace(false)
+{
+    srand (time(NULL));
 }
 
-void Systeme::delToupie(size_t id){
-    toupies.erase(toupies.begin() + id -1);
-    integrateurs.erase(integrateurs.begin() + id -1);
+Systeme::~Systeme(){
+    clearAll();
 }
 
-Toupie* Systeme::getToupie(size_t nb) const{
-    return toupies[nb];
-}
+void Systeme::dessine()
+{ support->dessine(*this);}
 
-int Systeme::getIntegrateur(size_t nb) const{
-    return integrateurs[nb];
-}
-
-Balle* Systeme::getBalle(size_t nb) const{
-    return balles[nb];
-}
-
-void Systeme::addBalle(std::vector<Vecteur> p){
-    balles.push_back(new Balle(p, arrondis(random()) ,arrondis(random()) ,arrondis(random()) ));
-}
-
-void Systeme::suppBalle(size_t id){
-    delete balles[id];
-    balles.erase(balles.begin() + id);
-}
-
-double Systeme::random(double min, double max){
-    return min + fmod(1./1000. * rand(), max-min);
-}
-
-double arrondis(double value) {
-     return floor(value + 0.5);
-}
 
 void Systeme::evolue(double dt){
     for(size_t i(0); i < toupies.size(); i++){
@@ -114,8 +79,121 @@ void Systeme::evolue(double dt){
     }
 
 }
+
+//########################################################################################"
+
+void Systeme::addToupie(Toupie *newtoupie)
+{toupies.push_back(newtoupie);}
+
+
+void Systeme::addToupie(std::vector<double> data){
+    integrateurs.push_back(data[1]);
+    if(data.size()<13) throw Erreur("Add Toupie erreur declaration");
+    std::vector<Vecteur> p;
+    Vecteur P (data[2], data[3], data[4], 0.0, 0.0);
+    Vecteur dP (data[7], data[8], data[9], data[5], data[6]);
+    p.push_back(P);
+    p.push_back(dP);
+    if(abs(data[0]) < epsilon)
+        addToupie(new ConeSimple(p, data[10], data[11], data[12], toupieFixe));
+    if(abs(data[0] - 1) < epsilon)
+        addToupie(new ToupieChinoise(p, data[10], data[11], data[12], toupieFixe));
+    if(abs(data[0] - 2) < epsilon)
+        addToupie(new ToupieG_Conique(p, data[10], data[11], data[12], toupieFixe));
+    if(abs(data[0] - 3) < epsilon){
+        addToupie(new ConiqueEnergetique(p, data[10], data[11], data[12], toupieFixe));
+    }
+}
+
+void Systeme::delToupie(size_t nb){
+    delete toupies[nb];
+    toupies.erase(toupies.begin() + nb -1);
+    integrateurs.erase(integrateurs.begin() + nb -1);
+}
+
+size_t Systeme::nbToupies() const
+{return toupies.size(); }
+
+Toupie* Systeme::getToupie(size_t nb) const{
+    return toupies[nb];
+}
+
+int Systeme::getIntegrateur(size_t nb) const{
+    return integrateurs[nb];
+}
+
+bool Systeme::getTrace() const
+{return trace;}
+
+void Systeme::invertConeFixe(){
+    toupieFixe = !toupieFixe;
+    for(auto toupie : toupies){
+        toupie->invertMoveXY();
+    }
+}
+
+void Systeme::invertTrace(){
+        trace = !trace;
+        for(auto toupie: toupies){
+          toupie->clearTrace();
+         }
+}
+
+void Systeme::clearAll(){
+    for(auto toupie: toupies){
+        delete toupie;
+    }
+    for(auto balle: balles){
+        delete balle;
+    }
+    delete nyan;
+    toupies.clear();
+    integrateurs.clear();
+    balles.clear();
+}
+
+//######################################################################################################################"
+
+void Systeme::addBalle(std::vector<Vecteur> p){
+    balles.push_back(new Balle(p, arrondis(random()) ,arrondis(random()) ,arrondis(random()) ));
+}
+
+void Systeme::suppBalle(size_t id){
+    delete balles[id];
+    balles.erase(balles.begin() + id);
+}
+
+Balle* Systeme::getBalle(size_t nb) const{
+    return balles[nb];
+}
+
+size_t Systeme::nbBalles() const
+{return balles.size(); }
+
+
+double Systeme::random(double min, double max){
+    return min + fmod(1./1000. * rand(), max-min);
+}
+
+//###############################################################################################
+
+void Systeme::partyWTF()
+{WTF = true;}
+bool Systeme::getWTF() const
+{return WTF;}
+
+double Systeme::getNyan() const
+{return  nyan->get_vect_P()[2];}
+
+
+
+double arrondis(double value) {
+     return floor(value + 0.5);
+}
+
+
 std::vector<double> Systeme::getDataTop(size_t id){
-    std::vector<double> data; //type, integrateur, psi, teta, phi, x, y, Dpsi, Dteta, Dphi, Dx, Dy, masse-vo, hauteur, rayon
+    std::vector<double> data; //type, integrateur, psi, teta, phi, x, y, Dpsi, Dteta, Dphi, masse-vo, hauteur, rayon, energietotale
         data.push_back(toupies[id]->getType());
         data.push_back(integrateurs[id]);
         data.push_back(toupies[id]->get_vect_P()[0]);
@@ -129,6 +207,7 @@ std::vector<double> Systeme::getDataTop(size_t id){
         data.push_back(toupies[id]->getMV());
         data.push_back(toupies[id]->getHauteur());
         data.push_back(toupies[id]->getRayon());
+        data.push_back(toupies[id]->energie_totale());
 
     return data;
 }

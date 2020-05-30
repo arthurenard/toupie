@@ -11,9 +11,9 @@ ToupieChinoise::ToupieChinoise (std::vector<Vecteur> p, double mV, double h, dou
 //destructeurs
 
 //methodes publiques
-Vecteur ToupieChinoise::eq_evolution (std::vector<Vecteur> p, double) {
+Vecteur ToupieChinoise::eq_evolution (std::vector<Vecteur> p, double) const {
     if (p.size() != degre_Position()) throw Erreur("ToupieChinoise eq evol");
-    double psi(p[0][0]), theta(p[0][1]), phi(p[0][2]);
+    double theta(p[0][1]);
             double dPsi(p[1][0]), dTheta(p[1][1]), dPhi(p[1][2]);
             double r (rayon), m(masse()), a(alpha());
             Vecteur retour (5);
@@ -49,10 +49,9 @@ Vecteur ToupieChinoise::eq_evolution (std::vector<Vecteur> p, double) {
         }
 	
 	return retour;
-
 }
 
-//methodes protegees
+//methodes privées
 double ToupieChinoise::volume () const {
 	double r (rayon), h (hauteur);
 	return pi * (((4.0/3) * pow(r, 3)) - (pow(h, 2) * (r - ((1.0/3) * h)))); // p9
@@ -74,9 +73,15 @@ double ToupieChinoise::I3 () const {
 }
 
 Vecteur ToupieChinoise::OG () const {
-    	return (rayon * OG_unitaire());
+        return (rayon * (1 - alpha()) * OG_unitaire());
 }
-int ToupieChinoise::getType(){return CHINOISE;}
+int ToupieChinoise::getType() const {
+    return CHINOISE;
+}
+
+size_t ToupieChinoise::degre_eqEvol() const {
+    return 2;
+}
 
 //operateurs internes
 
@@ -84,7 +89,3 @@ int ToupieChinoise::getType(){return CHINOISE;}
 
 
 //operateurs externes
-
-size_t ToupieChinoise::degre_eqEvol() const {
-    return 2;
-}

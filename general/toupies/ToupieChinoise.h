@@ -17,25 +17,25 @@ class ToupieChinoise : public Toupie {
 		//methodes publiques
 		
 		//operateurs internes
-        Vecteur eq_evolution (std::vector<Vecteur>, double temps = 0) override;
-        int getType() override;
+        Vecteur eq_evolution (std::vector<Vecteur>, double temps = 0) const override;
+        int getType() const override; //retourne un numero qui symbolise le type de la toupie
 
 		//methodes inutiles aux beneficiares
 	
 	
-	protected: 
+    private:
 		//attributs
 
 		
 		//methodes privees
         	double volume () const override; // m3
-        	double alpha () const;
+            double alpha () const; //retourne alpha
         	double I1 () const override; // kg * m2
         	double I3 () const override; // kg * m2
 
-        	Vecteur OG () const override; //on considere que G est le centre de la boule pour simplifier les calculs
-    private:
-            size_t degre_eqEvol () const override;
+            Vecteur OG () const override; /*pas exactement OG dans ce cas ci, retourne le vecteur passant par l'axe de symetrie,
+allant de l'extremite opposée à la partie tronquée jusqu'au centre de gravité G*/
+            size_t degre_eqEvol () const override; //retourne le degré des équations d'évolution (ici 2)
 };
 
 

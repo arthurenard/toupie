@@ -14,19 +14,19 @@
 class Integrable {
 	public: 
 		//constructeurs
-            Integrable (std::vector<Vecteur>, size_t degre_Position);
+            Integrable (std::vector<Vecteur> Position, size_t degre_Position); //verifie si la dimension de Position est == à degre_Position, erreur sinon
 		
    		//destructeur
 		
 		//methodes 
-            virtual Vecteur eq_evolution (std::vector<Vecteur> position , double temps = 0) = 0;
-            const Vecteur get_vect_P ();
-            const Vecteur get_vect_dP ();
+            virtual Vecteur eq_evolution (std::vector<Vecteur> position , double temps = 0) const = 0;
+            const Vecteur get_vect_P () const; //retourne Position[0]
+            const Vecteur get_vect_dP () const; //retourne Position[1]
 
-    //integrateurs
-        	virtual void EulerCromer (double pas_de_temps, double temps = 0);
-      	  	virtual void Newmark (double pas_de_temps, double temps = 0);
-        	virtual void RungeKutta (double pas_de_temps, double temps = 0);
+        //integrateurs
+            virtual void EulerCromer (double pas_de_temps, double temps = 0); //l'intégrateur numérique de Euler-Crommer de degré 1 et 2
+            virtual void Newmark (double pas_de_temps, double temps = 0); //l'intégrateur numérique de Newmark de degré 2
+            virtual void RungeKutta (double pas_de_temps, double temps = 0); //l'intégrateur numérique de Runge-Kutta de degré 1 et 2
     
 		//operateurs internes
 		
@@ -34,8 +34,10 @@ class Integrable {
 		void affiche (std::ostream&) const;
 			
 	protected:
+        //attribut
         std::vector<Vecteur> Position;
 
+        //methodes
         virtual size_t degre_Position () const = 0;
         virtual size_t degre_eqEvol () const = 0;
 };

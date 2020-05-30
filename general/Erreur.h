@@ -6,16 +6,22 @@
 
 class Erreur: public std::exception {
     public:
-            Erreur(std::string const& phrase="") throw();
+        //constructeur
+        Erreur(std::string const& probleme="") throw();
 
-            ~Erreur() throw();
+        //destructeur
+        ~Erreur() throw();
 
-             const char* what() const throw();
+        //methodes
+        const char* what() const throw();
 
-            void affiche () const throw();
+        //methode inutile au beneficiaire
+        void affiche (std::ostream&) const throw(); //affiche le vecteur mais c'est mieux d'utiliser <<
 
-        private:
-            std::string m_phrase;            //Description de l'erreur
+    private:
+        //attributs
+        std::string m_probleme; //le message d'erreur catché
  };
+std::ostream& operator<< (std::ostream&, Erreur const&); //affiche l'erreur
 
 #endif

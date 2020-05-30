@@ -1,12 +1,16 @@
 #include "Cone.h"
-
+//
+//constructeur
+//
 Cone::Cone(std::vector<Vecteur> p, double mV, double h, double r, bool move) :
     Toupie(p, mV, h, r, move)
 {}
 
+//
 //methodes protegees
+//
 double Cone::volume () const {
-    return ((pi * rayon * rayon * hauteur) / 3);
+    return ((pi * rayon * rayon * hauteur) / 3.);
 }
 
 double Cone::I1 () const {
@@ -22,7 +26,7 @@ double Cone::IA1 () const {
 }
 
 double Cone::MA () const {
-    return (d() * masse () * g * sin(THETA));  // cas ou la toupie n'est soumise qu'a son seul poids
+    return (d() * masse () * g * sin(THETA));  // cas où la toupie n'est soumise qu'à son seul poids
 }
 
 double Cone::d () const {

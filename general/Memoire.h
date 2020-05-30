@@ -7,7 +7,6 @@
 #include "Erreur.h"
 #include "bases/Vecteur.h"
 
-//#define min(a, b) ((a) < (b) ? (a) : (b))
 
 class Memoire {
     public:
@@ -15,10 +14,10 @@ class Memoire {
         Memoire (std::deque<Vecteur> Tableau = {});
 
         //methodes
-        void add_vect (Vecteur);
-        Vecteur get_vect(size_t); //retourne Tableau[i % taille_max]
-        size_t taille() const;
-        void clear(){Tableau.clear();}
+        void add_vect (Vecteur); //permet de rajouter un Vecteur
+        Vecteur get_vect(size_t) const; //retourne Tableau[i % taille_max]
+        size_t taille() const; //renvoie la taille de la Mémoire
+        void clear(); //vide le Tableau
 
     protected:
         const size_t taille_max = 1500;

@@ -4,16 +4,19 @@
 class SupportADessin;
 
 class Dessinable {
- public:
-  Dessinable(SupportADessin* support)
-    : support(support)
-  {}
-  virtual ~Dessinable() {}
-  virtual void dessine() = 0;
+    public:
+        //constructeur
+        Dessinable(SupportADessin* support);
 
- protected:
+        //destructeur
+        virtual ~Dessinable();
 
-  SupportADessin* support;
+        //methode
+        virtual void dessine() = 0;
+
+    protected:
+
+    SupportADessin* support;
 };
 
 #endif

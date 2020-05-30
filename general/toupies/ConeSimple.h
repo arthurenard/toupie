@@ -13,20 +13,14 @@ class ConeSimple : public Cone {
 		// destructeurs
 		
 		//methodes publiques
-        Vecteur eq_evolution (std::vector<Vecteur>, double temps = 0) override;
-
-
-
-        int getType() override;
-        	//accesseurs
-
-		//operateurs internes
-
-
-		//methodes inutiles aux beneficiares
+        int getType() const override; //retourne un numero qui symbolise le type de la toupie
+        Vecteur eq_evolution (std::vector<Vecteur>, double temps = 0) const override;
 	
     private:
-        virtual size_t degre_eqEvol () const override;
+        //attributs
+
+        //methodes privées
+        virtual size_t degre_eqEvol () const override; //retourne le degre des equations d'evolution
 };
 
 #endif

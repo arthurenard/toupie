@@ -1,37 +1,50 @@
 #include "ConiqueEnergetique.h"
 
+//constructeur
 ConiqueEnergetique::ConiqueEnergetique (std::vector<Vecteur> p, double mV, double h, double r, bool move) :
-    Cone (p, mV, h, r, move)
-{
+    Cone (p, mV, h, r, move),
+    EnergiePotentielleInitiale(energie_pot()),
+    EnergieTotaleInitiale(masse() * g * d() * cos(p[0][1]) + 0.5 * ((I1() + masse() *d() *d()) * (vect_rot_Rg()[0] + vect_rot_Rg()[1]) + I3()*vect_rot_Rg()[2]*vect_rot_Rg()[2])),
+    MomentCinAzInitial(invariant_moment_cin_Az()),
+    VectRot3Initiale(vect_rot_Rg()[2])
+{}
 
-}
-
-Vecteur ConiqueEnergetique::eq_evolution (std::vector<Vecteur> p, double) {
+//methodes
+Vecteur ConiqueEnergetique::eq_evolution (std::vector<Vecteur> p, double) const {
     if (p.size() != degre_Position()) throw Erreur("ConiqueEnergetique eq evol");
     Vecteur retour(5);
-    double theta = p[0][1];
+    double theta(p[0][1]);
 
     retour[0] = H(theta);
-    retour[2] = vect_rot_Rg()[2] - (cos(theta) * H (theta));
-    if (V(theta) <= 2 * energie_totale()) {
-        retour[1] = signe(theta_P) * sqrt(((2 * energie_totale()) - V(theta)) / (I1() + (masse() * d() *d())));
-        if (signe(theta_P) != signe(retour[1])) theta_P *= -1;
+    retour[2] = VectRot3Initiale - (cos(theta) * H (theta));
+    if (V(theta) <= 2 * EnergieTotaleInitiale) {
+        retour[1] = signe(p[1][1]) * sqrt(((2 * EnergieTotaleInitiale) - V(theta)) / (I1() + (masse() * d() *d())));
+        if (signe(p[1][1]) != signe(retour[1])) p[1][1] *= -1;
     }
     else {
-        theta_P *= -1;
-        while (V(theta) > 2 * energie_totale()) {
-            theta += theta_P * delta_T;
-        } // retour[1] est de base = 0, inutile donc de le repréciser
+        p[1][1] *= -1;
+        size_t compteur(0);
+        while (V(theta) > 2 * EnergieTotaleInitiale) {
+            theta += p[1][1] * delta_T;
+            compteur++;
+            if (compteur > 1000000) throw Erreur("Energetique boucle inf");
+        }
+        retour[1] = 0;
     }
     return retour;
 }
 
+//
+//private
+//
+
+//methodes privées
 double ConiqueEnergetique::V (double t) const {
-    return ((I3() * vect_rot_Rg()[2] * vect_rot_Rg()[2]) + (2 * energie_pot()) + ((I1() + masse() * d() * d()) * H(t)));
+    return ((I3() * VectRot3Initiale * VectRot3Initiale) + (2 * EnergiePotentielleInitiale) + ((I1() + masse() * d() * d()) * H(t) * H(t)));
 }
 
 double ConiqueEnergetique::H (double t) const {
-    return ( (invariant_moment_cin_Az() - (I3() * vect_rot_Rg()[2] * cos(t))) / ((I1() + (masse() * d() * d())) * sin(t) * sin(t)));
+    return ( (MomentCinAzInitial - (I3() * VectRot3Initiale * cos(t))) / ((I1() + (masse() * d() * d())) * sin(t) * sin(t)));
 }
 
 int signe(double x) {
@@ -39,7 +52,9 @@ int signe(double x) {
     return 1;
 }
 
-int ConiqueEnergetique::getType(){return CONIQUEE;}
+int ConiqueEnergetique::getType() const {
+    return CONIQUEE;
+}
 
 size_t ConiqueEnergetique::degre_eqEvol() const {
     return 1;

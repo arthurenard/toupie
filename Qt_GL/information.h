@@ -14,7 +14,7 @@ public:
     Information();
 
 public slots:
-    void treatData(std::vector<std::vector<double>> data);
+    void treatData(std::vector<std::vector<double>> data); //Recoit les données et adapte la liste de QLabel en appelant actuData
 
 private:
     QComboBox* select;
@@ -24,8 +24,8 @@ private:
     QString psi = QChar(0xc8, 0x03);
     QString phi = QChar(0xc6, 0x03);
 
-    void actuNbToupie(size_t nb);
-    void actuData(std::vector<double> data);
+    void actuNbToupie(size_t nb); //Actualise la liste deroulante select en fonction du nombre de toupie
+    void actuData(std::vector<double> data); //Actualise les QLabel
     size_t nbToupies;
 };
 

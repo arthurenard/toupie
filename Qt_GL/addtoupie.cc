@@ -108,6 +108,20 @@ AddToupie::AddToupie(size_t nb):id(nb)
     this->move(1080,0);
 }
 
+AddToupie::~AddToupie(){
+    delete type;
+    delete integrateur;
+    for(auto i: coord){
+        delete i;
+    }
+    for(auto i: vit){
+        delete i;
+    }
+    for(auto i: caract){
+        delete i;
+    }
+}
+
 
 void AddToupie::getData(){
     std::vector<double>data;

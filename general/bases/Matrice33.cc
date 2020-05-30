@@ -1,35 +1,39 @@
 #include "Matrice33.h"
-
+//
 //constructeurs
-Matrice33::Matrice33(): Matrice33(1.,1.,1.){}
-
-Matrice33::Matrice33 (double a, double b, double c) : Matrice33(a,0.,0.,0.,b,0.,0.,0.,c){}
+//
+Matrice33::Matrice33 (double a, double b, double c) :
+    Matrice33(a, 0., 0., 0., b, 0., 0., 0., c)
+{}
 
 Matrice33::Matrice33 (double a, double b, double c, double d, double e, double f, double g, double h, double i) {
-	matrice[0][0] = a;
-	matrice[0][1] = b;
-	matrice[0][2] = c;
-	matrice[1][0] = d;
-	matrice[1][1] = e;
-	matrice[1][2] = f;
-	matrice[2][0] = g;
-	matrice[2][1] = h;
-	matrice[2][2] = i;
+    matrice[0][0] = a;
+    matrice[0][1] = b;
+    matrice[0][2] = c;
+    matrice[1][0] = d;
+    matrice[1][1] = e;
+    matrice[1][2] = f;
+    matrice[2][0] = g;
+    matrice[2][1] = h;
+    matrice[2][2] = i;
 }
+
+//
 //destructeur
+//
 
-
+//
 //methodes
-
+//
 const Matrice33 Matrice33::transp () const {
-	return Matrice33 (matrice[0][0], matrice[1][0], matrice[2][0], matrice[0][1], matrice[1][1], matrice[2][1], matrice[0][2], matrice[1][2], matrice[2][2]);
+    return Matrice33 (matrice[0][0], matrice[1][0], matrice[2][0], matrice[0][1], matrice[1][1],
+            matrice[2][1], matrice[0][2], matrice[1][2], matrice[2][2]);
 }
 
 const Matrice33 Matrice33::inv () const {
 	
 	
-	if (abs(this->det()) < pow(10, -10))
-	 return Matrice33()-Matrice33();
+    if (abs(this->det()) < epsilon) throw Erreur("Matrice33 inverse det nul");
 	 
 	Matrice33 r;
 	r.matrice[0][0] = (matrice[1][1]*matrice[2][2] - matrice[1][2]*matrice[2][1]);
@@ -45,9 +49,10 @@ const Matrice33 Matrice33::inv () const {
 	return r*(1/this->det());
 }
 
-double Matrice33::det () const {
-	//return ((matrice[0][0]*matrice[1][1]*matrice[2][2] + matrice[1][0]*matrice[2][1]*matrice[0][2] + matrice[2][0]*matrice[0][1]*matrice[1][2]) - (matrice[0][0]*matrice[1][2]*matrice[2][1] + matrice[1][0]*matrice[0][1]*matrice[2][2] + matrice[2][0]*matrice[1][1]*matrice[0][2]));
-	return matrice[0][0] * (matrice[1][1]*matrice[2][2] - matrice[1][2]*matrice[2][1]) - matrice[1][0] * (matrice[0][1]*matrice[2][2] - matrice[0][2]*matrice[2][1]) + matrice[2][0] * (matrice[0][1]*matrice[1][2] - matrice[1][1]*matrice[0][2]);
+double Matrice33::det () const { //calcul le déterminant via la règle de Sarrus
+        return matrice[0][0] * (matrice[1][1]*matrice[2][2] - matrice[1][2]*matrice[2][1]) -
+                matrice[1][0] * (matrice[0][1]*matrice[2][2] - matrice[0][2]*matrice[2][1]) +
+                matrice[2][0] * (matrice[0][1]*matrice[1][2] - matrice[1][1]*matrice[0][2]);
 }
 
 //operateurs internes
@@ -136,7 +141,7 @@ Matrice33& Matrice33::operator*= (double d) {
 } 
 
 Vecteur Matrice33::operator* (Vecteur const& v) const {
-	if (v.size() != 3) throw "matrice * vecteur";
+    if (v.size() != 3) throw "matrice * vecteur"; //lance une erreur si la dimension du vecteur est differente de 3
 	Vecteur retour(0, 0, 0);
 	for (size_t a(0) ; a<3 ; a++) {
 		for (size_t b(0) ; b<3 ; b++) {
@@ -146,7 +151,9 @@ Vecteur Matrice33::operator* (Vecteur const& v) const {
 	return retour;
 }
 
+//
 //methodes inutiles aux beneficiaires de la classe
+//
 
 void Matrice33::affiche (std::ostream&) const {
 	std::cout << "{";
@@ -161,7 +168,9 @@ void Matrice33::affiche (std::ostream&) const {
 	std::cout << "}";
 }
 
+//
 //operateurs externes
+//
 
 const Matrice33 operator* (double d, Matrice33 const& m) {
 	return m*d;

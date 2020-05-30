@@ -7,16 +7,16 @@ Integrable::Integrable (std::vector<Vecteur> p, size_t d) {
 }
 
 //methodes publiques
-const Vecteur Integrable::get_vect_P (){
+const Vecteur Integrable::get_vect_P () const {
     return Position[0];
 }
-const Vecteur Integrable::get_vect_dP (){
+const Vecteur Integrable::get_vect_dP () const {
     if (Position.size() < 2) throw Erreur("Integrable get vect_dP");
     return Position[1];
 }
 
 
-//intgerateur
+//intgerateurs
 void Integrable::EulerCromer (double dt, double temps) {
     switch(degre_eqEvol()) {
     case 1: {

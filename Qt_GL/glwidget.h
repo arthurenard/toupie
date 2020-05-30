@@ -1,24 +1,23 @@
 #ifndef GLWIDGET_H
 #define GLWIDGET_H
 
-#include <QOpenGLWidget>        // Classe pour faire une fenêtre OpenGL
-#include <QTime>            // Classe pour gérer le temps
-#include "vue_opengl.h"
-#include "Systeme.h"
+#include <QOpenGLWidget>
+#include <QTime>
 #include <QSound>
 
+#include "vue_opengl.h"
+#include "Systeme.h"
+
+//Cette classe est construite a partir de l'exemple 5 de QT
 
 class GLWidget : public QOpenGLWidget
-/* La fenêtre hérite de QOpenGLWidget ;
- * les événements (clavier, souris, temps) sont des méthodes virtuelles à redéfinir.
- */
 {
     Q_OBJECT
 
 public:
   GLWidget(QWidget* parent = nullptr)
     : QOpenGLWidget(parent)
-    , c(&vue), speed(1)
+    , systeme(&vue), speed(1)
   {this->resize(1920, 1080);
    music = new QSound("music.wav");
   }
@@ -56,6 +55,8 @@ private:
 
   // Vue : ce qu'il faut donner au contenu pour qu'il puisse se dessiner sur la vue
   VueOpenGL vue;
+  Systeme systeme;
+
 
   // Timer
   int timerId;
@@ -66,7 +67,6 @@ private:
 
 
   // objets à dessiner, faire évoluer
-  Systeme c;
   bool b_Fullscreen, WTF;
   int speed;
   QSound* music;

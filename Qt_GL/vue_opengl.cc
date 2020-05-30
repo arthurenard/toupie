@@ -55,15 +55,12 @@ void VueOpenGL::init()
 {
   initializeOpenGLFunctions();
 
-  // Initialisation des shaders
-
   prog.addShaderFromSourceFile(QOpenGLShader::Vertex,   ":/vertex_shader.glsl");
   prog.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/fragment_shader.glsl");
 
   prog.bindAttributeLocation("sommet",  SommetId);
   prog.bindAttributeLocation("coordonnee_texture", CoordonneeTextureId);
   prog.bindAttributeLocation("couleur", CouleurId);
-
 
   prog.link();
   prog.bind();
@@ -83,13 +80,15 @@ void VueOpenGL::init()
   texturenous = context->bindTexture(QPixmap(":/by.png"), GL_TEXTURE_2D);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
   epfl = context->bindTexture(QPixmap(":/logoepfl.jpg"), GL_TEXTURE_2D);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
 
-
   sphere.initialize();
+  chinoise = GlChinoise();
+  cone = Glcone();
 
   initializePosition();
 
@@ -158,7 +157,6 @@ void VueOpenGL::updatePosition(){
     matrice_position.translate(0.0,0.0,rho); //rho negatif
     matrice_position.rotate(psi, 1.0, 0.0, 0.0);
     matrice_position.rotate(omega, 0.0, 0.0, 1.0);
-
     matrice_vue = matrice_camera * matrice_position;
 }
 
@@ -167,20 +165,15 @@ void VueOpenGL::updatePosition(){
 
 void VueOpenGL::dessinePlan (QMatrix4x4 const& point_de_vue)
 {
-
-
     prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
     glDisable(GL_TEXTURE_2D);
     glBegin(GL_QUADS);
-
-
     prog.setAttributeValue(CouleurId, 0.8, 0.8, 0.8);
     prog.setAttributeValue(SommetId, -10.0, +10.0, 0.0);
     prog.setAttributeValue(SommetId, -10.0, -10.0, 0.0);
     prog.setAttributeValue(SommetId, +10.0, -10.0, 0.0);
     prog.setAttributeValue(SommetId, +10.0, +10.0, 0.0);
     glEnd();
-
 }
 
 void VueOpenGL::dessineRepere (QMatrix4x4 const& point_de_vue)

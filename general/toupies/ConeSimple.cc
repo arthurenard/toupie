@@ -9,7 +9,7 @@ ConeSimple::ConeSimple (std::vector<Vecteur> p, double mV, double h, double r, b
 
 //methodes publiques
 
-Vecteur ConeSimple::eq_evolution (std::vector<Vecteur> p, double) {
+Vecteur ConeSimple::eq_evolution (std::vector<Vecteur> p, double) const {
     if (p.size() != degre_Position()) throw Erreur("Cone Simple eq evol");
     Vecteur P = p[0];
     Vecteur dP = p[1];
@@ -33,15 +33,14 @@ Vecteur ConeSimple::eq_evolution (std::vector<Vecteur> p, double) {
         retour[3]= vitesse_G_Rg()[0];
         retour[4]= vitesse_G_Rg()[1];
         }
-        return retour;
+    return retour;
 }
-//operateurs internes
 
-//methodes inutiles aux beneficiaires de la classe
+int ConeSimple::getType () const {
+    return CONIQUE;
+}
 
-int ConeSimple::getType(){return CONIQUE;}
-//operateurs externes
-
+//methodes privées
 size_t ConeSimple::degre_eqEvol() const {
     return 2;
 }

@@ -2,7 +2,7 @@
 
 Memoire::Memoire(std::deque<Vecteur> tab)
 {
-    for (size_t i(0); i < tab.size(); i++) { //min (taille_max, tab.size()); i++) {
+    for (size_t i(0); i < tab.size(); i++) {
         if (Tableau[i].size() != 3) throw Erreur("dimension Memoire 1");
         Tableau.push_back(tab[i]);
     }
@@ -16,7 +16,7 @@ void Memoire::add_vect(Vecteur v) {
     Tableau.push_back(v);
 }
 
-Vecteur Memoire::get_vect(size_t i) {
+Vecteur Memoire::get_vect(size_t i) const {
     return Tableau[i % taille_max];
 }
 
@@ -24,3 +24,6 @@ size_t Memoire::taille() const{
     return Tableau.size();
 }
 
+void Memoire::clear() {
+    Tableau.clear();
+}

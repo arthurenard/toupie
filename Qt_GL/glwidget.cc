@@ -41,7 +41,7 @@ void GLWidget::resizeGL(int width, int height)
 void GLWidget::paintGL()
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  c.dessine();
+  systeme.dessine();
 }
 
 
@@ -53,16 +53,16 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
 
   switch (event->key()) {
   case Qt::Key_U:
-      c.invertConeFixe();
+      systeme.invertConeFixe();
       break;
   case Qt::Key_Y:
-      c.invertTrace();
+      systeme.invertTrace();
       break;
   case Qt::Key_W:
-      c.addBalle(std::vector<Vecteur>{Vecteur(- vue.getRho()*sin(vue.getOmega())*sin(vue.getPsi()) ,- vue.getRho()*cos(vue.getOmega())*sin(vue.getPsi()), -0.9 * vue.getRho()*cos(vue.getPsi()) ), Vecteur(-0.5 *vue.getRho()*sin(vue.getOmega()) , - 0.5 *vue.getRho()*cos(vue.getOmega()),1.)});
+      systeme.addBalle(std::vector<Vecteur>{Vecteur(- vue.getRho()*sin(vue.getOmega())*sin(vue.getPsi()) ,- vue.getRho()*cos(vue.getOmega())*sin(vue.getPsi()), -0.9 * vue.getRho()*cos(vue.getPsi()) ), Vecteur(-0.5 *vue.getRho()*sin(vue.getOmega()) , - 0.5 *vue.getRho()*cos(vue.getOmega()),1.)});
       break;
   case Qt::Key_T:
-    c.partyWTF();
+    systeme.partyWTF();
     music->play();
     vue.initializePosition();
 
@@ -177,12 +177,12 @@ void GLWidget::timerEvent(QTimerEvent* event)
 
   double dt = chronometre.restart() / 1000.0;
   for (int i(1);i<=speed;i++) {
-      c.evolue(dt/speed);
+      systeme.evolue(dt/speed);
   }
   update();
   compteur++;
   if (compteur%10 == 0){
-      emit sendEverySecond(c.getAllData());
+      emit sendEverySecond(systeme.getAllData());
   }
 
 
@@ -216,18 +216,18 @@ void GLWidget::toggleFullWindow()
     }
 }
 size_t GLWidget::nb_toupie(){
-    return c.nbToupies();
+    return systeme.nbToupies();
 }
 void GLWidget::addToupie(std::vector<double> data){
-    c.addToupie(data);
-    emit sendEverySecond(c.getAllData());
+    systeme.addToupie(data);
+    emit sendEverySecond(systeme.getAllData());
 }
 void GLWidget::delToupie(size_t id){
-    c.delToupie(id);
+    systeme.delToupie(id);
 }
 void GLWidget::sauvegarder(){
-    emit allDataSend( c.getAllData() );
+    emit allDataSend( systeme.getAllData() );
 }
 void GLWidget::delAll(){
-    c.clearAll();
+    systeme.clearAll();
 }

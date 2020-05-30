@@ -1,5 +1,6 @@
 #include "balle.h"
 
+//constructeur
 Balle::Balle(std::vector<Vecteur> p, double r, double v, double b) :
     Integrable(p, degre_Position()),
     rayon(0.1),
@@ -10,7 +11,8 @@ Balle::Balle(std::vector<Vecteur> p, double r, double v, double b) :
     rvb.push_back(b);
 }
 
-Vecteur Balle::eq_evolution (std::vector<Vecteur>, double) {
+//methode
+Vecteur Balle::eq_evolution (std::vector<Vecteur>, double) const {
     return vecteur_g;
 }
 
@@ -20,6 +22,20 @@ void Balle::EulerCromer(double pas_de_temps, double temps){
         Position[1][2]*= -coefRest;
         Position[0][2]=rayon;
     }
+}
+
+double Balle::getRayon() {
+    return rayon;
+}
+
+std::vector<double> Balle::getRVB() {
+    return rvb;
+}
+
+bool Balle::ouTof(){
+    if (abs(Position[0][0]) > 10 || abs(Position[0][1]) > 10 ) //les limites du terrain
+        return true;
+    return false;
 }
 
 size_t Balle::degre_Position() const {

@@ -9,11 +9,12 @@ class Systeme;
 
 class SupportADessin
 {
- public:
-  virtual ~SupportADessin() {}
+    public:
+        //constructeur
+        virtual ~SupportADessin() {}
 
-  virtual void dessine(Systeme const& a_dessiner) = 0;
-
+        //methode
+        virtual void dessine(Systeme const& a_dessiner) = 0; //dessine
 };
 
 #endif

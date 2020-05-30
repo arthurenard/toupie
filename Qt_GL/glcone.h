@@ -7,8 +7,8 @@
 class Glcone
 {
 public:
-  Glcone(std::size_t nb_coins = 60);
-  void draw(QOpenGLShaderProgram& prog, std::vector<double> rvb);
+  Glcone(std::size_t nb_coins = 60); //calcule toutes les coordonnees d'un cone
+  void draw(QOpenGLShaderProgram& prog, std::vector<double> rvb); //dessine le cone
 
 private:
  std::vector<double> coordX, coordY;

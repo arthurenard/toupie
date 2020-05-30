@@ -74,7 +74,7 @@ void Information::actuData(std::vector<double> data){
     list[7]->setText(psi + QString("-point :") + QString::number(data[7]));
     list[8]->setText(theta + QString("-point :") + QString::number(data[8]));
     list[9]->setText(phi + QString("-point :") + QString::number(data[9]));
-    //list[8]->setText("Energie : " + QString::number(data[15]));
+    list[10]->setText("Energie : " + QString::number(data[13]));
 
 }
 
