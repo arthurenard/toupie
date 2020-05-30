@@ -1,0 +1,99 @@
+	JOURNAL JOSEPH
+- -> Ajout dans le code
+// -> commentaire
+# -> probleme
+
+Semaine 1 20/02/20 : 
+	//Choix du binome, on choisit avec Arthur de se mettre ensemble car nous avons tous 2 un legere experiences en programmation et gestion de projet informatique.
+Nous avons des methodes de travail similaire. On sait d'avance que nous ne realiserons pas ce projet de facon tres scolaire, nous risquons de nous eloigner du chemin
+donné par le prof tout en rendant un projet qui repondra à la demande.
+
+Semaine 2 27/02/20 : 
+	//Prise en main du projet, nous avons pris connaissance des objectif du projet  et nous nous sommes repartis les taches: Arthur s'occupe des "mathematiques", 
+code de base des toupies, etc.. Je m'occupe de tester, creer l'interface avec l'utilisateur, et creer le graphisme 3D. 
+	-Creation et prise en main du GitHub
+	-Test de makefile et de programmation en fichiers separé, on comprend pas trop la syntaxe
+
+Semaine 3 05/03/20 : 
+	//On arrive à peu pres à utiliser le MakeFile
+	//Je n'ai pas grand chose à faire
+	-Je code les TestVecteur et TestMatrice
+	
+
+Semaine 4 12/03/20 : 
+	//Je lis les exemples de Qt du site lié au projet, je ne comprends pas vraiment le fonctionnement. Je suis le cours de OpenClassroom "https://openclassrooms.com/fr/courses/167717-creez-des-programmes-en-3d-avec-opengl/164454-introduction-a-opengl" en entier.
+
+Semaine 5 19/03/20 : 
+	//Le cours openclassroom a ete tres utile pour la comprehension de OpenGl, mais est surement trop vieux (GLU), et utilise la bibliotheque SDL.
+	-J'ai donc repris les exemples sur le site du prof. Comprehension plus simple grace a l'experience acquise.
+	-On utilise le .pro a la place du Makefile
+
+
+Semaine 6 26/03/20 : 
+	-Je decide de creer le projet a partir de l'exemple 5 de QT, je cree une camera "spherique" tout marche tres bien.
+	-Inclusion du mouvement souris + GLSphere
+
+Semaine 7 02/04/20 :
+	//Je cree, pour rendre plus motivant la programmation du graphisme, une classe planete et systeme solaire. J'arrive a afficher et faire tourner un systeme solaire avec les equa. de Newton.
+ Je suis bluffe par l'efficacite de l'integration numerique
+
+Semaine 8 09/04/20 : 
+	-Amelioration du graphisme et utilisation de la classe Integrable de Arthur pour les planetes la classe Toupie n'est pas encore fonctionnelle. 
+	-Creation d'une classe Systeme qui permet de faire "tourner" tous types d'integrable facilement.
+
+
+Semaine 9 23/04/20 : 
+	- Creation d'un systeme à un ConeSimple
+	-Test en mode text, legere difference avec le prof
+	-Creation de GlCone qui permet d'afficher un cone.
+	-Mode plein ecran, pause etc
+	#Qt ne prend en compte certaines modifs qu'apres une deuxieme compilation et si le dossier build n'existe pas il y a une erreur systematique sur la 1ere compilation 
+
+Semaine 10 30/04/20 : 
+	//PREMIER CONESIMPLE QUI TOURNE !!!! (avec euler)
+	-legeres corrections -> memes valeurs que le prof en mode texte.
+	//Lecture du chapitre sur Qt dans le cours OpenClassroom sur le Cpp
+	-Creation du MainWindow dans lequel on met le GLWidget
+	-Creation de AddToupie que l'on lie a Mainwindow 
+	-Creation de l'objet Balle que l'utilisateur peut lancer.
+
+Semaine 11 07/05/20 : 
+	-Creation d'un tableau de pointeur de Toupie dans systeme pour pouvoir en afficher plusieurs.
+	# comment vueOpen_Gl peut connaitre le type de la Toupie avec une sorte de "polymorphisme externe" pour creer dessine(*Conesimple) dessine(*Toupiechinoise)
+Je ne trouve pas de reponse sur une syntaxe a utiliser -> creation de la methode GetType dans toupie qui 
+sera surchargee dans les classes filles de toupie
+	-Ajout de speed dans GLWidget: on peut "diviser" le dt et ameliorer la fiabilite des simulations
+	-Ajout de conditions pour theta petit dans les equa d'evolution -> meilleure fiabilite
+	-Creation SURPRISE
+
+
+Semaine 12 14/05/20 : 
+	-AddToupie fini, je cree QMenu pour allumer le formulaire addtoupie et supprimer des toupies
+Impossibilite de transmettre une valeur choisie dans un slot -> creation de 10 slots del ! (pas propre mais j'ai pas trouve mieux)
+	#probleme de compatibilite des QMenu etc sur mac.
+	-Gerer graphiquement la trace
+	-Amelioration de petits details pas tres passionnants
+	#J'arrive pas a afficher correctement des textures, les couleurs sont tres moches il semble "superposer" la couleur du dernier pixel de la derniere texture image utilise sur les solide sans texture.
+
+
+
+Semaine 13 21/05/20 : 
+	-Inclusion d'une texture 1x1 blanche pour corriger le probleme precedent.. Il doit y avoir mieux mais j'zi pas trouver, creation methode LoadWhiteTexture
+	-Creation de Information pour avoir les donnees numerique des toupies, un signal est emis regulierement par glwidget et est recuperé par Information qui en affiche le contenu
+	-Creation Sauvegarde, on stocke les données brute dans un .txt sans verification -> marche tres bien si l'utilisateur fait pas de betises..
+Arthur donne l'idee du hashage pour garantir l'authenticite du .txt. Cela marche tres bien mais empeche l'edition manuelle des données.. On ne peut pas tout avoir !
+Petit probleme de precision des double, quand ils sont petits il y a des problemes de recuperation de ceux ci.Ce qui rend negatif le hash. 
+Je setPrecision des doubles cela resoud le probleme. Lorsque le hash est negatif on quitte l'application.
+
+
+Semaine 14 28/05/20 : 
+	-Corrections des equations de toupies chinoises
+	-On trouve des conditions initiales qui marchent bien-> 1ERE TOUPIE CHINOISE !! (Euler est tres instable)
+	-Ajout du mouvement sur XY des toupies coniques et chinoises
+	-Resolution du probleme de toupie chinoise (P4 P5 du complement != de X Y)
+->probleme de conception On surcharge les integrateurs pour corriger le probleme de conception
+ca n'est pas tres propres.
+On decide donc de "decaler les coord XY de P vers dP" 
+	-creation de GlChinoise pour afficher les toupies chinoises
+	-Je peaufine l'interphace
+
