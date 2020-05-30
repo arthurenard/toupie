@@ -79,6 +79,7 @@ class Systeme : public Dessinable {
                        }
         std::vector<std::vector<double>> getAllData();
 
+
 		
 	protected:
         std::vector<Toupie*> toupies;

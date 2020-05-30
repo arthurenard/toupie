@@ -17,13 +17,13 @@ Vecteur ConeSimple::eq_evolution (std::vector<Vecteur> p, double) {
 
     	retour[1] = (1/IA1() ) * (MA() + (dP[0] * sin(P[1]) * ( ( (IA1() - I3()) * dP[0] * cos(P[1])) - (I3() * dP[2]))));
 
-    	if(abs(P[1]) < epsilontheta){
+        if(abs(P[1]) < epsilontheta){
         	retour[0]=0.0;
         	retour[2]=0.0;
         	return retour;
-    	}
+        }
 
-    	retour[0] = (P[1] / (IA1() * sin(P[1]))) * (((I3() - (2 * IA1())) * dP[0] * cos(P[1])) + (I3() * dP[2]));
+        retour[0] = (dP[1] / (IA1() * sin(P[1]))) * (((I3() - (2 * IA1())) * dP[0] * cos(P[1])) + (I3() * dP[2]));
         retour[2] = (dP[1] / (IA1() * sin(P[1]))) *  ( dP[0] * ( IA1() - ( ( I3() - IA1() ) * cos(P[1]) * cos(P[1]))) - ( I3() * dP[2] * cos(P[1])));
         if(moveXY){
             retour[3]= 0.0;
