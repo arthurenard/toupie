@@ -208,7 +208,10 @@ std::vector<double> Systeme::getDataTop(size_t id){
         data.push_back(toupies[id]->getHauteur());
         data.push_back(toupies[id]->getRayon());
         data.push_back(toupies[id]->energie_totale());
-
+        data.push_back(toupies[id]->invariant_vect_rot_Rg3());
+        data.push_back(toupies[id]->invariant_moment_cin_A3());
+        data.push_back(toupies[id]->invariant_moment_cin_Az());
+        data.push_back(toupies[id]->invariant_coplanaires());
     return data;
 }
 std::vector<std::vector<double>> Systeme::getAllData(){

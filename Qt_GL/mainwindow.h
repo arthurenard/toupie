@@ -14,17 +14,18 @@ class Mainwindow : public QMainWindow
 
 public:
     Mainwindow();
+
 signals:
-   void delClicked(size_t id);
+   void delClicked(size_t id); //est lié a GLWidget::delToupie et supprime donc une toupie quand est emis
 
 public slots:
-    void fullWindow();
-    void newForm();
-    void newInfo();
-    void actualDelBtn();
-    void del1();
-    void del2();
-    void del3();
+    void fullWindow(); //Active desactive le mode plein ecran
+    void newForm(); //Affiche un nouveau formulaire addToupie
+    void newInfo(); //Affiche une nouvelle fenetre Information
+    void actualDelBtn(); //Actualise le nombre de bouton de suppression des toupies
+    void del1(); //emet delClicked(1)
+    void del2(); //emet delClicked(2)
+    void del3(); //...
     void del4();
     void del5();
     void del6();
@@ -32,7 +33,7 @@ public slots:
     void del8();
     void del9();
     void del10();
-    void popWarning();
+    void popWarning(); //affiche un message d'erreur quand le fichier lie a sauvegarde est mal lu
 
 private:
     GLWidget* w;
@@ -45,10 +46,8 @@ private:
     QAction* sauvegarder;
     Sauvegarde* saveObject;
 
-
     Information* dataScreen;
     bool windowsState;
-
 };
 
 #endif // MAINWINDOW_H

@@ -4,7 +4,6 @@
 #include <QOpenGLWidget>
 #include <QTime>
 #include <QSound>
-
 #include "vue_opengl.h"
 #include "Systeme.h"
 
@@ -12,64 +11,53 @@
 
 class GLWidget : public QOpenGLWidget
 {
-    Q_OBJECT
+    Q_OBJECT //Permet d'utiliser les signaux et slots
 
 public:
-  GLWidget(QWidget* parent = nullptr)
-    : QOpenGLWidget(parent)
-    , systeme(&vue), speed(1)
-  {this->resize(1920, 1080);
-   music = new QSound("music.wav");
-  }
-
-
-
+  GLWidget(QWidget* parent = nullptr);
   virtual ~GLWidget() {}
-  void toggleFullWindow();
-  size_t nb_toupie();
+
+  void toggleFullWindow(); //Permet le mode plein ecran en inversant un bool et emetant un signal
+  size_t nb_toupie(); //Retourne le nombre de toupies du systeme, est utile car Mainwindow n'a pas d'acces direct au systeme
 
 public slots:
-    void addToupie(std::vector<double> data);
-    void delToupie(size_t id);
-    void delAll();
-    void sauvegarder();
+    void addToupie(std::vector<double> data);//Transmet les données de AddToupie vers le systeme
+    void delToupie(size_t nb);//Permet a mainwindow de supprimer la toupie d'index nb
+    void delAll(); //Permet a mainwindow de supprimer toutes les toupies
+    void sauvegarder(); //est appele lorsque l'utilisateur sauvegarde, permet de demander au systeme d'emettre le signal avec toutes les données
+
 signals:
-    void fullWindow();
-    void allDataSend(std::vector<std::vector<double>>);
-    void closeAll();
-    void sendEverySecond(std::vector<std::vector<double>>);
+    void fullWindow(); //Envoie le signal de l'inversion de l'ecran a MainWindow
+    void allDataSend(std::vector<std::vector<double>>); //Est emis quand on a recupere toutes les données du systeme
+    void closeAll(); //est emis lorsque l'utilisateur appuie sur ECHAP
+    void sendEverySecond(std::vector<std::vector<double>>);// ESt emis regulierement pour Information
 
 private:
   // Les 3 méthodes clés de la classe QOpenGLWidget à réimplémenter
-  virtual void initializeGL()                  override;
-  virtual void resizeGL(int width, int height) override;
-  virtual void paintGL()                       override;
+  virtual void initializeGL()                  override; //initialise la vue et le timer
+  virtual void resizeGL(int width, int height) override; //est appele lorsque l'ecran est resize
+  virtual void paintGL()                       override; //est appele lorsque l'ordinateur update le l'ecran
 
   // Méthodes de gestion d'évènements
-  virtual void keyPressEvent(QKeyEvent* event) override;
-  virtual void timerEvent(QTimerEvent* event)  override;
-  virtual void mousePressEvent(QMouseEvent* event) override;
-  virtual void mouseMoveEvent(QMouseEvent* event)  override;
-  // Méthodes de gestion interne
-  void pause();
+  virtual void keyPressEvent(QKeyEvent* event) override; //Permet de gerer les evenements claviers
+  virtual void timerEvent(QTimerEvent* event)  override; //Permet de gerer le temps, appelle Systeme::evolue(dt)
+  virtual void mousePressEvent(QMouseEvent* event) override; //repris d'un exemple du cours
+  virtual void mouseMoveEvent(QMouseEvent* event)  override; //repris d'un exemple du cours
 
-  // Vue : ce qu'il faut donner au contenu pour qu'il puisse se dessiner sur la vue
-  VueOpenGL vue;
-  Systeme systeme;
+  void pause(); //Coupe les evenement timer, met donc sur pause le systeme
 
+  Systeme systeme; //Le dessinable
+  VueOpenGL vue; //et son support
 
-  // Timer
+  size_t compteur; //permet de controler la frequence d'emission de données vers Information
+  bool b_Fullscreen, WTF; //bool d'etat d'ecran, bool SURPRISE !!!!
+  int speed; //Correspond au nombre d'appel de Systeme::evolue(dt) par image, augmente ou baisse la fiabilite de la simulation
+  QSound* music; //Variable correspondant a du son
+
+   //attributs liés a la gestion du temps et de la souris
   int timerId;
-  size_t compteur;
-  // pour faire évoluer les objets avec le bon "dt"
   QTime chronometre;
   QPoint lastMousePosition;
-
-
-  // objets à dessiner, faire évoluer
-  bool b_Fullscreen, WTF;
-  int speed;
-  QSound* music;
 };
 
 #endif // GLWIDGET_H

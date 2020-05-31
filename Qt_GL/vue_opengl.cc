@@ -11,8 +11,6 @@ VueOpenGL::~VueOpenGL()
   context->deleteTexture(textureBlanche);
   context->deleteTexture(texturenous);
   context->deleteTexture(epfl);
-
-
 }
 
 void VueOpenGL::dessine(Systeme const& systeme)
@@ -21,8 +19,6 @@ void VueOpenGL::dessine(Systeme const& systeme)
   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
   dessineRepere();
   dessineContour();
-
-
 
   for(size_t i(0); i < systeme.nbToupies(); i++){
     dessineToupie(systeme.getToupie(i));
@@ -43,11 +39,6 @@ void VueOpenGL::dessine(Systeme const& systeme)
       dessinePlan();
       drawBY();
   }
-
-
-  glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-
 }
 
 // ======================================================================
@@ -85,13 +76,11 @@ void VueOpenGL::init()
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-
   sphere.initialize();
   chinoise = GlChinoise();
   cone = Glcone();
 
   initializePosition();
-
 }
 
 // ======================================================================
@@ -109,6 +98,7 @@ void VueOpenGL::initializePosition()
   matrice_camera.rotate(-5,1.,0.,0.);
   matrice_vue = matrice_camera * matrice_position;
 }
+
 void VueOpenGL::loadWhiteTexture(){
     prog.setUniformValue("textureId", 0);
     QOpenGLFunctions *glFuncs = QOpenGLContext::currentContext()->functions();
@@ -166,7 +156,7 @@ void VueOpenGL::updatePosition(){
 void VueOpenGL::dessinePlan (QMatrix4x4 const& point_de_vue)
 {
     prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
-    glDisable(GL_TEXTURE_2D);
+    //glDisable(GL_TEXTURE_2D);
     glBegin(GL_QUADS);
     prog.setAttributeValue(CouleurId, 0.8, 0.8, 0.8);
     prog.setAttributeValue(SommetId, -10.0, +10.0, 0.0);
@@ -194,60 +184,57 @@ void VueOpenGL::dessineRepere (QMatrix4x4 const& point_de_vue)
     prog.setAttributeValue(SommetId, 0.0, 0.0, +1.0);
 
     glEnd();
-
-
-
-
 }
-void VueOpenGL::dessineSphere (QMatrix4x4 const& point_de_vue,
-                               double rouge, double vert, double bleu)
+
+void VueOpenGL::dessineSphere (QMatrix4x4 const& point_de_vue, double rouge, double vert, double bleu)
 {
   prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
   prog.setAttributeValue(CouleurId, rouge, vert, bleu);  // met la couleur
   sphere.draw(prog, SommetId);                           // dessine la sphère
 }
+
 void VueOpenGL::dessineCone (QMatrix4x4 const& point_de_vue, double paraColor)
 {
   prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
-  cone.draw(prog, gradColor(paraColor));                           // dessine la sphère
+  cone.draw(prog, gradColor(paraColor));
 }
+
 void VueOpenGL::dessineChinoise(const QMatrix4x4 &point_de_vue, double hauteurNorm,double paraColor){
     prog.setUniformValue("vue_modele", matrice_vue * point_de_vue);
     chinoise.draw(prog, hauteurNorm ,gradColor(paraColor));
 }
 
 void VueOpenGL::dessineToupie(Toupie* toupie){
-    QMatrix4x4 matricecone;
+    QMatrix4x4 matriceToupie;
+    matriceToupie.translate(toupie->get_vect_dP()[3],toupie->get_vect_dP()[4]);
 
-    matricecone.translate(toupie->get_vect_dP()[3],toupie->get_vect_dP()[4]);
-
-    matricecone.rotate(toupie->get_vect_P()[0] *180/pi, 0.0,0.0,1.0);
-    matricecone.rotate(toupie->get_vect_P()[1] *180/pi, 1.0,0.0,0.0);
-    matricecone.rotate(toupie->get_vect_P()[2] *180/pi, 0.0,0.0,1.0);
+    matriceToupie.rotate(toupie->get_vect_P()[0] *180/pi, 0.0,0.0,1.0);
+    matriceToupie.rotate(toupie->get_vect_P()[1] *180/pi, 1.0,0.0,0.0);
+    matriceToupie.rotate(toupie->get_vect_P()[2] *180/pi, 0.0,0.0,1.0);
 
     if(toupie->getType()==CONIQUE || toupie->getType() == CONIQUEG){
-    matricecone.scale(toupie->getRayon(), toupie->getRayon(), toupie->getHauteur());
-    dessineCone(matricecone, toupie->get_vect_dP()[2]/5.);
+    matriceToupie.scale(toupie->getRayon(), toupie->getRayon(), toupie->getHauteur());
+    dessineCone(matriceToupie, toupie->get_vect_dP()[2]/5.);
     }
     if(toupie->getType()==CONIQUEE){
-    matricecone.scale(toupie->getRayon(), toupie->getRayon(), toupie->getHauteur());
-    dessineCone(matricecone, 1.0);
+    matriceToupie.scale(toupie->getRayon(), toupie->getRayon(), toupie->getHauteur());
+    dessineCone(matriceToupie, 1.0);
     }
 
     if(toupie->getType()==CHINOISE){
-        matricecone.scale(toupie->getRayon());
-        dessineChinoise(matricecone, toupie->getHauteur()/toupie->getRayon(), toupie->get_vect_dP()[2]/5.);
+        matriceToupie.scale(toupie->getRayon());
+        dessineChinoise(matriceToupie, toupie->getHauteur()/toupie->getRayon(), toupie->get_vect_dP()[2]/5.);
     }
 
 }
 void VueOpenGL::dessineBalle(Balle *balle){
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-    QMatrix4x4 matricecone;
-    matricecone.translate(balle->get_vect_P()[0],balle->get_vect_P()[1], balle->get_vect_P()[2]);
-    matricecone.scale(balle->getRayon());
+    QMatrix4x4 matriceBalle;
+    matriceBalle.translate(balle->get_vect_P()[0],balle->get_vect_P()[1], balle->get_vect_P()[2]);
+    matriceBalle.scale(balle->getRayon());
 
-    dessineSphere(matricecone,balle->getRVB()[0],balle->getRVB()[1],balle->getRVB()[2]);
+    dessineSphere(matriceBalle,balle->getRVB()[0],balle->getRVB()[1],balle->getRVB()[2]);
 }
 
 void VueOpenGL::dessineTrace(Toupie *toupie, size_t nb){
@@ -319,7 +306,7 @@ void VueOpenGL::drawJCC(double x, double y, double z){
     prog.setAttributeValue(CoordonneeTextureId, 1.0, 1.0);
     prog.setAttributeValue(SommetId, -20.0, -20.0, +15.0);
 
-    glFuncs->glActiveTexture(GL_TEXTURE0); // On la lie à nouveau au numéro 0 (comme ca on a pas besoin de changer "textureId" du shader)
+    glFuncs->glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, textureBlanche);
     glEnd();
 }
@@ -409,8 +396,6 @@ void VueOpenGL::dessineBarriere(const QMatrix4x4 &point_de_vue){
     glBindTexture(GL_TEXTURE_2D, epfl);
 
     glBegin(GL_QUADS);
-    // X+
-
     prog.setAttributeValue(CouleurId, 1, 1, 1);
 
     prog.setAttributeValue(CoordonneeTextureId, 0.0, 0.0);
@@ -422,9 +407,7 @@ void VueOpenGL::dessineBarriere(const QMatrix4x4 &point_de_vue){
     prog.setAttributeValue(CoordonneeTextureId, 0.0, 1.0);
     prog.setAttributeValue(SommetId, -10.0, +10.0, +0.7);
 
-
-
-    glFuncs->glActiveTexture(GL_TEXTURE0); // On la lie à nouveau au numéro 0 (comme ca on a pas besoin de changer "textureId" du shader)
+    glFuncs->glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, textureBlanche);
     glEnd();
 }
@@ -450,7 +433,7 @@ void VueOpenGL::drawBY(QMatrix4x4 const& point_de_vue){
     prog.setAttributeValue(CoordonneeTextureId, 0.0, 1.0);
     prog.setAttributeValue(SommetId, 10.0, 20.0, 12.0);
 
-    glFuncs->glActiveTexture(GL_TEXTURE0); // On la lie à nouveau au numéro 0 (comme ca on a pas besoin de changer "textureId" du shader)
+    glFuncs->glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, textureBlanche);
     glEnd();
 }

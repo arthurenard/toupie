@@ -6,5 +6,5 @@ JCC::JCC()
     coefRest = 1.03;
 }
 Vecteur JCC::eq_evolution(std::vector<Vecteur>, double) const {
-    return 0.2*vecteur_g;
+    return 1.3*vecteur_g;
 }

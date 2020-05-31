@@ -25,7 +25,7 @@ class VueOpenGL : public SupportADessin, protected QOpenGLFunctions {
 
   // méthodes de (ré-)initialisation
   void init(); //initialise le graphisme, charge les textures
-  void initializePosition(); //permetde reinitialiser la position
+  void initializePosition(); //permet de reinitialiser la position
   void loadWhiteTexture(); //charge une texture blanche pour corriger les couleurs (voir journal pour le pourquoi)
 
   void setProjection(QMatrix4x4 const& projection)
@@ -62,6 +62,7 @@ class VueOpenGL : public SupportADessin, protected QOpenGLFunctions {
 
   std::vector<double> gradColor(double x); //retroingeniering du mouvement sur X dans la palette de couleur de Paint.exe, sort une couleur en fonction d'un double
 
+
  private:
   QOpenGLShaderProgram prog;
 
@@ -81,8 +82,6 @@ class VueOpenGL : public SupportADessin, protected QOpenGLFunctions {
   GLuint textureBlanche;
   GLuint texturenous;
   GLuint epfl;
-
-
 };
 
 #endif

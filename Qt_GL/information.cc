@@ -2,7 +2,7 @@
 
 Information::Information()
 {   nbToupies=0;
-    this->resize(300, 300);
+    this->resize(300, 400);
     this->move(1100, 400);
     select = new QComboBox();
     list.push_back(new QLabel("Type : "));
@@ -16,11 +16,16 @@ Information::Information()
     list.push_back(new QLabel(theta + QString("-point :")));
     list.push_back(new QLabel(phi + QString("-point :")));
     list.push_back(new QLabel("Energie : "));
+    list.push_back(new QLabel("Vect. Rotation Rg3 : "));
+    list.push_back(new QLabel("Moment Cinetique A3 : "));
+    list.push_back(new QLabel("Moment Cinetique AZ : "));
+    list.push_back(new QLabel("Coplanaire : "));
+
 
 
     QVBoxLayout* box = new QVBoxLayout;
     box->addWidget(select);
-    for (size_t i(0); i < 11; i++) {
+    for (size_t i(0); i < 15; i++) {
         box->addWidget(list[i]);
     }
     this->setLayout(box);
@@ -75,6 +80,10 @@ void Information::actuData(std::vector<double> data){
     list[8]->setText(theta + QString("-point :") + QString::number(data[8]));
     list[9]->setText(phi + QString("-point :") + QString::number(data[9]));
     list[10]->setText("Energie : " + QString::number(data[13]));
+    list[11]->setText("Vect. Rotation Rg3 : " + QString::number(data[14]));
+    list[12]->setText("Moment Cinetique A3 : " + QString::number(data[15]));
+    list[13]->setText("Moment Cinetique AZ : " + QString::number(data[16]));
+    list[14]->setText("Coplanaire : " + QString::number(data[17]));
 
 }
 

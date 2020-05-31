@@ -3,6 +3,15 @@
 #include <QMatrix4x4>
 #include "glwidget.h"
 
+
+GLWidget::GLWidget(QWidget* parent):
+    QOpenGLWidget(parent),
+    systeme(&vue),
+    speed(1)
+{
+     music = new QSound("music.wav");
+}
+
 // ======================================================================
 void GLWidget::initializeGL()
 {
@@ -10,8 +19,6 @@ void GLWidget::initializeGL()
   timerId = startTimer(20);
   pause();
   compteur = 0;
- // this->resize(1920, 1080);
-
 }
 
 // ======================================================================
