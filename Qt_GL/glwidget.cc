@@ -11,7 +11,6 @@ GLWidget::GLWidget(QWidget* parent):
 {
      music = new QSound("music.wav");
      music->setLoops(QSound::Infinite);
-
 }
 
 // ======================================================================

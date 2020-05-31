@@ -14,15 +14,10 @@ class ToupieChinoise : public Toupie {
 
 		// destructeurs
          ~ToupieChinoise()=default;
-		
-		//methodes publiques
-		
+				
 		//operateurs internes
         Vecteur eq_evolution (std::vector<Vecteur>, double temps = 0) const override;
         int getType() const override; //retourne un numero qui symbolise le type de la toupie
-
-		//methodes inutiles aux beneficiares
-	
 	
     private:
 		//attributs
