@@ -1,10 +1,6 @@
-#include <iostream>
-#include "Matrice33.h"
-#include "Vecteur.h"
+#include "testMatrice33.h"
 
-using namespace std;
-
-int main(){
+void testMatrice3(){
 	
 
 	Matrice33 I;
@@ -16,21 +12,20 @@ int main(){
 				   3., 4., 0,
 				   0., 0., 1.);
 	Vecteur v(5.5, 6.6, 7.7);
-		cout << I << endl << diag << endl;
-		cout << I.det() << " "
+        std::cout << I << std::endl << diag << std::endl;
+        std::cout << I.det() << " "
 		<< diag.det() << " "
 		<< mat.det() << " "
-		<< mat2.det() << endl;
-		cout << I.inv() << endl << diag.inv() << endl << mat.inv() << endl << mat2.inv() << endl;
+        << mat2.det() << std::endl;
+        std::cout << I.inv() << std::endl << diag.inv() << std::endl << mat.inv() << std::endl << mat2.inv() << std::endl;
 
-		cout << mat + mat << endl;
-		cout << mat - mat << endl;
-		cout << diag-I << endl;
-		cout << 4.4 * diag << endl;
-		cout << 2. * mat << endl;
-		cout << mat * v << endl;
-		cout << mat * mat << endl;
-		cout << mat2 * mat2.inv() << endl;
-		cout << mat.transp() << endl;
-	return 0;
+        std::cout << mat + mat << std::endl;
+        std::cout << mat - mat << std::endl;
+        std::cout << diag-I << std::endl;
+        std::cout << 4.4 * diag << std::endl;
+        std::cout << 2. * mat << std::endl;
+        std::cout << mat * v << std::endl;
+        std::cout << mat * mat << std::endl;
+        std::cout << mat2 * mat2.inv() << std::endl;
+        std::cout << mat.transp() << std::endl;
 }

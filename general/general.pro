@@ -25,6 +25,8 @@ HEADERS += \
     bases/Vecteur.h \
     bases/Matrice33.h \
     bases/constantes.h \
+    bases/testMatrice33.h \
+    bases/testVecteur.h \
     jcc.h \
     toupies/ConiqueEnergetique.h \
     toupies/Toupie.h \
