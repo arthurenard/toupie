@@ -48,13 +48,14 @@
 				\item que cela impliquerait-il au niveau des attributs de la classe ?
 				
 				\begin {itemize}
-					\item 
+					\item Il faudrait verifier que les coordonnées theta phi pour qu'ils appartiennent a [0 2pi[ x [0 pi[ x [0 inf[
 				\end {itemize}
 				
 				\item quelle serait la difficulté majeure (voire l'impossibilité) de sa réalisation en C++ ? (C'est d'ailleurs pour cela qu'on ne vous demande pas de faire un tel constructeur !)
 				
 				\begin {itemize}
-					\item 
+					\item On aurait deux constructeurs de Vecteur qui prendrait les mêmes arguments. Cela n'est pas possible en C++, le programme ne saurait pas quelle constructeur appelé.
+					-> On ne peut pas surcharger les constructeurs s'ils prennent les mêmes attributs.
 				\end {itemize}
 				\end{enumerate}
 				
@@ -98,25 +99,25 @@
 				\item[P8.1] En termes de POO, quelle est donc la nature de la méthode \emph{dessine()} ?
 			
 				\begin{itemize} 
-					\item 
+					\item C'est une méthode héritée de la classe dessinable (mère de système)
 				\end{itemize}
 			
 				\item[P8.2] Quelle est la bonne façon de le faire dans un cadre de programmation orientée-objet ?
 			
 				\begin{itemize} 
-					\item 
+					\item Il faut override la méthode Dessinable::dessine()
 				\end{itemize}
 			
 				\item[P8.3] A quoi faut-il faire attention pour les classes contenant des pointeurs ? Quelles solutions peut-on envisager ?
 			
 				\begin{itemize} 
-					\item 
+					\item Il ne faut pas oublier de delete toutes les *toupies.
 				\end{itemize}
 
 				\item[P8.4] Comment représentez vous la classe \emph{Système} ? 
 			
 				\begin{itemize} 
-					\item 
+					\item La classe système est représentée par l'ensemble des toupies et balles vers lesquelles elle pointe.
 				\end{itemize}
 
 		\end{description}
