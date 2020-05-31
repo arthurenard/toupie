@@ -1,34 +1,213 @@
-# toupie
-projet toupie epfl
+	JOURNAL PROJET BEYBLADE
+@ Auteur
+- -> Ajout dans le code
+$ -> Réponse solution aux problèmes précédents 
+// -> commentaire
+# -> probleme
 
-23 mars : Arthur
-  - Upload des fichiers Toupie et constantes
-  - Rajout des #ifnedf, #define et #endif
-  - Restructuration de Matrice et Vecteur:
-  - Rajout de la double surcharge interne de operator[] dans Vecteur
-  - Rajout du produit matrice*matrice et matrice*vecteur dans Matrice
+Semaine 1 20/02/20 :
+	//Choix du binôme, on choisit de se mettre ensemble car nous avons tous 2 une légère expérience en programmation et gestion de projet informatique.
+Nous avons des méthodes de travail similaires. On sait d'avance que nous ne réaliserons pas ce projet de façon très scolaire, nous risquons de nous éloigner du chemin donné par le prof tout en rendant un projet qui répondra à la demande.
+
+Semaine 2 27/02/20 : 
+	//Prise en main du projet, nous avons pris connaissance des objectif du projet  et nous nous sommes repartis les taches: Arthur s'occupe des "mathématiques", code de base des toupies, etc.. Joseph s'occupe de tester, créer l'interface avec l'utilisateur, et créer le graphisme 3D. 
+
+	@ Joseph
+	-Création et prise en main du GitHub
+	-Test de makefile et de programmation en fichiers séparés, on ne comprend pas trop la syntaxe.
+
+	@ Arthur
+	 - Répartition des taches (Jojo graphisme et moi le code de base lié au complément mathématique)
+ 	- Création de la classe Vecteur
+ 	- Réponse à P1
+
+	# Comment connecter Vecteur.h à Vecteur.cc?
+
+Semaine 3 05/03/20 : 
+	//On arrive à peu près à utiliser le MakeFile
+
+	@ Jospeh
+	-Je code les TestVecteur et TestMatrice
+
+	@ Arthur 
+	$ Connexion entre Vecteur.h et .cc
+
+	- Modification de la classe Vecteur
+ 	- ajout des opérateurs algébriques etc
+ 	- ajout de la méthode et opérateur "unitaire"
+ 	- Suppression du int main du Git
+ 	- Création du Makefile
+ 	- Création de Matrice33 avec opérateur méthode etc
+
+ 	# Comment on compile avec le Makefile? 
+ 	# Faire les fichiers tests
+ 	# Problème avec le produit Matrice33 * Vecteur(3), comment faire pour que les deux classes héritent l'une de l'autre? Pas de friend!
+	
+
+Semaine 4 12/03/20 : 
+	@ Joseph
+	//Je lis les exemples de Qt du site lié au projet, je ne comprends pas vraiment le fonctionnement. Je suis le cours de OpenClassroom "https://openclassrooms.com/fr/courses/167717-creez-des-programmes-en-3d-avec-opengl/164454-introduction-a-opengl" en entier.
+
+	@ Arthur 
+	 - Correction de Matrice33.inv()
+
+Semaine 5 19/03/20 : 
+	@ Joseph
+	//Le cours OpenClassroom a été très utile pour la compréhension de OpenGl, mais est surement trop vieux (GLU), et utilise la bibliothèque SDL.
+	-J'ai donc repris les exemples sur le site du prof. Compréhension plus rapide grâce a l'expérience acquise.
+	-On utilise le .pro a la place du Makefile
+
+	@ Arthur 
+ 	$ Matrice33 * Vecteur(3) réalisé grâce à (*)
+
+ 	- Rajout des #ifnedf, #define et #endif
+ 	- (*) Rajout de la surcharge d'opérateur[] pour Vecteur 
+ 	- Restructuration du code (Public: constructeurs/ destructeurs/ méthodes/ opérateur/ méthode inutile aux bénéficiaires/ Private: //idem)
+ 	- Création du ficher Constantes
+ 	- Création de Toupie et de ses constructeurs 
+ 	- Creation de ConeSimple
+
+Semaine 6 26/03/20 : 
+	@ Joseph
+	-Je décide de créer le projet a partir de l'exemple 5 de QT, je crée une camera "sphérique" tout marche très bien.
+	-Inclusion du mouvement souris + GLSphere
+
+Semaine 7 02/04/20 :
+	@ Joseph
+	//Je crée, pour rendre plus motivant la programmation du graphisme, une classe planète et système solaire. J'arrive a afficher et faire tourner un système solaire avec les équations de Newton.
+ Je suis bluffe par l'efficacité de l'intégration numérique.
+
+	@ Arthur
+	- Changement de la valeur d'epsilon (de 10-5 à 10-9)
+ 	- Création de la classe Intégrateur 
+ 	- Rajout des équations d'évolution  de ConeSimple
+ 	- Création de ToupieChinoise avec ses équations d'évolution
+
+ 	# Incompréhension dd la classe intégrateur, comment faire pour que intégrateur ait connaissance des vect_P et dP??
 
 
-27 Fevrier : joseph
-Partage du travail, arthur code toutes les classes du debut du projet, je prepare l'interface graphique et relis les codes de mon collegue adoré.
-Création + prise en main git et github et lecture approfondie du projet
+Semaine 8 09/04/20 : 
+	@ Joseph
+	-Améliorations du graphisme et utilisation de la classe Intégrateur de Arthur pour les planètes, la classe Toupie n'est pas encore fonctionnelle. 
+	-Création d'une classe Système qui permet de faire "tourner" tous types d'intégrables facilement.
 
-5 mars : joseph
-correction classe vecteur, fichier test.
-Apprentissage makefile, creation pour test vecteur
-
-12 mars : joseph
-apprentissage QT OpenGL GLu grace aux cours openclassrooms
-
-19 mars : joseph 
-mauvaise piste pour opengl car le tuto est ancien, glu n'est plus utilise
+	@ Arthur
+	- Rajout du vecteur vect_g, modification de g (devient un double) et création de pi
 
 
-26 mars : joseph
-correction + testmatrice + makefile
-reprise de ex5 cours interface, creation mouvement camera coordonnees "spherique" car semble plus naturel pour une simulation simple
-+ creation fonction base graphisme (vitesse plein ecran etc)
+Semaine 9 23/04/20 : 
+	@ Joseph
+	- Création d'un système à un ConeSimple
+	-Test en mode text, légère différence avec le prof
+	-Création de GlCone qui permet d'afficher un cone.
+	-Mode plein écran, pause etc
+	#Qt ne prend en compte certaines modifications qu'après une deuxième compilation et si le dossier build n'existe pas il y a une erreur systématique sur la 1ère compilation 
 
-02 avril : joseph
-creation projet systeme solaire, -> projet intermediaire pour tester toutes l'interface graphique en attendant l'implementation mathematique des toupies de arthur. Tests pour lier les formulaires QT(aspect classique d'un logiciel) et GLWidget (graphisme 3d)
- relecture et corrections minimes des differents codes ecris
+	@ Arthur
+ 	- Modification de Intégrateur en Intégrable (qui est une copie de Toupie en fait)
+ 	- Suppression d'une grande partie de la classe Toupie (qui hérite d'intégrable)
+ 	- Rajout du vecteur_rot dans Toupie
+ 	- Modifications liées au changement de conception d'intégrable
+ 	- Modification de la taille des vecteur vect_P et dP (taille de 3 à 5)
+
+Semaine 10 30/04/20 : 
+	@ Joseph
+	//PREMIER CONESIMPLE QUI TOURNE !!!! (avec Euler-Crommer)
+	-légères corrections -> mèmes valeurs que le prof en mode texte.
+	//Lecture du chapitre sur Qt dans le cours OpenClassroom sur le Cpp
+	-Création du MainWindow dans lequel on met le GLWidget
+	-Creation de AddToupie que l'on lie a Mainwindow 
+	-Création de l'objet Balle que l'utilisateur peut lancer.
+
+	@ Arthur
+	 - Correction erreur dans eq évolution de ConeSimple
+
+ 	# Newmark ne marche pas (pq?)
+
+Semaine 11 07/05/20 : 
+	@Joseph
+	-Création d'un tableau de pointeur de Toupie dans système pour pouvoir en afficher plusieurs.
+	# comment vueOpen_Gl peut connaitre le type de la Toupie avec une sorte de "polymorphisme externe" pour créer dessine(*ConeSimple) dessine(*ToupieChinoise)
+Je ne trouve pas de réponse sur une syntaxe a utiliser -> création de la méthode GetType dans toupie qui 
+sera surchargée dans les classes filles de toupie
+	-Ajout de speed dans GLWidget: on peut "diviser" le dt et améliorer la fiabilité des simulations
+	-Ajout de conditions pour theta petit dans les équations d'évolution -> meilleure fiabilité
+	-Creation SURPRISE
+
+	@Arthur
+	- Rajout de macro dans Toupie pour améliorer la lisibilité du code
+ 	- Rajout de l'attribut protected masseVolumique dans Toupie et modifications des constructeurs de Toupie et ses classes filles
+ 	- Rajout d'outils mathématiques (matrice de changement de repère, moment cin etc) dans Toupie
+ 	- Rajout des invariants dans Toupie + de la fonction coplanaire dans Vecteur
+ 	- Modification de Toupie pour un meilleur héritage (volume, masse, I1, etc sont mon des attributs/méthodes de Toupie)
+
+	# Les invariants sont ils aussi valable pour Toupie Chinoise?
+ 		-> $ Autant laisser les invariants dans Toupie pour pouvoir constater qu'ils ne sont pas invariants pour certaines toupies!(Toujours mieux pour la curiosité personnelle) Au pire, il suffit de déplacer les méthodes dans ConeSimple
+
+Semaine 12 14/05/20 : 
+	@ Jospeh
+	-AddToupie fini, je cree QMenu pour allumer le formulaire addtoupie et supprimer des toupies
+Impossibilite de transmettre une valeur choisie dans un slot -> creation de 10 slots del ! (pas propre mais j'ai pas trouve mieux)
+	#problème de compatibilité des QMenu etc sur mac.
+	-Gérer graphiquement la trace
+	-Amélioration de petits détails pas très passionnants
+	#J'arrive pas a afficher correctement des textures, les couleurs sont tres moches il semble "superposer" la couleur du dernier pixel de la dernière texture image utilise sur les solide sans texture.
+
+
+
+Semaine 13 21/05/20 : 
+	@ Jospeh
+	-Inclusion d'une texture 1x1 blanche pour corriger le problème précédent.. Il doit y avoir mieux mais j'ai pas trouver, création méthode LoadWhiteTexture
+	-Création de Information pour avoir les données numériques des toupies, un signal est émis régulièrement par glwidget et est récupéré par Information qui en affiche le contenu
+	-Création Sauvegarde, on stocke les données brute dans un .txt sans vérification -> marche tres bien si l'utilisateur fait pas de bêtises..
+Arthur donne l'idée du hachage pour garantir l'authenticité du .txt. Cela marche très bien mais empêche l'édition manuelle des données.. On ne peut pas tout avoir !
+Petit problème de précision des double, quand ils sont petits il y a des problèmes de récupération de ceux ci.Ce qui rend négatif le hash. 
+Je setPrecision des doubles cela résout le problème. Lorsque le hash est négatif on quitte l'application.
+
+	@ Arthur
+	$ Correction de Newmark
+ 	- Re-planification des objectifs et des fichiers à terminer avec Jojo
+ 	- Ajout de la classe mémoire pour la trace 
+ 	- Légère correction dans les toupies
+
+	- Finalisation du fichier Réponse en Latex
+ 	- Rajout de Toupie Générale Conique et Énergétique
+
+ 	# Problème avec le degré de Énergétique, il faut rajouter des intégrateurs du premier degré (un intégrateur du deuxième degré n'est pas, par définition, un intégrateur du 1er? Puisque une équation du 1er degré est également une équation du deuxième avec un coefficient nul?)
+ 	# Comment doivent être liée Toupie Générale et Toupie? Ou bien il faut la faire hériter de ConeSimple comme c'est aussi un code? Pas propre tout ça
+ 	# Faut il coder Toupie Générale Chinoise?
+ 	# Il faut encore rajouter la gestion des exceptions!
+ 	# Il faudra faire attention à vérifier que notre projet compile et s'exécute correctement lorsqu'on utilise le même compilateur que celui de l'évaluation
+
+	$ Après relecture du complément mathématique et une discussion avec Jojo, Toupie Générale Chinoise n'a pas l'air d'avoir beaucoup de sens physiquement, on oublie
+ 	$ Les intégrateurs du 2ème degré ne sont définitivement pas des intégrateurs du 1er (puisque l'accélération n'est pas forcément nul!) 
+ 	$ Création de la classe Exception pour gérer les exceptions
+ 	- Modification profonde avec la création du vector<Vecteur> Position pour ne plus avoir de vect_P et dP et pouvoir avoir une Toupie Énergétique codée proprement
+ 	- Modification (et simplification!) du code liée à la création de Position
+
+ 	# Problème à l'exécution lors de la création d'une toupie (incompréhensible)
+ 	# Qt ne fonctionne jamais à la première compilation, normal?
+ 	# La classe Exception pourrait être vide on arriverait quand même à afficher les erreurs, mais si on enlève le #include "Exception.h" du main pour le remplacer par #include <exception> et <iostream> (les seuls header files dans "Exception.h") ça ne marche pas (???)
+
+Semaine 14 28/05/20 : 
+	@ Joseph
+	-Corrections des équations de toupies chinoises
+	-On trouve des conditions initiales qui marchent bien-> 1ERE TOUPIE CHINOISE !! (Euler est très instable)
+	-Ajout du mouvement sur XY des toupies coniques et chinoises
+	-Résolution du problème de toupie chinoise (P4 P5 du complément != de X Y)
+->problème de conception On surcharge les intégrateurs pour corriger le problème de conception
+ca n'est pas très propres.
+On décide donc de "décaler les coordonnées XY de P vers dP" 
+	-création de GlChinoise pour afficher les toupies chinoises
+	-Je peaufine l'interface
+
+	@ Arthur 
+	$ La classe Erreur hérite en fait de std::exception, ce qui explique p-ê pourquoi l'héritage a besoin d'être.
+	- Création de la classe erreur (on aurait du la créer plus tôt c'est trop pratique) qui a permis de trouver et résoudre les problèmes de la semaine dernière 
+	- Remplacement de degre par degre_position et degre_eqEvol pour différencier les deux, on s'est rendu compte que toupie énergétique avait quand même des vitesses
+	- Création du readme
+	- Modification et rajout de plusieurs méthodes de toupie, principalement des erreurs pcq les grandeurs utilisées n'étaient pas écrite dans les bonnes bases.
+	- Gestion d'erreur et adaptation du code (on lace plus des string mais des instances d'Erreur)
+	# Toupie générale fonctionne mais uniquement sur un "court" laps de temps et en diminuant considérablement le dt
+	# Toupie énergétique fait une boucle infinie pour des raisons inconnues
+	# A part ces deux derniers points, le projet s'est bien passé et à permis d'améliorer grandement notre maîtrise du C++ mais nous a également donné un aperçu de la gestion d'un projet en informatique d'une certaine envergure et le travail en équipe, cette dernière est probablement ce que j'ai le plus aimée dans le projet.
