@@ -94,11 +94,11 @@ double Toupie::invariant_moment_cin_A3 () const {
 }
 
 double Toupie::invariant_moment_cin_Az () const {
-    return (moment_cin_A().prod_scal(vect_k_Ro()));
+    return ((passage_RgRo() * moment_cin_A()).prod_scal(vect_k_Ro()));
 }
 
 double Toupie::invariant_coplanaires() const {
-    return coplanaire((OG_unitaire()), vect_rot_Rg(), moment_cin_G());
+    return coplanaire((OG_Rg()), vect_rot_Rg(), moment_cin_G());
 }
 
 //
