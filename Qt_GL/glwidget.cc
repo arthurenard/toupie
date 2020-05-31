@@ -10,6 +10,8 @@ GLWidget::GLWidget(QWidget* parent):
     speed(1)
 {
      music = new QSound("music.wav");
+     music->setLoops(QSound::Infinite);
+
 }
 
 // ======================================================================
