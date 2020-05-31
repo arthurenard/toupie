@@ -15,10 +15,10 @@ class Integrable {
 	public: 
 		//constructeurs
             Integrable (std::vector<Vecteur> Position, size_t degre_Position); //verifie si la dimension de Position est == à degre_Position, erreur sinon
-            virtual ~Integrable() = default;
-
 		
    		//destructeur
+            virtual ~Integrable()=default;
+
 		
 		//methodes 
             virtual Vecteur eq_evolution (std::vector<Vecteur> position , double temps = 0) const = 0;

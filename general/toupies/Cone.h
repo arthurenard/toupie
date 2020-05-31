@@ -9,7 +9,9 @@ class Cone : public Toupie {
     public:
         //constructeur
         Cone(std::vector<Vecteur> position, double masseVolumique, double hauteur, double rayon, bool move = false);
-        virtual ~Cone() override = default;
+
+        //destructeur
+        virtual ~Cone()=default;
 
 
     protected:

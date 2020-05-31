@@ -36,7 +36,8 @@ class Toupie : public Integrable {
         Toupie (std::vector<Vecteur>, double masseVolumique = 1, double hauteur = 1.5, double rayon = 0.5, bool move = false); // psi, théta, phi, x, y ; les toupie sont au plus de degree 2
 
         //destructeurs
-        virtual ~Toupie() = default;
+        virtual  ~Toupie()=default;
+
         //methodes
             void invertMoveXY(); //inverse moveXY
             void modulo2pi(); //renvoie le vecteur Position[0] (le vect-P) dont les 3premières coordonnées (des angles en radians) %= 2π (pour des réels)

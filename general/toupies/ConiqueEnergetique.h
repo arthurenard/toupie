@@ -10,8 +10,8 @@ class ConiqueEnergetique : public Cone {
     //constructeur
     ConiqueEnergetique (std::vector<Vecteur>, double masseVolumique, double hauteur, double rayon, bool move = false);
 
-
     //destructeur
+    ~ConiqueEnergetique()=default;
 
     //methodes
     int getType() const override; //retourne un nombre representant la toupie energetique

@@ -9,11 +9,10 @@ class ConeSimple : public Cone {
 	public:
 		// constructeurs
         ConeSimple (std::vector<Vecteur>, double masseVolumique, double hauteur, double rayon, bool move = false);
-        ~ConeSimple() override = default;
-
 		
 		// destructeurs
-		
+        ~ConeSimple()=default;
+
 		//methodes publiques
         int getType() const override; //retourne un numero qui symbolise le type de la toupie
         Vecteur eq_evolution (std::vector<Vecteur>, double temps = 0) const override;

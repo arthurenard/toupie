@@ -106,7 +106,8 @@ void Systeme::addToupie(std::vector<double> data){
 }
 
 void Systeme::delToupie(size_t nb){
-    //delete toupies[nb];
+    if(toupies.size() < nb) throw Erreur("delToupie systeme");
+    delete toupies[nb - 1];
     toupies.erase(toupies.begin() + nb -1);
     integrateurs.erase(integrateurs.begin() + nb -1);
 }

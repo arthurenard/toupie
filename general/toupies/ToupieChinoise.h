@@ -13,6 +13,7 @@ class ToupieChinoise : public Toupie {
         ToupieChinoise (std::vector<Vecteur>, double masseVolumique, double hauteur, double rayon, bool move = false);
 
 		// destructeurs
+         ~ToupieChinoise()=default;
 		
 		//methodes publiques
 		
