@@ -61,6 +61,12 @@
 		Et bien plus…
 
 \section{Installation de beyblade}
+	\begin {enumerate} 
+		\item Ouvrir Beyblade/project/beyblade.pro, QtCreator devrait s'ouvrir, appuyez sur Ctrl+R ou sur la flèche d'exécution en bas a droite.
+		\item Une erreur "No rule to make target.." pourrait apparaitre (nous n'avons pas réussi a la faire disparaitre). Un dossier build-beyblade-"Kit selectionne" devrait s'être créé dans le dossier Beyblade.
+		\item Déplacez les fichier "music.wav" et "toupie.png" de Beyblade/projet/Qt\_GL vers Beyblade/build-beyblade-.../QT\_GL. 
+		\item Retournez sur QtCreator et exécutez de nouveau, le programme devrait alors démarrer.
+	\end {enumerate}
 
 \section{Utilisation de beyblade}
 	\subsection {Configuration des paramètres initiaux}
@@ -106,6 +112,12 @@
 		\subsubsection {Informations}
 			Une fenêtre apparait. Sélectionnez la toupie de votre choix pour obtenir des informations.
 	\subsection {Exécution des tests}
+	Pour exécuter un test il suffit de:
+		\begin {itemize}
+			\item "décommenter" celui qui vous intéresse dans main\_text.cc
+			\item de cliquer sur l'icône au dessus de la flèche verte d'exécution
+			\item de sélectionner text et de compiler.
+		\end {itemize}
 \section{Développé avec}
 	Le projet Beyblade a été codé en \emph{C++}  depuis l'IDE \emph{Qt Creator, version 5.14.1,} où plusieurs de ses bibliothèques furent utilisées.
 	
