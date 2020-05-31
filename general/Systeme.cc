@@ -106,7 +106,7 @@ void Systeme::addToupie(std::vector<double> data){
 }
 
 void Systeme::delToupie(size_t nb){
-    delete toupies[nb];
+    //delete toupies[nb];
     toupies.erase(toupies.begin() + nb -1);
     integrateurs.erase(integrateurs.begin() + nb -1);
 }
@@ -133,20 +133,20 @@ void Systeme::invertConeFixe(){
 }
 
 void Systeme::invertTrace(){
-        trace = !trace;
-        for(auto toupie: toupies){
-          toupie->clearTrace();
-         }
+    trace = !trace;
+    for(auto toupie: toupies){
+    toupie->clearTrace();
+    }
 }
 
 void Systeme::clearAll(){
-    for(auto toupie: toupies){
+    /*for(auto toupie: toupies){
         delete toupie;
     }
     for(auto balle: balles){
         delete balle;
     }
-    delete nyan;
+    delete nyan;*/
     toupies.clear();
     integrateurs.clear();
     balles.clear();
@@ -159,7 +159,7 @@ void Systeme::addBalle(std::vector<Vecteur> p){
 }
 
 void Systeme::suppBalle(size_t id){
-    delete balles[id];
+    //delete balles[id];
     balles.erase(balles.begin() + id);
 }
 
