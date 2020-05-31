@@ -200,6 +200,7 @@ ca n'est pas très propres.
 On décide donc de "décaler les coordonnées XY de P vers dP" 
 	-création de GlChinoise pour afficher les toupies chinoises
 	-Je peaufine l'interface
+	//Nous avons fini le projet, ca a ete une experience grandement enrichissante et motivante, notamment en nous presentant l'integration numerique. J'ai personnellement largement amelioré ma maitrise du C++, acquis une experience en interface utilisateur et graphisme. De plus le travail de groupe a ete efficace et toujours amusant.
 
 	@ Arthur 
 	$ La classe Erreur hérite en fait de std::exception, ce qui explique p-ê pourquoi l'héritage a besoin d'être.
