@@ -11,6 +11,7 @@ class Balle :  public Integrable
 public:
     //constructeur
     Balle(std::vector<Vecteur> Position, double rouge, double vert, double bleu);
+    virtual ~Balle() = default;
 
     //methodes
     virtual void EulerCromer(double pas_de_temps, double temps = 0) override; //adapte la position et les vitesses en cas de rebond

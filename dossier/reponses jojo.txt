@@ -1,0 +1,7 @@
+P 4.2 a Il faudrait verifier que les coordonnées theta phi pour qu'ils appartiennent a [0 2pi[ x [0 pi[ x [0 inf[
+      b On ne pourrait plus alors appeler le constructeur de coordonnées carthesiennes qui demanderait lui aussi 3 double
+
+P 8.1 C'est une methode heritée de la classe dessinable(mere de systeme)
+   .2 Il faut override la methode Dessinable::dessine()
+   .3 Il ne faut pas oublier de les "delete", dans les faits nous n'y avons pas reussit, car l'appel du destructeur de Toupie* faisait planter le programme.
+   .4 La classe systeme est representé par l'ensemble des toupies et balles vers lesquelles elle pointe

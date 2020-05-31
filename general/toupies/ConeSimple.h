@@ -9,6 +9,8 @@ class ConeSimple : public Cone {
 	public:
 		// constructeurs
         ConeSimple (std::vector<Vecteur>, double masseVolumique, double hauteur, double rayon, bool move = false);
+        ~ConeSimple() override = default;
+
 		
 		// destructeurs
 		

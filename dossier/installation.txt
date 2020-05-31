@@ -1,0 +1,4 @@
+Ouvrir Beyblade/project/beyblade.pro, QtCreator devrait s'ouvrir, appuyez sur Ctrl+R ou sur la fleche d'execution en bas a droite.
+Apres un certain temps une erreur "No rule to make target.." devrait apparaitre (nous n'avons pas reussi a la faire disparaitre). Un dossier build-beyblade-"Kit selectionne" devrait s'etre cree dans le dossier Beyblade.
+Deplacez les fichier "music.wav" et "toupie.png" de Beyblade/projet/Qt_GL vers Beyblade/build-beyblade-.../QT_GL. Retournez sur QtCreator et executez de nouveau, le programme doit alors demarrer.
+
