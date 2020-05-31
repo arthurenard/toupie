@@ -1,2 +1,0 @@
-Pour executer un test il suffit de "decommenter" celui qui vous interesse dans main_text.cc
-et de cliquer sur l'icone au dessus de la fleche verte d'execution, de selectionner text et de compiler.
