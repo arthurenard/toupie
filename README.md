@@ -10,8 +10,7 @@ among the following choices
 ### Tops :
 - Conical Top (ConeSimple)
 - Chinese Top
-- General Conical Top (a conical top with more general evolution equa-
-tions)
+- General Conical Top (a conical top with more general evolution equations)
 - Energy Conical Top (a conical top with evolution equations based on
 energy)
 ### Integrators :
